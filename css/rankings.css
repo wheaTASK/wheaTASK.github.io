@@ -1,0 +1,22 @@
+.dormName {
+	text-align: center;
+}
+
+#Bronze {
+	color: #CD7F32;
+	font-size: 22px;
+}
+
+#Gold {
+	color: #FFD700;
+	font-size: 42px;
+}
+
+#rankings {
+	background-color: black;
+}
+
+#Silver {
+	color: #C0C0C0;
+	font-size: 32px;
+}
