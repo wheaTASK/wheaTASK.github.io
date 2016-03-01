@@ -13,9 +13,10 @@
   border: 1px solid;
   border-radius: 5px;
   width: auto;
-  border-color: #080808;
+  border-color: #0068af;
   margin: 0;
   padding: 0;
+  background: #0068af;
 }
 #cssmenu > ul {
   list-style: inside none;
@@ -53,7 +54,7 @@
   font-weight: 700;
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
-  border-right: 1px solid #080808;
+  border-right: 1px solid #0068af;
   color: #ffffff;
   padding: 12px 20px;
 }
@@ -105,7 +106,7 @@
   width: auto;
   position: absolute;
   top: 38px;
-  background: #3f3f3f;
+  background: #0068af;
   border-radius: 0 0 5px 5px;
   z-index: 999;
   padding: 10px 0;
@@ -142,10 +143,10 @@
 #cssmenu,
 #cssmenu ul ul > li:hover > a,
 #cssmenu ul ul li a:hover {
-  background: #3c3c3c;
+  background: #0068af;
   background: -moz-linear-gradient(top, #3c3c3c 0%, #222222 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c3c3c), color-stop(100%, #222222));
-  background: -webkit-linear-gradient(top, #3c3c3c 0%, #222222 100%);
+  background: -webkit-linear-gradient(top, #3c3c3c 0%, #0068af 100%);
   background: -o-linear-gradient(top, #3c3c3c 0%, #222222 100%);
   background: -ms-linear-gradient(top, #3c3c3c 0%, #222222 100%);
   background: linear-gradient(top, #3c3c3c 0%, #222222 100%);

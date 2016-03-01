@@ -1,5 +1,25 @@
 body {
-	background-color: #ffe6cc;
+	background-color: #fff;
+}
+
+/* temporary css */
+#tempImage {
+	width: 100%;
+}
+
+#tempSubmenu {
+	width: 100%;
+	height: 20px;
+	margin-top: 1px;
+	border-width: 2px;
+	border-color: #fff;
+	background: #0068af;
+}
+
+#tempCentered {
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
 }
 
 .banner {
