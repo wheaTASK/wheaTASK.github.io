@@ -7,15 +7,6 @@ body {
 	width: 100%;
 }
 
-#tempSubmenu {
-	width: 100%;
-	height: 20px;
-	margin-top: 1px;
-	border-width: 2px;
-	border-color: #fff;
-	background: #0068af;
-}
-
 #tempCentered {
 	text-align: center;
 	color: #fff;

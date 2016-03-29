@@ -6,6 +6,10 @@
 	text-align: center;
 }
 
+.submenuOpen {
+	background: #0068af;
+}
+
 #description {
 	display: inline-block;
 }
@@ -25,6 +29,18 @@
 
 #profilePic {
 	/*height: 10em;*/
+}
+
+#submenu {
+	width: 100%;
+	height: 20em;
+	min-height: 2em;
+	max-height: 10em;
+	margin-top: 1px;
+	border-width: 2px;
+	border-color: #fff;
+	background: #0068af;
+	display: inline;
 }
 
 #tResult {
