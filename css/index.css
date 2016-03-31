@@ -3,7 +3,7 @@ br {
 }
 
 .activegraph {
-	visibility: visible;
+	display: inline-block;
 }
 
 .banner {
@@ -15,7 +15,7 @@ br {
 }
 
 .inactivegraph {
-	visibility: hidden;
+	display: none;
 }
 
 .info {
@@ -74,9 +74,14 @@ br {
 	border-color: #000;
 }
 
+#lineGraph {
+	margin-top: 10px;
+}
+
 #map {
 	width: 800px;
 	height: 600px;
+	margin-top: 10px;
 }
 
 #profilePic {
