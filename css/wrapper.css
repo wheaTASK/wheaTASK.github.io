@@ -21,6 +21,10 @@ body {
 	text-align: center;
 }
 
+#bannerID {
+	margin-bottom: 2px;
+}
+
 #description {
 	display: inline-block;
 }
