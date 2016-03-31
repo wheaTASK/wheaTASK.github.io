@@ -32,6 +32,10 @@ br {
 	color: #777;
 }
 
+.leftCbox {
+	margin-left: 5px;
+}
+
 .legend {
 	text-align: left;
 	line-height: 18px;
