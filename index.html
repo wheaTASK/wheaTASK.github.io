@@ -9,10 +9,15 @@
 		<link rel="stylesheet" href="./css/styles.css">
 		<link rel="stylesheet" type="text/css" href="./css/wrapper.css">
 		<link rel="stylesheet" type="text/css" href="./css/index.css">
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="./js/wrapper.js"></script>
 		<script src="./js/index.js"></script>
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    	<script src="./js/dorms.js" type="text/javascript"></script>
 	</head>
+
+	<!-- submenu button space in between divs -->
 
 	<body>
 		<!-- banner -->
@@ -45,43 +50,161 @@
 			<!-- content -->	
 		<div class="row">
 			<div class="small-12 small-centered columns">
-				<div class="submenuOpen" id="tempCentered">Open Options</div>
+				<div class="submenuOpen" id="tempCentered"><center><div class="subButton">Open Options</div></center></div>
 				<div id="submenu">
 					<div class="row">
-						<div class="small-2 columns"><input type="checkbox" id="ChapinCbox" value="second_checkbox"> <label for="ChapinCbox">Chapin</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="MetcalfCbox" value="second_checkbox"> <label for="MetcalfCbox">Metcalf</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="KilhamCbox" value="second_checkbox"> <label for="KilhamCbox">Kilham</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="KeefeCbox" value="second_checkbox"> <label for="KeefeCbox">Keefe</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="BeardCbox" value="second_checkbox"> <label for="BeardCbox">Beard</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="YoungCbox" value="second_checkbox"> <label for="YoungCbox">Young</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="ChapinCbox" value="second_checkbox" onchange="checkboxes()"> <label for="ChapinCbox">Chapin</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="MetcalfCbox" value="second_checkbox" onchange="checkboxes()"> <label for="MetcalfCbox">Metcalf</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="KilhamCbox" value="second_checkbox" onchange="checkboxes()"> <label for="KilhamCbox">Kilham</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="KeefeCbox" value="second_checkbox" onchange="checkboxes()"> <label for="KeefeCbox">Keefe</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="BeardCbox" value="second_checkbox" onchange="checkboxes()"> <label for="BeardCbox">Beard</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="YoungCbox" value="second_checkbox" onchange="checkboxes()"> <label for="YoungCbox">Young</label></div>
 					</div>
 					<div class="row">
-						<div class="small-2 columns"><input type="checkbox" id="EverettCbox" value="second_checkbox"> <label for="EverettCbox">Everett</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="EmersonCbox" value="second_checkbox"> <label for="EmersonCbox">Emerson</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="StantonCbox" value="second_checkbox"> <label for="StantonCbox">Stanton</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="CraginCbox" value="second_checkbox"> <label for="CraginCbox">Cragin</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="ClarkCbox" value="second_checkbox"> <label for="ClarkCbox">Clark</label></div>
-						<div class="small-2 columns"><input type="checkbox" id="MeadowsCbox" value="second_checkbox"> <label for="MeadowsCbox">Meadows</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="EverettCbox" value="second_checkbox" onchange="checkboxes()"> <label for="EverettCbox">Everett</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="EmersonCbox" value="second_checkbox" onchange="checkboxes()"> <label for="EmersonCbox">Emerson</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="StantonCbox" value="second_checkbox" onchange="checkboxes()"> <label for="StantonCbox">Stanton</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="CraginCbox" value="second_checkbox" onchange="checkboxes()"> <label for="CraginCbox">Cragin</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="ClarkCbox" value="second_checkbox" onchange="checkboxes()"> <label for="ClarkCbox">Clark</label></div>
+						<div class="small-2 columns"><input type="checkbox" id="MeadowsCbox" value="second_checkbox" onchange="checkboxes()"> <label for="MeadowsCbox">Meadows</label></div>
 					</div>
 					<div class="row">
 						<form>
-							<div class="small-2 columns"><input type="checkbox" id="LarcomCbox" value="second_checkbox"> <label for="LarcomCbox">Larcom</label></div>
-							<div class="small-2 columns"><input type="checkbox" id="McIntireCbox" value="second_checkbox"> <label for="McIntireCbox">McIntire</label></div>
-							<div class="small-2 columns"><input type="checkbox" id="selectAll" value="selectAll"><label for="selectAll">Select All</label></div>
+							<div class="small-2 columns"><input type="checkbox" id="LarcomCbox" value="second_checkbox" onchange="checkboxes()"> <label for="LarcomCbox">Larcom</label></div>
+							<div class="small-2 columns"><input type="checkbox" id="McIntireCbox" value="second_checkbox" onchange="checkboxes()"> <label for="McIntireCbox">McIntire</label></div>
+							<div class="small-2 columns"><input type="checkbox" id="selectAll" value="selectAll" onchange="selectall()"><label for="selectAll">Select All</label></div>
 							<div class="small-2 columns"></div>
 						</form>
 						<form>
-							<div class="small-2 columns"><input type="radio" name="whichGraph" value="first_radio" checked> Heat Map</div>
-							<div class="small-2 columns end"><input type="radio" name="whichGraph" value="second_radio"> Line Graph</div>
+							<div class="small-2 columns"><input id="heatmap" type="radio" name="whichGraph" value="first_radio" onchange="checkboxes()" checked> Heat Map</div>
+							<div class="small-2 columns end"><input id="linegraph" type="radio" name="whichGraph" value="second_radio" onchange="checkboxes()"> Line Graph</div>
 						</form>
 					</div>
 					<div class="row">
-						<div class="submenuEnter small-3 large-offset-3 columns" id="tempCentered">Enter Options</div>
-						<div class="submenuClose small-3 columns end" id="tempCentered">Close Options</div>
+						<div class="submenuClose small-12 centered columns" id="tempCentered"><center><div class="subButton">Close Options</div></center></div>
 					</div>
 				</div>
 				<br />
-				<img id ="tempImage" src="./images/heat_map.png"/>
+
+				<center><div class="activegraph" id="map"></div></center>
+				<div class="inactivegraph" id="lineGraph"></div>
+				
+				<script>
+					//Editing power values
+					//dormData["features"][0].properties.power=1000;
+
+					var map = L.map('map').setView([41.966975161113574,-71.18357218801937], 17); 
+					  L.tileLayer('http://{s}.tiles.mapbox.com/v3/austinrg7.jl4274hk/{z}/{x}/{y}.png', {
+					    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+					    maxZoom: 20
+					  }).addTo(map);
+
+
+					// control that shows state info on hover
+					var info = L.control({position: 'topright'});
+
+					info.onAdd = function (map) {
+					  this._div = L.DomUtil.create('div', 'info');
+					  this.update();
+					  return this._div;
+					};
+
+					info.update = function (props) {
+					  this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
+					    '<b>' + props.name + '</b><br />' + props.power + ' kW/h'
+					    : 'Hover over a dorm');
+					};
+
+					info.addTo(map);
+
+
+					function getColor(d) {
+					    return d > 1000 ? '#FF0000' :
+					           d > 500  ? '#FF4322' :
+					           d > 200  ? '#FFD744' :
+					           d > 100  ? '#FFAC66' :
+					           d > 50   ? '#FFD089' :
+					           d > 20   ? '#FFEBAB' :
+					           d > 10   ? '#FFFACD' :
+					                      '#FDFFF0';
+					    }
+
+					function style(feature) {
+					  return {
+					    weight: 2,
+					    opacity: 1,
+					    color: 'white',
+					    dashArray: '3',
+					    fillOpacity: 0.7,
+					    fillColor: getColor(feature.properties.power)
+					  };
+					}
+
+					function highlightFeature(e) {
+					  var layer = e.target;
+
+					  layer.setStyle({
+					    weight: 5,
+					    color: '#666',
+					    dashArray: '',
+					    fillOpacity: 0.7
+					  });
+
+					  if (!L.Browser.ie && !L.Browser.opera) {
+					    layer.bringToFront();
+					  }
+
+					  info.update(layer.feature.properties);
+					}
+
+					var geojson;
+
+					function resetHighlight(e) {
+					  geojson.resetStyle(e.target);
+					  info.update();
+					}
+
+					// function zoomToFeature(e) {
+					//   map.fitBounds(e.target.getBounds());
+					// }
+
+					function onEachFeature(feature, layer) {
+					  layer.on({
+					    mouseover: highlightFeature,
+					    mouseout: resetHighlight
+					    //click: zoomToFeature
+					  });
+					}
+
+					geojson = L.geoJson(dormData, {
+					  style: style,
+					  onEachFeature: onEachFeature
+					}).addTo(map);
+
+					var legend = L.control({position: 'bottomright'});
+
+					legend.onAdd = function (map) {
+
+					  var div = L.DomUtil.create('div', 'info legend'),
+					    grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+					    labels = [],
+					    from, to;
+
+					  for (var i = 0; i < grades.length; i++) {
+					    from = grades[i];
+					    to = grades[i + 1];
+
+					    labels.push(
+					      '<i style="background:' + getColor(from + 1) + '"></i> ' +
+					      from + (to ? '&ndash;' + to : '+'));
+					  }
+
+					  div.innerHTML = labels.join('<br>');
+					  return div;
+					};
+
+					legend.addTo(map);
+				</script>
 				<!-- mouse over image -->
 				<!-- <img id="tempImage" src="./images/zoomHeatMap.png"> -->
 				<!-- <img id="tempImage" src="./images/Line_Chart.png"> -->

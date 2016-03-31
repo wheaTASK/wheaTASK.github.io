@@ -13,12 +13,26 @@ $(document).ready(function() {
 		$("#submenu").slideUp("slow", function() {
 			$(".submenuOpen").show();
 		});
-		checkboxes();
 	});
 })
 
 // checkboxes
 function checkboxes() {
+	if ($("#heatmap").is(':checked')) {
+		$("#map").addClass("activegraph");
+		$("#map").removeClass("inactivegraph");
+		$("#lineGraph").addClass("inactivegraph");
+		$("#lineGraph").removeClass("activegraph");
+	}
+	else {
+		$("#lineGraph").addClass("activegraph");
+		$("#lineGraph").removeClass("inactivegraph");
+		$("#map").addClass("inactivegraph");
+		$("#map").removeClass("activegraph");
+	}
+}
+
+function selectall() {
 	if ($("#selectAll").is(':checked')) {
 		$('input[type=checkbox]').each(function() {
 			this.checked = true;

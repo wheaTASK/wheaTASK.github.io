@@ -1,18 +1,138 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>TASK Calculator</title>
+	<head> 
+		<title>Calculator Page</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="./css/foundation.css">
 		<link rel="stylesheet" href="./css/styles.css">
 		<link rel="stylesheet" type="text/css" href="./css/wrapper.css">
-		<link rel="stylesheet" type="text/css" href="./css/calculator.css">
 		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="./js/wrapper.js"></script>
-		<script src="./js/calculator.js"></script>
 	</head>
+
+	<style type="text/css">
+		  
+		.container{
+		    background-color: #34495E;
+		    color: #F0F5F4;
+		    text-align: center;
+		    margin: 1em 4em;
+		     border-radius: .4em;
+		     min-width: 500px;
+		     width: 6.5em;
+		  display: inline-block;
+		  }
+
+		@import "http://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+		.rwd-table {
+		  margin: 1em 0;
+		  min-width: 500px;
+		   text-align: center;
+		}
+		.rwd-table tr {
+		  border-top: 1px solid #ddd;
+		  border-bottom: 1px solid #ddd;
+		}
+		.rwd-table th {
+		  display: none;
+		}
+		.rwd-table td {
+		  display: block;
+		}
+		.rwd-table td:first-child {
+		  padding-top: .5em;
+		}
+		.rwd-table td:last-child {
+		  padding-bottom: .5em;
+		}
+		.rwd-table td:before {
+		  content: attr(data-th) ": ";
+		  font-weight: bold;
+		  width: 6.5em;
+		  display: inline-block;
+		}
+		@media (min-width: 480px) {
+		  .rwd-table td:before {
+		    display: none;
+		  }
+		}
+		.rwd-table th, .rwd-table td {
+		  text-align: center;
+		}
+		@media (min-width: 480px) {
+		  .rwd-table th, .rwd-table td {
+		    display: table-cell;
+		    padding: .25em .5em;
+		  }
+		  .rwd-table th:first-child, .rwd-table td:first-child {
+		    padding-left: 0;
+		  }
+		  .rwd-table th:last-child, .rwd-table td:last-child {
+		    padding-right: 0;
+		  }
+		}
+
+		body {
+		  padding: 0 2em;
+		  font-family: Montserrat, sans-serif;
+		  -webkit-font-smoothing: antialiased;
+		  text-rendering: optimizeLegibility;
+		  color: #444;
+		}
+
+		h1 {
+		  font-weight: normal;
+		  letter-spacing: -1px;
+		  color: #34495E;
+		}
+
+
+		.rwd-table {
+		  background: #34495E;
+		  color: #fff;
+		  border-radius: .4em;
+		  overflow: hidden;
+		}
+		.rwd-table tr {
+		  border-color: #46637f;
+		}
+		.rwd-table th, .rwd-table td {
+		  margin: .5em 1em;
+		}
+		@media (min-width: 480px) {
+		  .rwd-table th, .rwd-table td {
+		    padding: 1em !important;
+		  }
+		}
+		.rwd-table th, .rwd-table td:before {
+		  color: #dd5;
+		}
+
+		#intro
+		{
+		  color: #dd5;
+		}
+
+		#middle
+		{
+		  text-align: center;
+		  color:#0068af;
+		}
+
+		#Main_container
+		{
+		  text-align: left;
+		}
+
+		#centertables
+		{
+
+		}
+	</style>
+
+
+	<!-- body page --> 
 
 	<body>
 		<!-- banner -->
@@ -25,7 +145,7 @@
 				<ul>
 					<li class='active has-sub'><a href='#'><span>USE</span></a>
 					<ul>
-						<li class='has-sub'><a href='./index.html'><span>Graphs</span></a>
+						<li class='has-sub'><a href='#'><span>Graphs</span></a>
 						</li>
 						<li class='has-sub'><a href='./rankings.html'><span>Rankings</span></a>
 						</li>
@@ -33,40 +153,175 @@
 					</li>
 					<li class='has-sub'><a href='#'><span>REDUCE</span></a>
 					<ul>
-						<li><a href='#'><span>Calculator</span></a></li>
+						<li><a href='./calculator.html'><span>Calculator</span></a></li>
 						<li class='last'><a href='./tips.html'><span>Tips</span></a></li>
 					</ul>
 					</li>
 				</ul>
 			</div>
 		</div>
-			
-			
-			<!-- content -->	
-		<div class="row">
-			<div class="small-9 small-centered columns">
-				
-				<h3> Energy Saver Calculator</h3> 
 
-				<h4>  Please select the hour for energy saving rate per hour.</h4>
-				<p>If you turn off your TV for <input class="numInput stayInline" type="number" min ="0" value="0">  hours.</p>
-				<br>
-				<p>If you turn off your Lights for <input class="numInput stayInline" type="number"  min ="0" value="0">  hours.</p>
-				<br>
-				<p>If you turn off your Computer for <input class="numInput stayInline" type="number" min="0" value="0">  hours.</p>
-				<br>
-				<br>
-				 <button type="button">Calculate</button> 
+		<div id="Main_container"> 
 
-				<h3>Total Energy saved: 20%</h3> 
-			</div>
+		<h1 id="middle"> Wheaton Energy Saver Calculator </h1>
+		<h4 id ="middle" align="left"> Now every member of Wheaton community is able to calculate how much electric energy can be saved! In addition to this feature, we have added basic information of wattages rates for the most common electric devices students use on a daily basis.</h4>
 		</div>
 
-		<!-- loads jquery and foundation -->
-		<script src="js/vendor/jquery.min.js"></script>
-		<script src="js/foundation.min.js"></script>
+
+		<!--Two table inside a table--> 
+
+		<div id="centertables">
+
+		<table  align="center">
+		<TD>
+
+		<div class="container">
+
+		<br>
+		<h3 id="right">Energy Consumption Calculator</h3>
+
+		 <p id="intro"> Computers</p>
+		Hours of use per day:<input type="number" min ="0" id="computer"> hour / day
+
+		<p id="intro"> Lights</p>
+		Hours of use per day:<input type="number" min ="0" id="light"> hour / day
+
+		<p id="intro">Appliances</p>
+		Hours of use per day:<input type="number" min ="0" id="appliances"> hour / day
+		<p> </p>
+
+		<button onclick="addboth()">Calculate</button>
+
+		<h4 id="Results"></h4>
+
+		<p id="total"></p> 
+		<p id="monthlyrate"></p> 
+		<br>
+		</div>
+
+		</TD>
+
+		<br>
+		<TD>
+		<div id = "TableSection_2">
+		<table class="rwd-table">
+		 <!-- <h3>Common Wattages for college Appliances</h3> -->
+
+		  <tr>
+		    <th>Appliance</th>
+		    <th>Watts</th>
+		  </tr>
+		  <tr>
+
+		    <td data-th="appliance">Laptops</td>
+		    <td data-th="watts">50 watts</td>
+		   
+		  </tr>
+
+		    <tr>
+
+		    <td data-th="appliance">Computer monitor </td>
+		    <td data-th="watts">150 watts</td>
+		   
+		  </tr>
+
+		    <tr>
+
+		    <td data-th="appliance">Hair dryer</td>
+		    <td data-th="watts">1200-1875 watts</td>
+		   
+		  </tr>
+
+		    <tr>
+
+		    <td data-th="appliance">Microwave</td>
+		    <td data-th="watts">750-1100 watts</td>
+		   
+		  </tr>
+		  <tr>
+		    <td data-th="appliance">Heater</td>
+		    <td data-th="watts">  4500-5500 watts</td>
+		    
+		  </tr>
+
+		    
+		  <tr>
+		    <td data-th="appliance">Television 53"-61"</td>
+		    <td data-th="watts"> 170 watts</td>
+		   
+		  </tr>
+
+		  <!--   <tr>
+
+		    <td data-th="appliance">Cofee maker</td>
+		    <td data-th="watts">900-1200 watts</td>
+		   
+		  </tr> -->
+
+		</table>
+		<TD>
+		</div>
+
+		 </table>
+		</div>
+
+		<!--Javsscript functions -->
 		<script>
-			$(document).foundation();
+			function computer() {
+			    var x = document.getElementById("computer").value;
+			    var z = parseFloat(x);
+			   return z;
+			}
+
+			function Addlight() {
+			    var u = document.getElementById("light").value;
+			    var y = parseFloat(u);
+			   return y;
+			}
+
+			function appliances() {
+			    var z = document.getElementById("appliances").value;
+			    var b = parseFloat(z);
+			   return b;
+			}
+
+
+			function Computerkillowatts()
+			{
+			  var computerfunction = computer();
+			  var killowatts_Laptop = computerfunction * 0.2;
+			  return killowatts_Laptop;
+			}
+
+			function Lightskillowatts()
+			{
+			  var computerfunction = Addlight();
+			  var killowatts_Laptop = computerfunction * 0.4;
+			  return killowatts_Laptop;
+			}
+
+			function Applianceskillowatts()
+			{
+			  var computerfunction = appliances();
+			  var killowatts_Laptop = computerfunction * 2;
+			  return killowatts_Laptop;
+			}
+
+			function addboth() {
+
+			   var both = Computerkillowatts() + Lightskillowatts() + Applianceskillowatts();
+			  
+			   // var both = computer() + Addlight() + appliances();
+			   var total = parseFloat(both); 
+			   var round = Math.round(total);
+			   var monthly = round * 30;
+			   document.getElementById("total").innerHTML =  ("You have consumed ")+ round + (" kilowatts / hour!");
+			      document.getElementById("monthlyrate").innerHTML =  ("You have consumed ")+ monthly + (" kilowatts / month!");
+
+			     document.getElementById("Results").innerHTML = ("Results");
+
+			};
+
 		</script>
 	</body>
 </html>
