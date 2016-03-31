@@ -90,7 +90,12 @@
 				<center><div class="activegraph" id="map"></div></center>
 				<center>
 					<div class="inactivegraph" id="lineGraph">
-						<img src="./images/linegraph.png">
+						<img src="./images/unordered.png" class="tempActiveImage" id="unordered">
+						<img src="./images/ordered.png" class="tempInActiveImage" id="ordered">
+						<div class="row">
+							<div class="small-6 columns tempButton" id="tempSortButton" onclick="sort()">Sort</div>
+							<div class="small-6 columns tempButton" id="tempResetButton" onclick="reset()">Reset</div>
+						</div>
 					</div>
 				</center>
 				<script>

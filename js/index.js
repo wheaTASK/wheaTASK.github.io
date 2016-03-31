@@ -6,9 +6,6 @@ $(document).ready(function() {
 		$("#submenu").slideDown();
 		$(".submenuOpen").hide();
 	});
-	$(".submenuEnter").click(function() {
-		checkboxes();
-	});
 	$(".submenuClose").click(function() {
 		$("#submenu").slideUp("slow", function() {
 			$(".submenuOpen").show();
@@ -16,7 +13,7 @@ $(document).ready(function() {
 	});
 })
 
-// checkboxes
+// checkboxes and radio buttons
 function checkboxes() {
 	if ($("#heatmap").is(':checked')) {
 		$("#map").addClass("activegraph");
@@ -32,6 +29,7 @@ function checkboxes() {
 	}
 }
 
+// select all button
 function selectall() {
 	if ($("#selectAll").is(':checked')) {
 		$('input[type=checkbox]').each(function() {
@@ -43,4 +41,20 @@ function selectall() {
 			this.checked = false;
 		});
 	}
+}
+
+// sort button
+function sort() {
+	$("#ordered").addClass("tempActiveImage");
+	$("#ordered").removeClass("tempInActiveImage");
+	$("#unordered").addClass("tempInActiveImage");
+	$("#unordered").removeClass("tempActiveImage");
+}
+
+// reset button
+function reset() {
+	$("#unordered").addClass("tempActiveImage");
+	$("#unordered").removeClass("tempInActiveImage");
+	$("#ordered").addClass("tempInActiveImage");
+	$("#ordered").removeClass("tempActiveImage");
 }

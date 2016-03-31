@@ -2,6 +2,20 @@ br {
 	height: 1px;
 }
 
+.tempActiveImage {
+	display: inline-block;
+}
+
+.tempInActiveImage {
+	display: none;
+}
+
+.tempButton {
+	border-radius: 25px;
+	background-color: #0068af;
+	color: #fff;
+}
+
 .activegraph {
 	display: inline-block;
 }
