@@ -1,0 +1,46 @@
+.dormName {
+	color: #000;
+	border-right: solid;
+	border-right-color: #000;
+	border-right-width: 1px;
+	/*margin-left: -25px;*/
+	text-align: left;
+	line-height: 2em;
+}
+
+.wrapperDiv {
+	border: solid;
+	border-width: 1px;
+	border-color: #000;
+	background-color: #d3d3d3;
+}
+
+
+#sortable {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 60%;
+}
+ 
+#sortable li {
+	margin: 0 3px 3px 3px;
+	padding: 0.4em;
+	padding-left: 1.5em;
+	font-size: 1.4em;
+	height: 18px;
+}
+
+#sortable li span { position: absolute; margin-left: -1.3em; }
+
+#submenu {
+	width: 100%;
+	height: 20em;
+	min-height: 2em;
+	max-height: 10em;
+	margin-top: 1px;
+	border-width: 2px;
+	border-color: #fff;
+	background: #0068af;
+	display: inline;
+}
