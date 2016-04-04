@@ -1,5 +1,5 @@
 # wheaTASK.github.io
-senior sem group project site
+Wheaton College Energy Savers website for senior sem group project
 
 # TODO
 * Color Scheme
