@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 	info.update = function (props) {
 	  this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
-	    '<b>' + props.name + '</b><br />' + props.power + ' kW/h'
+	    '<b>' + props.name + '</b><br />' + dormJSON.features[i].properties.power + ' kW/h'
 	    : 'Hover over a dorm');
 	};
 
