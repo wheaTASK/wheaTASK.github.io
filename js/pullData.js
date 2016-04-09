@@ -1,6 +1,3 @@
-var dormJSON;
-
-
 $( document ).ready(function() {
 // function chapinVals() {
     //get data and put into array
@@ -29,8 +26,7 @@ $( document ).ready(function() {
             toKWH(usageVals);
 
 
-            dormJSON = JSON.parse(JSON.stringify(dormData));
-            console.log(dormJSON);
+            var dormJSON = JSON.parse(JSON.stringify(dormData));
             // console.log(dormJSON.features[2].properties.power);
 
             // set dormData values to kw/h
