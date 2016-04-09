@@ -30,6 +30,7 @@ $( document ).ready(function() {
 
 
             dormJSON = JSON.parse(JSON.stringify(dormData));
+            console.log(dormJSON);
             // console.log(dormJSON.features[2].properties.power);
 
             // set dormData values to kw/h

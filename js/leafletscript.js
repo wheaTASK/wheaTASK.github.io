@@ -20,12 +20,12 @@ $(document).ready(function() {
 
 	info.update = function (props) {
 		// 17 different dorms to check
-		for (var i = 0; i < 17; i++) {
-			if (dormJSON.features[i].properties.name == props.name) {
-				var kwh = dormJSON.features[i].properties.power;
-				// console.log("Chapin is i " + i);
-			}
-		}
+		// for (var i = 0; i < 17; i++) {
+		// 	if (dormJSON.features[i].properties.name == props.name) {
+		// 		var kwh = dormJSON.features[i].properties.power;
+		// 	}
+		// }
+		console.log(dormJSON);
 	  this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
 		'<b>' + props.name + '</b><br />' + kwh + ' kW/h'
 		: 'Hover over a dorm');
