@@ -21,15 +21,17 @@ $(document).ready(function() {
 	info.update = function (props) {
 		props ? checkChapin(props) : 'Hover over a dorm';
 	  this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
-	    '<b>' + props.name + '</b><br />' + props.power + ' kW/h'
+	    '<b>' + props.name + '</b><br />' + props.power + ' kW/h' + '<br />$' + props.cost + ' per hour'
 	    : 'Hover over a dorm');
 	};
 
 	info.addTo(map);
 
 	function checkChapin(props) {
-		if (props.name == "Chapin")
-			props.power = dormJSON.features[2].properties.power;
+		if (props.name == "Chapin") {
+			props.power = dormJSON.features[2].properties.power.toFixed(2);
+			props.cost = props.power*.14.toFixed(2);
+		}
 	}
 
 
