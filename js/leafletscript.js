@@ -19,12 +19,18 @@ $(document).ready(function() {
 	};
 
 	info.update = function (props) {
+		props ? checkChapin(props) : 'Hover over a dorm';
 	  this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
 	    '<b>' + props.name + '</b><br />' + props.power + ' kW/h'
 	    : 'Hover over a dorm');
 	};
 
 	info.addTo(map);
+
+	function checkChapin(props) {
+		if (props.name == "Chapin")
+			props.power = dormJSON.features[2].properties.power;
+	}
 
 
 	function getColor(d) {
