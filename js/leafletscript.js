@@ -30,7 +30,7 @@ $(document).ready(function() {
 	function checkChapin(props) {
 		if (props.name == "Chapin") {
 			props.power = dormJSON.features[2].properties.power.toFixed(2);
-			props.cost = props.power*.14.toFixed(2);
+			props.cost = (props.power*.14).toFixed(2);
 		}
 	}
 
