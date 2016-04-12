@@ -31,30 +31,18 @@ $( document ).ready(function() {
             dormJSON = JSON.parse(JSON.stringify(dormData));
             // console.log(dormJSON.features[2].properties.power);
 
+            dormAvg = averageAllVals(usageVals);
+            console.log(dormAvg);
+
             // set dormData values to kw/h
             // 17 is number of dorms
             for (var i = 0; i < 17; i++) {
                 if (dormJSON.features[i].properties.name == "Chapin") {
-                    dormJSON.features[i].properties.power = usageVals[0];
+                    dormJSON.features[i].properties.power = dormAvg;
                     // console.log("Chapin is i " + i);
                 }
             }
             console.log(dormJSON.features[2].properties.power);
-
-            // for when we're pulling data from all gauges not using just
-            // Chapin
-            //
-            // for (var i = 0; i < 17; i++)
-            // {
-            //     if (dormJSON.features[i].properties.name == "Chapin") {
-            //         dormJSON.features[i].properties.power = usageVals[0];
-            // }
-
-
-
-            // dormData[2].power = usageVals[0];
-            // console.log(dormData[2].power);
-            // console.log(usageVals[0]);
         },
         error: function(data){
             console.log("Didn't work");
@@ -91,4 +79,14 @@ function toKWH(ws){
     for (var i =0; i< ws.length ; i++) {
         ws[i]= ws[i] / 3600000;
     }
+}
+
+function averageAllVals(usageVals) {
+    var sumVals;
+    for (var i = 0; i < usageVals.length; i++) {
+        sumVals += usageVals[i];
+    }
+
+    var avgVals = sumVals/usageVals.length;
+    return avgVals;
 }
