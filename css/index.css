@@ -55,7 +55,13 @@ br {
 }
 
 #map {
+	/* for demonstrative purposes on projector
 	width: 900px;
 	height: 750px;
+	*/
+	/* for laptops */
+	width: 700px;
+	height: 550px;
+	/*------------*/
 	margin-top: 10px;
 }
