@@ -1,4 +1,6 @@
-var dormJSON;
+var heatMapJSON;
+var barGraphJSON;
+// var fullBarGraphJSON;        // keep commented out until ready, use for testing purposes before
 
 $( document ).ready(function() {
 // function chapinVals() {
@@ -8,7 +10,7 @@ $( document ).ready(function() {
 
 
         $.ajax({
-        url: "http://egauge-chapin.wheatoncollege.edu/cgi-bin/egauge-show?", //Replace with path to xml file once on the cs server.  For now just use a local file (note this won't work in chrome) 
+        url: "test.xml", //Replace with path to xml file once on the cs server.  For now just use a local file (note this won't work in chrome) 
         dataType: 'xml',
         async: true,
         success: function(data){
@@ -20,6 +22,21 @@ $( document ).ready(function() {
         
             });
 
+            /*
+            names=[]
+            var xml = $('group',data);
+            for (var i = Things.length - 1; i >= 0; i--) {
+            
+            xml.find(names[i]);
+            xml.find("c").each(function() {
+
+                rawVals.push(1*($(this).text()));
+        
+            });
+            rawVals.push(-9999999);
+            }
+            */
+
 
             var firstVal= findEnd(rawVals);
             var usageVals =[];
@@ -27,9 +44,12 @@ $( document ).ready(function() {
             getUsage(rawVals,firstVal,usageVals);
             toKWH(usageVals);
 
+            barGraphJSON = {"Chapin":usageVals};
+            // fullBarGraphJSON = {/*rest*/};
+            console.log(barGraphJSON);
 
-            dormJSON = JSON.parse(JSON.stringify(dormData));
-            // console.log(dormJSON.features[2].properties.power);
+            heatMapJSON = JSON.parse(JSON.stringify(dormData));
+            // console.log(heatMapJSON.features[2].properties.power);
 
             dormAvg = averageAllVals(usageVals);
             // console.log(dormAvg);
@@ -38,12 +58,12 @@ $( document ).ready(function() {
             // set dormData values to kw/h
             // 17 is number of dorms
             for (var i = 0; i < 17; i++) {
-                if (dormJSON.features[i].properties.name == "Chapin") {
-                    dormJSON.features[i].properties.power = dormAvg;
+                if (heatMapJSON.features[i].properties.name == "Chapin") {
+                    heatMapJSON.features[i].properties.power = dormAvg;
                     // console.log("Chapin is i " + i);
                 }
             }
-            console.log(dormJSON.features[2].properties.power);
+            console.log(heatMapJSON.features[2].properties.power);
         },
         error: function(data){
             console.log("Didn't work");
