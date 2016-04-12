@@ -8,7 +8,7 @@ $( document ).ready(function() {
 
 
         $.ajax({
-        url: "test.xml", //Replace with path to xml file once on the cs server.  For now just use a local file (note this won't work in chrome) 
+        url: "http://egauge-chapin.wheatoncollege.edu/cgi-bin/egauge-show?", //Replace with path to xml file once on the cs server.  For now just use a local file (note this won't work in chrome) 
         dataType: 'xml',
         async: true,
         success: function(data){
@@ -32,7 +32,8 @@ $( document ).ready(function() {
             // console.log(dormJSON.features[2].properties.power);
 
             dormAvg = averageAllVals(usageVals);
-            console.log(dormAvg);
+            // console.log(dormAvg);
+            console.log(usageVals[0]);
 
             // set dormData values to kw/h
             // 17 is number of dorms
@@ -82,10 +83,11 @@ function toKWH(ws){
 }
 
 function averageAllVals(usageVals) {
-    var sumVals;
+    var sumVals = 0;
     for (var i = 0; i < usageVals.length; i++) {
         sumVals += usageVals[i];
     }
+    // console.log(sumVals);
 
     var avgVals = sumVals/usageVals.length;
     return avgVals;
