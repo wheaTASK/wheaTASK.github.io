@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 // var heatMapJSON;
 // var barGraphJSON;
 // var usageVals = [];
+=======
+var heatMapJSON;
+var barGraphJSON;
+var usageVals =[];
+>>>>>>> origin/master
 // var fullBarGraphJSON;        // keep commented out until ready, use for testing purposes before
 
 $( document ).ready(function() {
@@ -40,22 +46,34 @@ $( document ).ready(function() {
 
 
             var firstVal= findEnd(rawVals);
+<<<<<<< HEAD
             // var usageVals =[];
             // usageVals;
+=======
+            
+>>>>>>> origin/master
 
             getUsage(rawVals,firstVal,usageVals);
             toKWH(usageVals);
 
             barGraphJSON = {"Chapin":usageVals};
             // fullBarGraphJSON = {/*rest*/};
+<<<<<<< HEAD
             // console.log(barGraphJSON);
+=======
+            //console.log(barGraphJSON);
+>>>>>>> origin/master
 
             heatMapJSON = JSON.parse(JSON.stringify(dormData));
             // console.log(heatMapJSON.features[2].properties.power);
 
             dormAvg = averageAllVals(usageVals);
             // console.log(dormAvg);
+<<<<<<< HEAD
             // console.log(usageVals[0]);
+=======
+            console.log(usageVals);
+>>>>>>> origin/master
 
             // set dormData values to kw/h
             // 17 is number of dorms
@@ -92,9 +110,10 @@ function getUsage(raw, end, usage){
 
     // find usage per (day/month/hour/etc)
     for (var i = 0; i < end; i++) {
-        
-        usage.push(raw[i]-raw[i+1]);
-        
+    
+        if(((raw[i]-raw[i+1])/3600000) > 70){
+            usage.push(raw[i]-raw[i+1]);
+        }
     }
     
 }
