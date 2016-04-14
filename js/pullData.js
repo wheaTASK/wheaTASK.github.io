@@ -89,9 +89,10 @@ function getUsage(raw, end, usage){
 
     // find usage per (day/month/hour/etc)
     for (var i = 0; i < end; i++) {
-        
-        usage.push(raw[i]-raw[i+1]);
-        
+    
+        if(((raw[i]-raw[i+1])/3600000) > 70){
+            usage.push(raw[i]-raw[i+1]);
+        }
     }
     
 }
