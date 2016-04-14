@@ -3,12 +3,17 @@
 <html>
 <head>
     <title>Chapin</title>
-     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    <script src="./js/dorms.js"></script>
+    <script src="./js/pullData.js"></script>
+    <meta charset="utf-8">
 </head>
 
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="./js/jquery-2.2.3.min.js"></script>
+
+
 
 <script>
      
@@ -19,11 +24,12 @@ var svgContainer = d3.select("body").append("svg")
  
  //Draw the Rectangle
 
-                          
-var data = [11198, 309, 6789] //Can be changed to return output of the pull data function
+//var data =[164.112885, 152.26396194444445, 141.0288386111111, 151.1135375, 145.9363277777778, 131.43352083333335, 128.32178833333333, 164.89603555555556, 133.7592775, 151.7078286111111, 153.14999972222222, 153.3294075, 133.08455444444445, 120.21921944444445, 123.11179111111112, 117.03213972222223, 101.44354611111112, 98.49484194444445, 83.21319861111111, 94.87264361111112, 100.00984555555556, 93.06119527777778, 113.765515, 119.55979111111111, 182.36032805555556, 158.55491944444444, 135.53586694444445, 145.9345311111111, 132.45052611111112, 171.7912288888889, 158.70076277777778, 150.8530086111111, 154.3744127777778, 132.43423805555557, 98.55426666666666, 198.0678063888889, 165.05701222222223, 198.5773186111111, 204.70539527777777, 207.1973947222222, 199.6614625, 232.54199833333334, 208.49111638888888, 198.82453, 229.842405, 190.13676138888889, 200.5541625, 205.12647333333334, 285.82715833333333, 241.29657916666667, 205.1406863888889, 190.6224161111111, 112.12307416666667]                          
+var data = usageVals //Can be changed to return output of the pull data function
 var max = d3.max(d3.values(data)); //find the max data point
 var scale= 100/max //sets scale so that the max is the full bar
 var width=600/data.length //width of each new rect is scaled to number of data points
+console.log(width)
 var d=100 //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
 var svg = d3.select("svg");
 var bar = svg.selectAll("g")
@@ -55,7 +61,7 @@ bar.append("text")
 bar.append("rect")
     .attr("x",200)
     .attr("y",0)
-    .attr("width",600)
+    .attr("width",603)
     .attr("height", 100)
     .attr("fill", "#E0FFFF")
     .attr("stroke", "black")
@@ -66,15 +72,15 @@ bar.append("rect")
    
 
 bar.append("rect")
-    .attr("x",(i+1)*200)
-    .attr("height", data[i]*scale)
-    .attr("y",(100-(data[i]*scale))/2)
+    .attr("x",(i)*width+202)
+    .attr("height", data[i]*scale-2)
+    .attr("y",(100-(data[i]*scale))/2+1)
     .attr("width",width)
     .attr("fill", "#E0FAAA")
-    .attr("stroke", "black")
+   // .attr("stroke", "black")
     //.on mouse over display tooltip with more detailed information
  }
-    
+  console.log(usageVals)  
     
   });    
  
