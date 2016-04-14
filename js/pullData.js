@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-// var heatMapJSON;
-// var barGraphJSON;
-// var usageVals = [];
-=======
 var heatMapJSON;
 var barGraphJSON;
 var usageVals =[];
->>>>>>> origin/master
 // var fullBarGraphJSON;        // keep commented out until ready, use for testing purposes before
 
 $( document ).ready(function() {
@@ -36,7 +30,6 @@ $( document ).ready(function() {
             
             xml.find(names[i]);
             xml.find("c").each(function() {
-
                 rawVals.push(1*($(this).text()));
         
             });
@@ -46,34 +39,21 @@ $( document ).ready(function() {
 
 
             var firstVal= findEnd(rawVals);
-<<<<<<< HEAD
-            // var usageVals =[];
-            // usageVals;
-=======
             
->>>>>>> origin/master
 
             getUsage(rawVals,firstVal,usageVals);
             toKWH(usageVals);
 
             barGraphJSON = {"Chapin":usageVals};
             // fullBarGraphJSON = {/*rest*/};
-<<<<<<< HEAD
-            // console.log(barGraphJSON);
-=======
             //console.log(barGraphJSON);
->>>>>>> origin/master
 
             heatMapJSON = JSON.parse(JSON.stringify(dormData));
             // console.log(heatMapJSON.features[2].properties.power);
 
             dormAvg = averageAllVals(usageVals);
             // console.log(dormAvg);
-<<<<<<< HEAD
-            // console.log(usageVals[0]);
-=======
             console.log(usageVals);
->>>>>>> origin/master
 
             // set dormData values to kw/h
             // 17 is number of dorms
@@ -83,9 +63,7 @@ $( document ).ready(function() {
                     // console.log("Chapin is i " + i);
                 }
             }
-            // console.log(heatMapJSON.features[2].properties.power);
-
-            console.log(usageVals);
+            console.log(heatMapJSON.features[2].properties.power);
         },
         error: function(data){
             console.log("Didn't work");
