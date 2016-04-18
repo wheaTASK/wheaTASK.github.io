@@ -11,7 +11,7 @@ $( document ).ready(function() {
 
 
         $.ajax({
-        url: "test.xml", //Replace with path to xml file once on the cs server.  For now just use a local file (note this won't work in chrome) 
+        url: "http://cs.wheatoncollege.edu/~egauge/beard/beard.xml", //Replace with path to xml file once on the cs server.  For now just use a local file (note this won't work in chrome) 
         dataType: 'xml',
         async: true,
         success: function(data){
