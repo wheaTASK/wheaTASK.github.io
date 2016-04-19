@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+    <meta charset="utf-8"> 
+<head>
+    <title>Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="./underscore.min.js"></script>
+</head>
+
+<body>
+   
+<script>
+
+var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark-mcintire-young" : [],"meadows-ew-1st-floor" : [],"meadows-ew-2nd-floor" : [],"meadows-ew-3rd-floor" : [],"meadows-ew-4th-floor" : [],"meadows-north-1st-floor" : [],"meadows-north-2nd-floor" : [],"meadows-north-3rd-floor" : [],"meadows-north-4th-floor" : [],"metcalf" : [],"everett-heights" : [],"killham" : [],"larcom" : []}';
+var allVals=JSON.parse(valStructure);
+
+var a=1;
+
+$( document ).ready(function() {
+    
+        //Works if i < 2 but not if i < 5 as jQuery stack gets too big.   
+        for (var i = 0; i < 2/*_.size(allVals)*/; i++) {
+            
+            var name= _.keys(allVals)[i];
+            var extension= ".xml"; 
+            var egaugeURL= "http://cs.wheatoncollege.edu/~egauge/"
+            var slash="/";
+            var path= egaugeURL.concat(name,slash,name,extension);
+
+            var temp=[];
+
+            //get data and put into array
+            $.ajax({
+            url: path, 
+            dataType: 'xml',
+            async: false, //since this is in a loop it must be done synchronously
+            success: function(data){
+
+                var xml = $('group',data);
+                xml.find("c").each(function() {
+                   temp.push(1*($(this).text()));
+                });
+
+                allVals[name]=temp;
+                //console.log("Worked!");
+                       
+            },
+            error: function(data){
+                console.log("Didn't work");
+            }
+            });
+            
+        }
+        console.log(allVals);
+
+});
+</script>
+
+
+</body>
+
+</html>
+
+
+
