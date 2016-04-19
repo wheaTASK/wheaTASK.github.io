@@ -39,7 +39,6 @@ var bar = svg.selectAll("g")
     .data(data)
   .enter().append("g")
     .attr("transform", function() { return "translate("+d+", "+ "100)"; }); 
-
     //Draw the initial box, will add draggable functionality later through on mouse drage event
     
 bar.append("rect")
@@ -50,7 +49,6 @@ bar.append("rect")
     .attr("stroke","black")
     
  //Dorm name must be added seperately, because d3   
-
 bar.append("text")
     .attr("dy", 50)
     .attr("dx", 100)
@@ -73,7 +71,6 @@ bar.append("rect")
     
     for (i = 0; i < data.length; i++) { 
    
-
 bar.append("rect")
     .attr("x",(i)*width+202)
     .attr("height", data[i]*scale-2)

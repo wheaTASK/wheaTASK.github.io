@@ -1,4 +1,4 @@
-var map;
+// var map;
 
 $(document).ready(function() {
 	//Editing power values
@@ -31,9 +31,10 @@ $(document).ready(function() {
 
 	function checkChapin(props) {
 		if (props.name == "Chapin") {
-			props.power = dormJSON.features[2].properties.power.toFixed(2);
+			props.power = heatMapJSON.features[2].properties.power.toFixed(2);
 			props.cost = (props.power*.14).toFixed(2);
 		}
+		console.log(barGraphJSON);
 	}
 
 
