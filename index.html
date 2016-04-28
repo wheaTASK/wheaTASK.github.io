@@ -46,45 +46,48 @@
 		<br>
 		<div class="row">
 			<div class="container">
-				<div>
-					<div class="small-9 columns">
+				<!-- <div> -->
+					<div class="small-8 columns">
 						<center><div id="map"></div></center>
 						<!-- leaflet script -->
 					</div>
 
-					<div class="small-3 columns">
-						<div class="datepicker" id="datePickerAlign">
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Start Date&nbsp;
-											<a href="#" class="button tiny" id="dp4" data-date-format="yyyy-mm-dd">Change</a>
-										</th>
-										<th>End Date&nbsp;
-											<a href="#" class="button tiny" id="dp5" data-date-format="yyyy-mm-dd">Change</a>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td id="startDate"></td>
-										<td id="endDate"></td>
-									</tr>
-								</tbody>
-							</table>
+					<div class="small-4 columns">
+						<div class="row">
+							<div class="datepicker" id="datePickerAlign">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Start Date&nbsp;
+												<a href="#" class="button tiny" id="dp4" data-date-format="yyyy-mm-dd">Change</a>
+											</th>
+											<th>End Date&nbsp;
+												<a href="#" class="button tiny" id="dp5" data-date-format="yyyy-mm-dd">Change</a>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td id="startDate"></td>
+											<td id="endDate"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 
-						<!-- need to work on css b/c looks terrible
-						<div id="useByOptions">
-							<form>
-								<input type="radio" name="timeFrame" value="hourly"> Hourly
-							</form>
-						</div> -->
+						<div class="row">
+							<div id="useByOptions">
+								<div class="hourButton" onclick="pastHour()">Past Hour</div>
+								<div class="minuteButton" onclick="pastMinute()">Past Minute</div>
+								<div class="secondButton" onclick="pastSecond()">Past Second</div>
+							</div>
 
-						<div class="resetButton" onclick="resetMap()">RESET</div>
+							<div class="resetButton" onclick="resetMap()">RESET</div>
+						</div>
 					</div>
 
-				</div>
+				<!-- </div> -->
 			</div>
 		</div>
 

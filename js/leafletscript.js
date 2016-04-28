@@ -4,15 +4,19 @@ $(document).ready(function() {
 	//Editing power values
 	//dormData["features"][0].properties.power=1000;
 
-	map = L.map('map').setView([41.966975161113574,-71.18357218801937], 17); 
-	  L.tileLayer('http://{s}.tiles.mapbox.com/v3/austinrg7.jl4274hk/{z}/{x}/{y}.png', {
+	map = L.map('map', {zoomControl: false}).setView([41.966975161113574,-71.18357218801937], 17); 
+	L.tileLayer('http://{s}.tiles.mapbox.com/v3/austinrg7.jl4274hk/{z}/{x}/{y}.png', {
 	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 	    maxZoom: 20
-	  }).addTo(map);
+	}).addTo(map);
+
+	new L.control.zoom({
+		position: 'topright'
+	}).addTo(map);
 
 
 	// control that shows state info on hover
-	var info = L.control({position: 'topright'});
+	var info = L.control({position: 'topleft'});
 
 	info.onAdd = function (map) {
 	  this._div = L.DomUtil.create('div', 'info');
