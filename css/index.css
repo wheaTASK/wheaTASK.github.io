@@ -6,6 +6,15 @@ br {
 	text-align: center;
 }
 
+.container{
+	background-color: #34495E;
+	text-align: center;
+	margin: 1em 3em;
+	border-radius: .4em;
+	display: flex;
+	padding-bottom: 1em;
+}
+
 .descTitle {
 	text-align: center;
 }
@@ -33,14 +42,15 @@ br {
 .legend i {
 	width: 18px;
 	height: 18px;
- 	float: left;
+	float: left;
 	margin-right: 8px;
 	opacity: 0.7;
 }
 
 .resetButton {
 	margin-top: 200%;
-	width: 100%;
+	margin-left: 60%;
+	width: 200%;
 	height: 100px;
 	line-height: 100px;
 	border-radius: 25px;
@@ -48,6 +58,11 @@ br {
 	color: #fff;
 	text-align: center;
 	cursor: pointer;
+}
+
+#datePickerAlign {
+	margin-left: 2%;
+	display: inline-block;
 }
 
 #description {
@@ -64,4 +79,11 @@ br {
 	height: 550px;
 	/*------------*/
 	margin-top: 10px;
+}
+
+#useByOptions {
+	display: inline-block;
+	margin-top: 100%;
+	margin-left: 50%;
+	color: #fff;
 }
