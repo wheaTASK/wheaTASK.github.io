@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Calculator Page</title>
+<link rel="stylesheet" href="./css/styles.css">
+<link rel="stylesheet" type="text/css" href="./css/wrapper.css">
+</head>
+
+<style type="text/css">
+
+  .percent75 {
+    width: 75%;
+  }
+  
+  .container{
+      background-color: #34495E;
+      color: #F0F5F4;
+      text-align: center;
+      margin: 1em 3em;
+       border-radius: .4em;
+       min-width: 100px;
+       /*width: 6.5em;*/
+      width: 400px;
+      height: 350px;
+    display: inline-block;
+    }
+
+  @import "http://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+  .rwd-table {
+    margin: 1em 0;
+    min-width: 500px;
+     text-align: center;
+  }
+  .rwd-table tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  .rwd-table th {
+    display: none;
+  }
+  .rwd-table td {
+    display: block;
+  }
+  .rwd-table td:first-child {
+    padding-top: .5em;
+  }
+  .rwd-table td:last-child {
+    padding-bottom: .5em;
+  }
+  .rwd-table td:before {
+    content: attr(data-th) ": ";
+    font-weight: bold;
+    width: 6.5em;
+    display: inline-block;
+  }
+  @media (min-width: 480px) {
+    .rwd-table td:before {
+      display: none;
+    }
+  }
+  .rwd-table th, .rwd-table td {
+    text-align: center;
+  }
+  @media (min-width: 480px) {
+    .rwd-table th, .rwd-table td {
+      display: table-cell;
+      padding: .25em .5em;
+    }
+    .rwd-table th:first-child, .rwd-table td:first-child {
+      padding-left: 0;
+    }
+    .rwd-table th:last-child, .rwd-table td:last-child {
+      padding-right: 0;
+    }
+  }
+
+  body {
+    padding: 0 2em;
+    font-family: Montserrat, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /*color: #444;*/
+    /*background: #416E7D;*/
+  }
+
+  h1 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    /*color: #34495E;*/
+  }
+
+
+  .rwd-table {
+    background: #34495E;
+    color: #fff;
+    border-radius: .4em;
+    overflow: hidden;
+  }
+  .rwd-table tr {
+    border-color: #46637f;
+  }
+  .rwd-table th, .rwd-table td {
+    margin: .5em 1em;
+  }
+  @media (min-width: 480px) {
+    .rwd-table th, .rwd-table td {
+      padding: 1em !important;
+    }
+  }
+  .rwd-table th, .rwd-table td:before {
+    color: #dd5;
+  }
+
+  #intro
+  {
+    color: #dd5;
+  }
+
+  #middle
+  {
+    text-align: center;
+    /*color:#dd5;*/
+  }
+
+  #Main_container
+  {
+    text-align: left;
+    /*color:#0C000F;*/
+    font: #0C000F;
+  }
+
+
+  #Final_Results
+  {
+    background-color: #34495E;
+      color: #dd5;
+      text-align: center;
+      margin: 1em 4em;
+       border-radius: .4em;
+       min-width: 300px;
+       /*width: 6em;*/
+       margin: 0 auto;
+    background-color: #34495E; 
+    width: 400px;
+    height: 350px;
+
+  }
+
+  #next
+  {
+    display:inline;
+    /*float: left;*/
+  }
+
+  .information
+  {
+    margin: 0 auto;
+    background-color: #34495E; 
+    width: 900px;
+    /*height: 500px;*/
+    border-radius: 15px;
+  }
+
+
+</style>
+
+
+<!-- body page --> 
+
+<body>
+  <center>
+  <div class="percent75">
+
+<!-- banner -->
+    <div>
+      <div class="small-2 small-centered columns" id="bannerID"><img src="./images/banner.png" height="35em"></div>
+      <!-- <div class="small-9 small-centered columns">WHEATON ENERGY SAVER</div> -->
+    </div>
+
+    <div>
+      <div id='cssmenu'>
+        <ul>
+          <li class='last'><a href='#'><span>Heat Map</span></a></li>
+          <li class='last'><a href='./linegraph.html'><span>Consumption Graph</span></a></li>
+          <li class='last'><a href='./rankings.html'><span>Rankings</span></a></li>
+          <li class='last'><a href='./tips.html'><span>Tips</span></a></li>
+          <li class='last'><a href='./calculator.html'><span>Calculator</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+<div id="Main_container"> 
+
+<h1 id="middle"> Wheaton Energy Saver Calculator </h1>
+<h4 id ="middle" align="left"> Now every member of Wheaton community is able to calculate how much electric energy can be saved! In addition to this feature, we have added basic information of wattages rates for the most common electric devices students use on a daily basis.</h4>
+</div>
+
+
+<!--Two table inside a table--> 
+
+<div id="centertables">
+
+<table  align="center">
+<TD>
+
+<div class="container">
+
+<br>
+<form id="myForm">
+<h3 id="right">Energy Consumption Calculator</h3>
+
+ <p id="intro">Hourly Consumption </p>
+Hours used per day:<input type="number" min ="0" id="Hours"> / hour
+
+<p id="intro"> Wattage </p>
+Power Use: <input type="number" min ="0" id="Watts"> Watts
+
+<p id="intro"> Price per Killowatt</p>
+Price (kWh):<input type="number" min="0.01" step="0.01" id="Price" value="0.14" disabled=""> / dollars
+<p> </p>
+</form>
+
+<button onclick="All_Calculations()">Calculate</button>
+ <input type="button" onclick="myFunction()" value="Reset">
+<br>
+
+<br>
+</div>
+
+</TD>
+
+<br>
+<TD>
+
+<div id="Final_Results" align="middle">
+<br>
+<h2> Output</h2>
+
+<p id="hourly_cost" id="next"></p>
+<p id="daily_cost"> </p>
+<p id="monthlycost"> </p>
+<p id="yearlycost"> </p>
+<p id="dailykWh"> </p>
+<p id="CO2Emission"></p>
+</div>
+
+
+<TD>
+</div>
+ </table>
+</div>
+
+<div class="information">
+<div id = "TableSection_2" align="center">
+<table class="rwd-table">
+
+  <tr>
+    <th>Appliance</th>
+    <th>Typical Wattage</th> 
+    <!-- <th>Average Cost Per Month at 0.14$ Per kWh</th> -->
+  </tr>
+  <tr>
+
+    <td data-th="appliance">Laptops</td>
+    <td data-th="watts">50 watts</td>
+    <!-- <td data-th="watts">$5.79</td> -->
+
+
+   
+  </tr>
+
+   <tr>
+
+    <td data-th="appliance">Computer monitor </td>
+    <td data-th="watts">150 watts</td>
+        <!-- <td data-th="watts">$3.62</td> -->
+   
+  </tr>
+
+  <tr>
+
+    <td data-th="appliance">Lightbulbs</td>
+    <td data-th="watts">60-100 watts</td>
+    <!-- <td data-th="watts">$5.79</td> -->
+
+
+   
+  </tr>
+ 
+
+    <tr>
+
+    <td data-th="appliance">Hair dryer</td>
+    <td data-th="watts">1200-1875 watts</td>
+            <!-- <td data-th="watts">$1.81</td> -->
+
+   
+  </tr>
+
+    <tr>
+
+    <td data-th="appliance">Microwave</td>
+    <td data-th="watts">750-1100 watts</td>
+        <!-- <td data-th="watts">$1.81</td> -->
+   
+  </tr>
+  <tr>
+    <td data-th="appliance">Heater</td>
+    <td data-th="watts">  4500-5500 watts</td>
+    <!-- <td data-th="watts">$1.25</td> -->
+    
+  </tr>
+
+    
+  <tr>
+    <td data-th="appliance">Television 53"-61"</td>
+    <td data-th="watts"> 170 watts</td>
+   
+  </tr>
+
+    <tr>
+
+    <td data-th="appliance">Cofee Machine</td>
+    <td data-th="watts">900-1200 watts</td>
+    <!-- <td data-th="watts">$2.70</td> -->
+   
+  </tr>
+
+    <tr>
+
+    <td data-th="appliance">Humidifier</td>
+    <td data-th="watts">300 - 500 watts</td>
+    <!-- <td data-th="watts">$2.1</td> -->
+   
+  </tr>
+
+   <tr>
+
+    <td data-th="appliance">Fridge / Freezer</td>
+    <td data-th="watts">1500-400 watts</td>
+    <!-- <td data-th="watts">$2.70</td> -->
+   
+  </tr>
+
+</table>
+</div>
+<!--Javascript functions -->
+<script>
+  var n, m, y, kWh, E;
+  function myFunction() {
+      document.getElementById("myForm").reset();
+      n = m = y = kWh = E = 0;
+      document.getElementById("daily_cost").innerHTML = ("Cost Per Day $: ")+ n;
+      document.getElementById("monthlycost").innerHTML = ("Cost Per Month $: ")+ m;
+    document.getElementById("yearlycost").innerHTML = ("Cost Per Year $: ") + y;
+    document.getElementById("dailykWh").innerHTML = ("kWh Per Day: ") + kWh;
+    document.getElementById("CO2Emission").innerHTML = ("CO2 Emission Per kWh (Ibs): ") + E;
+  };
+
+  function Hours() {
+      var x = document.getElementById("Hours").value;
+      var z = parseFloat(x);
+     return z;
+  };
+
+  function Watts() {
+      var u = document.getElementById("Watts").value;
+      var y = parseFloat(u);
+     return y;
+  };
+
+  function Price() {
+      var z = document.getElementById("Price").value;
+      var b = z;
+     return b;
+  };
+
+
+  function To_Kwh()
+  {
+    var convert = Watts();
+    var divide = convert / 1000;
+    return parseFloat(divide);
+  };
+
+  function cost_per_day()
+  {
+    var hour = Hours();
+    var price = Price();
+    var wattage = To_Kwh();
+    var cost = hour * price * wattage;
+    return cost;
+  }
+
+  function cost_per_month()
+  {
+    var hour = Hours();
+    var price = Price();
+    var wattage = To_Kwh();
+    var cost = hour * price * wattage;
+    var month = cost * 30;
+    return month;
+  }
+
+  function cost_per_year()
+  {
+    var hour = Hours();
+    var price = Price();
+    var wattage = To_Kwh();
+    var cost = hour * price * wattage;
+    var month = cost * 30;
+    var year = month * 12;
+    return year;
+  }
+
+  function kWh_per_day()
+  {
+    var toKwh = To_Kwh();
+    var day = Hours();
+    var total = toKwh * day;
+    return total;
+  }
+
+
+  function All_Calculations() {
+
+    var dailycost = cost_per_day();
+    var monthlycost = cost_per_month();
+    var yearlycost = cost_per_year();
+    var dailykWh  = kWh_per_day();
+    var CO2 = To_Kwh(); 
+    var Emission = CO2 * 0.6379;
+    E = Emission.toFixed(4);
+    n = dailycost.toFixed(4);
+    m = monthlycost.toFixed(2);
+    y = yearlycost.toFixed(3);
+    kWh = dailykWh.toFixed(2);
+    E = checkNotNumber(E);
+    n = checkNotNumber(n);
+    m = checkNotNumber(m);
+    y = checkNotNumber(y);
+    kWh = checkNotNumber(kWh);
+    document.getElementById("daily_cost").innerHTML = ("Cost Per Day $: ")+ n;
+      document.getElementById("monthlycost").innerHTML = ("Cost Per Month $: ")+ m;
+    document.getElementById("yearlycost").innerHTML = ("Cost Per Year $: ") + y;
+    document.getElementById("dailykWh").innerHTML = ("kWh Per Day: ") + kWh;
+    document.getElementById("CO2Emission").innerHTML = ("CO2 Emission Per kWh (Ibs): ") + E;
+  };
+
+  function checkNotNumber(value) {
+    if (isNaN(value))
+      value = 0;
+    return value;
+  }
+
+</script>
+</div>
+</center>
+</body>
+</html>
+
