@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Chapin</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    
+    
+    
+    
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+
+
+
+<script>
+ //<script src="./js/pullData.js">   
+ $(document).ready(function() {
+    setTimeout(function() {
+var svgContainer = d3.select("body").append("svg")
+                                    .attr("width", 2000)
+                                    .attr("height", 3000);
+ 
+ var usageVals=[164.112885, 152.26396194444445, 141.0288386111111, 151.1135375, 145.9363277777778, 131.43352083333335, 128.32178833333333, 164.89603555555556, 133.7592775, 151.7078286111111, 153.14999972222222, 153.3294075, 133.08455444444445, 120.21921944444445, 123.11179111111112, 117.03213972222223, 101.44354611111112, 98.49484194444445, 83.21319861111111, 94.87264361111112, 100.00984555555556, 93.06119527777778, 113.765515, 119.55979111111111, 182.36032805555556, 158.55491944444444, 135.53586694444445, 145.9345311111111, 132.45052611111112, 171.7912288888889, 158.70076277777778, 150.8530086111111, 154.3744127777778, 132.43423805555557, 98.55426666666666, 198.0678063888889, 165.05701222222223, 198.5773186111111, 204.70539527777777, 207.1973947222222, 199.6614625, 232.54199833333334, 208.49111638888888, 198.82453, 229.842405, 190.13676138888889, 200.5541625, 205.12647333333334, 285.82715833333333, 241.29657916666667, 205.1406863888889, 190.6224161111111, 112.12307416666667];
+ //Draw the Rectangle
+ //var usageVals=[150,130,110];
+ var transform=50;
+ var data2=["Beard","Chapin", "Clark", "Craigin","Emerson","Everett","Gebbie","Keefe","Kilham","Larcom","Meadows-East"
+            ,"Meadows-North","Meadows-West","Metcalf","McIntire","Stanton","Young"];
+ /*
+ var dormData=[allVals["Beard"],allVals["chapin"], allVals["clark"], allVals["craigin"],allVals["emerson"],
+               allVals["everett"],allVals["gebbie"],allVals["keefe"],allVals["kilham"],allVals["larcom"],
+               allVals["meadows_East"],allVals["meadows_North"],allVals["Meadows_West"],allVals["Metcalf"],
+               allVals["McIntire"],allVals["Stanton"],allVals["Young"]];
+               */
+ var height=30;
+ var length=200
+for (n=0; n<17; n++){
+transform=transform+height;
+var data = usageVals; //Can be changed to return output of the pull data function
+var max = d3.max(d3.values(data)); //find the max data point
+var scale= height/max; //sets scale so that the max is the full bar
+var width=600/data.length; //width of each new rect is scaled to number of data points
+//console.log(width)
+var d=100; //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
+var bar = d3.select("svg")
+//var bar = graph.selectAll("svg")
+   // .data(data2)
+  //.enter()
+  .append("g")
+   // .append("g")
+    .attr("transform", function() { return "translate("+d+", "+ transform +")"; }); 
+    //Draw the initial box, will add draggable functionality later through on mouse drage event
+    
+bar.append("rect")
+    
+    .attr("width", length)
+    .attr("height", height)
+    .attr("fill", "#6495ED")
+    .attr("stroke","black")
+    
+ //Dorm name must be added seperately, because d3   
+bar.append("text")
+    .attr("dy", height/2)
+    .attr("dx", length/2)
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .attr("font-weight", "bold")
+    .text(data2[n]);
+  
+  //Draws the full bar
+    
+bar.append("rect")
+    .attr("x",length)
+    .attr("y",0)
+    .attr("width",603)
+    .attr("height", height)
+    .attr("fill", "#E0FFFF")
+    .attr("stroke", "black")
+    
+    //Loop that adds sections
+    
+    for (i = 0; i < data.length; i++) { 
+   
+bar.append("rect")
+    .attr("x",(i)*width+length+2)
+    .attr("height", data[i]*scale-2)
+    .attr("y",(height-(data[i]*scale))/2+1)
+    .attr("width",width)
+    .attr("fill", "#E0FAAA")
+   // .attr("stroke", "black")
+    //.on mouse over display tooltip with more detailed information
+                                        }; //end loop
+  
+    console.log(usageVals);
+    console.log(transform);
+}; //end of for loop
+
+  }, 10); //end of set timeout, which has weird syntax so that ten is part of this
+    
+ }); //end of main function
+ 
+    
+</script>
+
+
+</body>
+</html>
