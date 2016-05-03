@@ -1,3 +1,11 @@
+.container {
+	background-color: #34495E;
+	text-align: center;
+	margin: 1em 3em;
+	border-radius: .4em;
+	display: inline-block;
+}
+
 .dormName {
 	color: #000;
 	border-right: solid;
@@ -30,4 +38,8 @@
 	border-color: #fff;
 	background: #0068af;
 	display: inline;
+}
+
+#svgGraph {
+	margin-left: 7%;
 }

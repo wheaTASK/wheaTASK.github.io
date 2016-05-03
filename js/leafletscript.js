@@ -35,10 +35,11 @@ $(document).ready(function() {
 
 	function checkChapin(props) {
 		if (props.name == "Chapin") {
-			props.power = heatMapJSON.features[2].properties.power.toFixed(2);
+			toKWH(allVals[xmlNames[2]]);
+			allVals[xmlNames[2]] = averageAllVals(allVals[xmlNames[2]]);
+			props.power = allVals[xmlNames[2]].toFixed(2);
 			props.cost = (props.power*.14).toFixed(2);
 		}
-		console.log(barGraphJSON);
 	}
 
 
