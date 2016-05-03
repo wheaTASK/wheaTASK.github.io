@@ -39,7 +39,9 @@ $( document ).ready(function() {
            
             
         }
-        setTimeout(echoData,1000);
+
+        //Important: all data processing must wait 1 second for data to be read in. If more than 1 function needed make a function that calls the all necessary functions and call it here in place to toKWH
+        setTimeout(toKWH,1000);
 
 });
 
@@ -260,6 +262,22 @@ function getValRange(delim,start,end){
 
     }
 
+}
+
+function toKWH(){
+   
+    
+    for (var i = 0; i <_.size(allVals); i++) {
+        var last=allVals[_.keys(allVals)[i]].length -1;
+        for (var j = 0; j < last; j++) {
+            allVals[_.keys(allVals)[i]][j]=((allVals[_.keys(allVals)[i]][j]-allVals[_.keys(allVals)[i]][j+1])/3600000)
+            
+        }
+        //Remove last value as it is not a kwh usage val
+        allVals[_.keys(allVals)[i]].splice(last,1);
+    }
+
+    console.log(allVals);
 }
 
 function echoData(){
