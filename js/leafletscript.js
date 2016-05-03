@@ -25,7 +25,7 @@ $(document).ready(function() {
 	};
 
 	info.update = function (props) {
-		props ? checkChapin(props) : 'Hover over a dorm';
+		props ? checkDorm(props) : 'Hover over a dorm';
 	  this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
 	    '<b>' + props.name + '</b><br />' + props.power + ' kW/h' + '<br />$' + props.cost + ' per hour'
 	    : 'Hover over a dorm');
@@ -33,11 +33,22 @@ $(document).ready(function() {
 
 	info.addTo(map);
 
-	function checkChapin(props) {
+	/*
+	this is what i got to in having it check all the dorms
+
+	for (var i = 0; i < _.size(avgKWh); i++) {
+		console.log(avgKWh[_.keys(avgKWh)]);
+		if (props.name == avgKWh[i]) {
+			props.power = avgKWh[_.keys(avgKWh)[i]][0].toFixed(2);
+			props.cost = (props.power*.14).toFixed(2);
+		}
+	}
+	*/
+	function checkDorm(props) {
 		if (props.name == "Chapin") {
 			// toKWH(allVals[xmlNames[2]]);
 			// allVals[xmlNames[2]] = averageAllVals(allVals[xmlNames[2]]);
-			// props.power = allVals[xmlNames[2]].toFixed(2);
+			props.power = avgKWh[_.keys(avgKWh)[2]][0].toFixed(2);
 			props.cost = (props.power*.14).toFixed(2);
 		}
 	}

@@ -1,4 +1,3 @@
-
 var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark" : [],"mcintire" : [],"young" : [],"meadows-ew" : [], "meadows-north" : [],"metcalf" : [],"kilham" : [],"larcom" : [], "stanton": [], "cragin" : [],"everett" : []}';
 
 var xmlNames= ["beard", "emerson-dorm", "chapin", "clark-mcintire-young", "meadows-ew-1st-floor", "meadows-ew-2nd-floor", "meadows-ew-3rd-floor", "meadows-ew-4th-floor", "meadows-north-1st-floor", "meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor", "metcalf", "kilham", "larcom", "stanton-cragin-everett", "everett-heights"];
@@ -10,6 +9,8 @@ var allVals=JSON.parse(valStructure);
 var userVals=JSON.parse(valStructure);
 
 var numHours=998;
+
+var avgKWh=JSON.parse(valStructure);
 
 $( document ).ready(function() {
     
@@ -23,14 +24,13 @@ $( document ).ready(function() {
             var tempPath= egaugeURL.concat(slash,name,extension);
 
             storeVals(tempPath,name);
+           
+            
         }
 
-        setTimeout(echoData,1000);
-        setTimeout(getValRange("hour", startDateObj, endDateObj), 1000);
-
-        // console.log("hi");
-        // console.log(userVals);
-        // $.each(userVals, toKWH(userVals);
+        //Important: all data processing must wait 1 second for data to be read in. If more than 1 function needed make a function that calls the all necessary functions and call it here in place to toKWH
+        setTimeout(toKWH,1000);
+        setTimeout(avgKWH,2000);
 
 });
 
@@ -253,27 +253,36 @@ function getValRange(delim,start,end){
 
 }
 
+function toKWH(){
+   
+    
+    for (var i = 0; i <_.size(allVals); i++) {
+        var last=allVals[_.keys(allVals)[i]].length -1;
+        for (var j = 0; j < last; j++) {
+            allVals[_.keys(allVals)[i]][j]=((allVals[_.keys(allVals)[i]][j]-allVals[_.keys(allVals)[i]][j+1])/3600000)
+            
+        }
+        //Remove last value as it is not a kwh usage val
+        allVals[_.keys(allVals)[i]].splice(last,1);
+    }
+
+    console.log(allVals);
+}
+
+function avgKWH() {
+    for (var i = 0; i < _.size(allVals); i++) {
+        var last = allVals[_.keys(allVals)[i]].length -1;
+        var sum = 0;
+        for (var j = 0; j < last; j++) {
+            sum += allVals[_.keys(allVals)[i]][j];
+        }
+        avgKWh[_.keys(avgKWh)[i]][0] = sum/last;
+        // console.log(i + ": " + avgKWh[_.keys(avgKWh)[i]][0]);
+    }
+}
+
 function echoData(){
 
     console.log(allVals);
 
-}
-
-function toKWH(ws){
-    // convert to kw/h
-    // console.log(ws.length);
-    for (var i =0; i< ws.length ; i++) {
-        ws[i]= ws[i] / 3600000;
-    }
-}
-
-function averageAllVals(usageVals) {
-    var sumVals = 0;
-    for (var i = 0; i < usageVals.length; i++) {
-        sumVals += usageVals[i];
-    }
-    // console.log(sumVals);
-
-    var avgVals = sumVals/usageVals.length;
-    return avgVals;
 }
