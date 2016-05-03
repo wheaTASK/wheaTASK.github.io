@@ -5,6 +5,8 @@ var endDay;
 var startYear;
 var startMonth;
 var startDay;
+var startDateObj;
+var endDateObj;
 var farthestBackMonth = 4;
 var farthestBackDay = 22;
 var farthestBackYear = 2016;
@@ -59,10 +61,14 @@ $(document).ready(function(){
 				$('#startDate').text($('#dp4').data('date'));
 
 				changeStartDate(startDate);
+				startDateObj = new Date(startYear, (startMonth-1), startDay);
 
 				if (startMonth > endMonth || (startMonth == endMonth && startDay > endDay)) {
 					fixEndDate();
 					$('#endDate').text($('#dp4').data('date'));
+					endDateObj = new Date(endYear, (endMonth-1), endDay);
+
+					console.log(endDateObj);
 				}
 				
 				
@@ -81,8 +87,17 @@ $(document).ready(function(){
 				$('#alert').show().find('strong').text('The end date can not be less then the start date');
 			} else {
 				$('#alert').hide();
-				endDate = new Date(changeEndDate(ev.date));
+				endDate = new Date(ev.date);
 				$('#endDate').text($('#dp5').data('date'));
+				
+				changeEndDate(endDate);
+				endYear = 2016;
+
+				endDateObj = new Date(endYear, (endMonth-1), endDay);
+
+				console.log(2016 + '-' + endMonth + '-' + endDay);
+
+				console.log(endDateObj);
 				// changeEndDate(endDate);
 			}
 		}
@@ -112,8 +127,10 @@ function changeStartDate(startDate) {
 		startMonth = '0' + startMonth;
 		startDay = '0' + 1;
 	}
-	else
-		startDay += 1;
+	else {
+		var tempStartDay = startDate.getDate();
+		startDay = '0' + (tempStartDay + 1);
+	}
 
 	// console.log(startYear + '-' + startMonth + '-' + startDay);
 	// checkFormat(startMonth);
@@ -124,6 +141,19 @@ function changeEndDate(endDate) {
 	endYear = endDate.getFullYear();
 	endMonth = checkFormat(endDate.getMonth()+1);
 	endDay = checkFormat(endDate.getDate());
+
+	if (endDay == 31 && endMonth == 3) {
+		endMonth = endDate.getMonth() + 2;
+		endDay = 1;
+	}
+	else if (endDay == 30 && endMonth == 4) {
+		endMonth = endDate.getMonth() + 2;
+		endDay = 1;
+	}
+	else {
+		var tempEndDay = endDate.getDate();
+		endDay = (tempEndDay + 1);
+	}
 	// checkFormat(startMonth);
 }
 
