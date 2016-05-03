@@ -128,11 +128,11 @@ function checkDate(newDate) {
 		console.log("invalid year");
 		return false;
 	}
-	if (newMonth < 4 || newMonth > 5) {
+	if (newMonth < 3 || newMonth > 5) {
 		console.log("invalid month");
 		return false;
 	}
-	if (newMonth == 4 && newDay < farthestBackDay) {
+	if (newMonth == 3 && newDay < farthestBackDay) {
 		console.log("invalid day");
 		return false;
 	}
