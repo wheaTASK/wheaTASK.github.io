@@ -8,7 +8,7 @@ var nMeadowsDorms=["meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadow
 var allVals=JSON.parse(valStructure);
 var userVals=JSON.parse(valStructure);
 
-var numHours=2998;
+var numHours=1509;
 
 var avgKWh=JSON.parse(valStructure);
 
@@ -45,8 +45,11 @@ function storeVals(path,dorm){
         success: function(data){
 
             var xml = $('group',data);
+            var rows=0;
             xml.find("c").each(function() {
-               temp.push(1*($(this).text())); 
+               if(rows<=numHours){
+                    temp.push(1*($(this).text()));
+               } 
             });
             
             //Things that get summed: dorm and computer panel, panel 1 and panel 2
@@ -192,8 +195,8 @@ function getValRange(delim,start,end){
     //For start and end use date.getTime()    
 
 
-    var firstVal = 1447889280; //Time of most recent data value
-    var lastVal = firstVal- (3600*numHours); //Currently have 999 rows of data which is 998 hours of data. 3600s in an hr
+    var firstVal = 1462306500; //Time of most recent data value
+    var lastVal = firstVal- (3600*numHours); //Currently have 2999 rows of data which is 998 hours of data. 3600s in an hr
 
     var temp=[];
     var posStart, posEnd;
