@@ -19,9 +19,9 @@ $( document ).ready(function() {
             //Following variables for a local file.  Change to path on cs server once the files are correct
             var name= xmlNames[i];
             var extension= ".xml"; 
-            var egaugeURL= "./xmlFiles"
+            var egaugeURL= "http://cs.wheatoncollege.edu/~egauge/"
             var slash="/";
-            var tempPath= egaugeURL.concat(slash,name,extension);
+            var tempPath= egaugeURL.concat(name,slash,name,extension);
 
             storeVals(tempPath,name);
            
@@ -29,8 +29,8 @@ $( document ).ready(function() {
         }
 
         //Important: all data processing must wait 1 second for data to be read in. If more than 1 function needed make a function that calls the all necessary functions and call it here in place to toKWH
-        setTimeout(toKWH,1000);
-        setTimeout(avgKWH,2000);
+        setTimeout(toKWH,2000);
+        // setTimeout(avgKWH,2000);
 
 });
 
@@ -266,7 +266,8 @@ function toKWH(){
         allVals[_.keys(allVals)[i]].splice(last,1);
     }
 
-    console.log(allVals);
+    // console.log(allVals);
+    avgKWH();
 }
 
 function avgKWH() {
@@ -279,10 +280,27 @@ function avgKWH() {
         avgKWh[_.keys(avgKWh)[i]][0] = sum/last;
         // console.log(i + ": " + avgKWh[_.keys(avgKWh)[i]][0]);
     }
+
+    resetEachDorm();
+}
+
+function resetEachDorm() {
+    for (var i = 0; i < Object.keys(dormData["features"]).length; i++) {
+        // console.log(dormData["features"][i].properties.name);
+        var dormName = dormData["features"][i].properties.name;
+        if (dormName == "Keefe" || dormName == "Gebbie" || dormName == "Meadows_East")
+            continue;
+        else {
+            var j = _.indexOf(_.keys(avgKWh), dormData["features"][i].properties.name);
+            // console.log(avgKWh[_.keys(avgKWh)[j]]);
+            dormData["features"][i].properties.power = avgKWh[_.keys(avgKWh)[j]][0].toFixed(2);
+            dormData["features"][i].properties.cost = (dormData["features"][i].properties.power*.14).toFixed(2);
+        }
+    }
 }
 
 function echoData(){
 
-    console.log(allVals);
+    // console.log(allVals);
 
 }

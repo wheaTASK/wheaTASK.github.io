@@ -39,12 +39,12 @@
 		    }
 
 		    #buildingRanks{
-			display:inline;
+			display:none;
 
 		    }
 
 		    #communityTracker{
-			display:none;
+			display:inline;
 			margin-top: 20px;
 		    }
 
@@ -93,6 +93,7 @@
 				<div class="dormName">Other Dorms</div>
 			</div>
 
+
 			<div class="small-3 small-offset-2 columns" id="communityTracker"></div>
 
 			<div class="small-9" id="contestDescrip">
@@ -117,11 +118,11 @@
 			</div>
 		</div> -->
 		
-		<div class="row">
+		<!-- <div class="row">
 			<div class="small-2 columns small-offset-5 columns">
 				<div class="resetButton" id="switch" onclick="next()">Community Tracker</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- loads jquery and foundation -->
 		<script src="js/vendor/jquery.min.js"></script>
@@ -130,6 +131,10 @@
 			$(document).foundation();
 		</script>
 		<script>
+
+		$(document).ready(function() {
+			makeProgressBar();
+		});
 
 			function makeProgressBar(){
 
