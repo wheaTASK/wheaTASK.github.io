@@ -19,9 +19,9 @@ $( document ).ready(function() {
             //Following variables for a local file.  Change to path on cs server once the files are correct
             var name= xmlNames[i];
             var extension= ".xml"; 
-            var egaugeURL= "./xmlFiles"
+            var egaugeURL= "http://cs.wheatoncollege.edu/~egauge/"
             var slash="/";
-            var tempPath= egaugeURL.concat(slash,name,extension);
+            var tempPath= egaugeURL.concat(name,slash,name,extension);
 
             storeVals(tempPath,name);
            
@@ -292,7 +292,7 @@ function resetEachDorm() {
             continue;
         else {
             var j = _.indexOf(_.keys(avgKWh), dormData["features"][i].properties.name);
-            console.log(avgKWh[_.keys(avgKWh)[j]]);
+            // console.log(avgKWh[_.keys(avgKWh)[j]]);
             dormData["features"][i].properties.power = avgKWh[_.keys(avgKWh)[j]][0].toFixed(2);
             dormData["features"][i].properties.cost = (dormData["features"][i].properties.power*.14).toFixed(2);
         }
@@ -301,6 +301,6 @@ function resetEachDorm() {
 
 function echoData(){
 
-    console.log(allVals);
+    // console.log(allVals);
 
 }
