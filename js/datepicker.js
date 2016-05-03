@@ -49,6 +49,7 @@ $(document).ready(function(){
 		.on('changeDate', function (ev) {
 		var newDate = new Date(ev.date);
 		var validDate = checkDate(newDate);
+
 		if (validDate) {
 			if (ev.date.valueOf() > endDate.valueOf()) {
 				$('#alert').show().find('strong').text('The start date can not be greater then the end date');
@@ -56,9 +57,16 @@ $(document).ready(function(){
 				$('#alert').hide();
 				startDate = new Date(ev.date);
 				$('#startDate').text($('#dp4').data('date'));
+
 				changeStartDate(startDate);
-				var newEndDate = fixEndDate(startDate);
-				changeEndDate(newEndDate);
+
+				if (startMonth > endMonth || (startMonth == endMonth && startDay > endDay)) {
+					fixEndDate();
+					$('#endDate').text($('#dp4').data('date'));
+				}
+				
+				
+				// console.log(endYear + '-' + endMonth + '-' + endDay);
 			}
 		}
 		$('#dp4').fdatepicker('hide');
@@ -67,6 +75,7 @@ $(document).ready(function(){
 		.on('changeDate', function (ev) {
 		var newDate = new Date(ev.date);
 		var validDate = checkDate(newDate);
+
 		if (validDate) {
 			if (ev.date.valueOf() < startDate.valueOf()) {
 				$('#alert').show().find('strong').text('The end date can not be less then the start date');
@@ -92,11 +101,26 @@ function changeStartDate(startDate) {
 	startYear = startDate.getFullYear();
 	startMonth = checkFormat(startDate.getMonth()+1);
 	startDay = checkFormat(startDate.getDate());
+
+	if (startDay == 31 && startMonth == 3) {
+		startMonth = startDate.getMonth() + 2;
+		startMonth = '0' + startMonth;
+		startDay = '0' + 1;
+	}
+	else if (startDay == 30 && startMonth == 4) {
+		startMonth = startDate.getMonth() + 2;
+		startMonth = '0' + startMonth;
+		startDay = '0' + 1;
+	}
+	else
+		startDay += 1;
+
+	// console.log(startYear + '-' + startMonth + '-' + startDay);
 	// checkFormat(startMonth);
 }
 
 function changeEndDate(endDate) {
-	console.log("changeEndDate");
+	// console.log("changeEndDate");
 	endYear = endDate.getFullYear();
 	endMonth = checkFormat(endDate.getMonth()+1);
 	endDay = checkFormat(endDate.getDate());
@@ -116,31 +140,30 @@ function checkDate(newDate) {
 		newDay += 1;
 
 	// for some reason first of month gets month number of previous month
-	console.log(newDay);
+	// console.log(newDay);
 	if (newDay == 1) {
-		console.log("chose first");
+		// console.log("chose first");
 		newMonth += 1;
 	}
 
-	// console.log(newMonth);
-
 	if (newYear !== 2016) {
-		console.log("invalid year");
+		// console.log("invalid year");
 		return false;
 	}
 	if (newMonth < 3 || newMonth > 5) {
-		console.log("invalid month");
+		// console.log("invalid month");
 		return false;
 	}
 	if (newMonth == 3 && newDay < farthestBackDay) {
-		console.log("invalid day");
+		// console.log("invalid day");
 		return false;
 	}
+	if (newMonth == 5 && newDay > 1)
+		return false;
 	return true;
 }
 
-function fixEndDate(startDate) {
-	var newDay = newDate.getDate();
-	var newMonth = newDate.getMonth()+1;
-	var newYear = newDate.getFullYear();
+function fixEndDate() {
+	endDay = startDay;
+	endMonth = startMonth;
 }
