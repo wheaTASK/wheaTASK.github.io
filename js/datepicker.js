@@ -60,8 +60,8 @@ $(document).ready(function(){
 				var newEndDate = fixEndDate(startDate);
 				changeEndDate(newEndDate);
 			}
-			$('#dp4').fdatepicker('hide');
 		}
+		$('#dp4').fdatepicker('hide');
 	});
 	$('#dp5').fdatepicker()
 		.on('changeDate', function (ev) {
@@ -76,8 +76,8 @@ $(document).ready(function(){
 				$('#endDate').text($('#dp5').data('date'));
 				// changeEndDate(endDate);
 			}
-			$('#dp5').fdatepicker('hide');
 		}
+		$('#dp5').fdatepicker('hide');
 	});
 });
 
