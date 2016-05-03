@@ -1,4 +1,4 @@
-var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark" : [],"mcintire" : [],"young" : [],"meadows-ew" : [], "meadows-north" : [],"metcalf" : [],"kilham" : [],"larcom" : [], "stanton": [], "cragin" : [],"everett" : [], "gebbie": [], "keefe": []}';
+var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark" : [],"mcintire" : [],"young" : [],"meadows-east" : [], "meadows-west" : [], "meadows-north" : [],"metcalf" : [],"kilham" : [],"larcom" : [], "stanton": [], "cragin" : [],"everett" : [], "gebbie": [], "keefe": []}';
 
 var xmlNames= ["beard", "emerson-dorm", "chapin", "meadows-ew-1st-floor", "meadows-north-1st-floor", "stanton-cragin-everett", "clark-mcintire-young", "meadows-ew-2nd-floor", "meadows-ew-3rd-floor", "meadows-ew-4th-floor", "meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor", "metcalf", "kilham", "larcom", "everett-heights", "gebbie-keefe"];
 
@@ -90,14 +90,16 @@ function storeVals(path,dorm){
 
             else if (dorm == "meadows-ew-1st-floor"){
                 for (var i = 0; i <= (numHours*4); i+=4) {
-                   allVals["meadows-ew"].push(temp[i]+temp[i+1]+temp[i+2]+temp[i+3]);
+                   allVals["meadows-east"].push(temp[i]+temp[i+3]);
+                   allVals["meadows-west"].push(temp[i+1]+temp[i+2]);
                 }
             }
 
             else if(ewMeadowsDorms.indexOf(dorm) > -1){ 
                 var counter=0;
                 for (var i = 0; i <= (numHours*2); i+=2) {
-                   allVals["meadows-ew"][counter]+=(temp[i]+temp[i+1]);
+                   allVals["meadows-east"][counter]+=(temp[i]);
+                   allVals["meadows-west"][counter]+=(temp[i+1]);
                    counter++;
                 }
 
@@ -106,7 +108,8 @@ function storeVals(path,dorm){
             else if(dorm == "meadows-ew-4th-floor"){ 
                 var counter=0;
                 for (var i = 0; i <= (numHours*14); i+=14) {
-                   allVals["meadows-ew"][counter]+=(temp[i]+temp[i+1]);
+                   allVals["meadows-east"][counter]+=(temp[i]);
+                   allVals["meadows-west"][counter]+=(temp[i+1]);
                    counter++;
                 }
 
