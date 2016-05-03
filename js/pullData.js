@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-
-<html>
-    <meta charset="utf-8"> 
-<head>
-    <title>Test</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="./underscore.min.js"></script>
-</head>
-
-<body>
-   
-<script>
-
 var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark" : [],"mcintire" : [],"young" : [],"meadows-ew" : [], "meadows-north" : [],"metcalf" : [],"kilham" : [],"larcom" : [], "stanton": [], "cragin" : [],"everett" : [], "gebbie": [], "keefe": []}';
 
 var xmlNames= ["beard", "emerson-dorm", "chapin", "meadows-ew-1st-floor", "meadows-north-1st-floor", "stanton-cragin-everett", "clark-mcintire-young", "meadows-ew-2nd-floor", "meadows-ew-3rd-floor", "meadows-ew-4th-floor", "meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor", "metcalf", "kilham", "larcom", "everett-heights", "gebbie-keefe"];
@@ -306,13 +292,3 @@ function echoData(){
     console.log(allVals);
 
 }
-
-</script>
-
-
-</body>
-
-</html>
-
-
-
