@@ -4,8 +4,6 @@ $(document).ready(function() {
 	//Editing power values
 	//dormData["features"][0].properties.power=1000;
 
-	// setTimeout(resetDorms, 2000);
-
 	map = L.map('map', {zoomControl: false}).setView([41.966975161113574,-71.18357218801937], 17); 
 	L.tileLayer('http://{s}.tiles.mapbox.com/v3/austinrg7.jl4274hk/{z}/{x}/{y}.png', {
 	    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -16,6 +14,18 @@ $(document).ready(function() {
 		position: 'topright'
 	}).addTo(map);
 
+
+	// function resetEachDorm() {
+	// 	for (var i = 0; i < Object.keys(dormData["features"]).length; i++) {
+	// 		// console.log(dormData["features"][i].properties.name);
+	// 		var j = _.indexOf(_.keys(avgKWh), dormData["features"][i].properties.name);
+	// 		console.log(avgKWh[_.keys(avgKWh)[j]]);
+	// 		dormData["features"][i].properties.power = avgKWh[_.keys(avgKWh)[j]][0].toFixed(2);
+	// 		dormData["features"][i].properties.cost = (dormData["features"][i].properties.power*.14).toFixed(2);
+	// 	}
+	// }
+
+	setTimeout(resetEachDorm, 2000);
 
 	// control that shows state info on hover
 	var info = L.control({position: 'topleft'});
@@ -28,8 +38,8 @@ $(document).ready(function() {
 
 	info.update = function (props) {
 		props ? checkDorm(props) : 'Hover over a dorm';
-	  this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
-	    '<b>' + props.name + '</b><br />' + props.power + ' kW/h' + '<br />$' + props.cost + ' per hour'
+		this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
+	    '<b>' + props.value + '</b><br />' + props.power + ' kW/h' + '<br />$' + props.cost + ' per hour'
 	    : 'Hover over a dorm');
 	};
 
@@ -38,8 +48,8 @@ $(document).ready(function() {
 	function checkDorm(props) {
 		var i = _.indexOf(_.keys(avgKWh), props.name);
 		console.log(props.name + " " + i);
-		props.power = avgKWh[_.keys(avgKWh)[i]][0].toFixed(2);
-		props.cost = (props.power*.14).toFixed(2);
+		// props.power = avgKWh[_.keys(avgKWh)[i]][0].toFixed(2);
+		// props.cost = (props.power*.14).toFixed(2);
 	}
 
 
