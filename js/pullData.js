@@ -1,6 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+    <meta charset="utf-8"> 
+<head>
+    <title>Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="./underscore.min.js"></script>
+</head>
+
+<body>
+   
+<script>
+
 var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark" : [],"mcintire" : [],"young" : [],"meadows-ew" : [], "meadows-north" : [],"metcalf" : [],"kilham" : [],"larcom" : [], "stanton": [], "cragin" : [],"everett" : [], "gebbie": [], "keefe": []}';
 
-var xmlNames= ["beard", "emerson-dorm", "chapin", "clark-mcintire-young", "meadows-ew-1st-floor", "meadows-ew-2nd-floor", "meadows-ew-3rd-floor", "meadows-ew-4th-floor", "meadows-north-1st-floor", "meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor", "metcalf", "kilham", "larcom", "stanton-cragin-everett", "everett-heights", "gebbie-keefe"];
+var xmlNames= ["beard", "emerson-dorm", "chapin", "meadows-ew-1st-floor", "meadows-north-1st-floor", "stanton-cragin-everett", "clark-mcintire-young", "meadows-ew-2nd-floor", "meadows-ew-3rd-floor", "meadows-ew-4th-floor", "meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor", "metcalf", "kilham", "larcom", "everett-heights", "gebbie-keefe"];
 
 var ewMeadowsDorms=["meadows-ew-2nd-floor", "meadows-ew-3rd-floor"];
 var nMeadowsDorms=["meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor"];
@@ -14,9 +28,9 @@ var avgKWh=JSON.parse(valStructure);
 
 $( document ).ready(function() {
     
-        for (var i = 0; i < _.size(allVals); i++) {
+        for (var i = 0; i < xmlNames.length; i++) {
             
-            var name= _.keys(allVals)[i];
+            var name= xmlNames[i];
             var extension= ".xml"; 
             var egaugeURL= "http://cs.wheatoncollege.edu/~egauge/"
             var slash="/";
@@ -45,11 +59,8 @@ function storeVals(path,dorm){
         success: function(data){
 
             var xml = $('group',data);
-            var rows=0;
             xml.find("c").each(function() {
-               if(rows<=numHours){
-                    temp.push(1*($(this).text()));
-               } 
+               temp.push(1*($(this).text())); 
             });
             
             //Things that get summed: dorm and computer panel, panel 1 and panel 2
@@ -58,130 +69,128 @@ function storeVals(path,dorm){
             //Kilham: Sum column 0,1,2,4,6,8 in each row skip rest
             //Meadows-ew-4th: sum column 0 and 1 in each row skip rest
 
-            if(temp.length>numHours+1){
-
-                if (dorm == "clark-mcintire-young"){
-                    for (var i = 0; i < temp.length; i++) {
-                        if (i%3==0){
-                            allVals["clark"].push(temp[i]);
-                        }
-                        else if (i%3==1){
-                            allVals["mcintire"].push(temp[i]);
-                        }
-                        else {
-                            allVals["young"].push(temp[i]);
-                        }
+            if (dorm == "clark-mcintire-young"){
+                for (var i = 0; i <= (numHours *3) +2; i++) {
+                    if (i%3==0){
+                        allVals["clark"].push(temp[i]);
+                    }
+                    else if (i%3==1){
+                        allVals["mcintire"].push(temp[i]);
+                    }
+                    else {
+                        allVals["young"].push(temp[i]);
                     }
                 }
+            }
 
-                else if (dorm == "stanton-cragin-everett"){
-                    var counter=0;
-                    for (var i = 0; i < temp.length; i++) {
-                        if (i%4==0){
-                            allVals["stanton"].push(temp[i]);
-                        }
-                        else if (i%4==1){
-                            allVals["stanton"][counter]+=temp[i];
-                            counter++;
-                        }
-                        else if (i%4==2){
-                            allVals["cragin"].push(temp[i]);
-                        }
-                        else {
-                            allVals["everett"].push(temp[i]);
-                        }
+            else if (dorm == "stanton-cragin-everett"){
+                var counter=0;
+                for (var i = 0; i <= (numHours*4)+2; i++) {
+                    if (i%4==0){
+                        allVals["stanton"].push(temp[i]);
+                    }
+                    else if (i%4==1){
+                        allVals["stanton"][counter]+=temp[i];
+                        counter++;
+                    }
+                    else if (i%4==2){
+                        allVals["cragin"].push(temp[i]);
+                    }
+                    else {
+                        allVals["everett"].push(temp[i]);
                     }
                 }
+            }
 
-                else if (dorm == "meadows-ew-1st-floor"){
-                    for (var i = 0; i < temp.length; i+=4) {
-                       allVals["meadows-ew"].push(temp[i]+temp[i+1]+temp[i+2]+temp[i+3]);
-                    }
+            else if (dorm == "meadows-ew-1st-floor"){
+                for (var i = 0; i <= (numHours*4); i+=4) {
+                   allVals["meadows-ew"].push(temp[i]+temp[i+1]+temp[i+2]+temp[i+3]);
                 }
+            }
 
-                else if(ewMeadowsDorms.indexOf(dorm) > -1){ 
-                    var counter=0;
-                    for (var i = 0; i < temp.length; i+=2) {
-                       allVals["meadows-ew"][counter]+=(temp[i]+temp[i+1]);
-                       counter++;
-                    }
-
-                }
-
-                else if(dorm == "meadows-ew-4th-floor"){ 
-                    var counter=0;
-                    for (var i = 0; i < temp.length; i+=14) {
-                       allVals["meadows-ew"][counter]+=(temp[i]+temp[i+1]);
-                       counter++;
-                    }
-
-                }
-                
-                else if (dorm == "meadows-north-1st-floor"){
-                    for (var i = 0; i < temp.length; i+=2) {
-                       allVals["meadows-north"].push(temp[i]+temp[i+1]);
-                    }
-                }
-
-                else if (dorm == "emerson-dorm"){
-                    for (var i = 0; i < temp.length; i+=2) {
-                       allVals["emerson-dorm"].push(temp[i]+temp[i+1]);
-                    }
-                }
-
-                else if (dorm == "larcom"){
-                    for (var i = 0; i < temp.length; i+=2) {
-                       allVals["larcom"].push(temp[i]+temp[i+1]);
-                    }
-                }
-
-                else if (dorm == "kilham"){
-
-                    for (var i = 0; i < temp.length; i+=10) {
-                       allVals["kilham"].push(temp[i]+temp[i+1]+temp[i+2]+temp[i+4]+temp[i+6]+temp[i+8]);
-                    }                    
-
-
-                }
-
-                else if (dorm == "gebbie-keefe"){
-                    
-                    for (var i = 0; i < temp.length; i++) {
-                        if (i%2==0){
-                            allVals["gebbie"].push(-1*temp[i]);
-                        }
-                        else {
-                            allVals["keefe"].push(-1*temp[i]);
-                        }
-                    }
-
+            else if(ewMeadowsDorms.indexOf(dorm) > -1){ 
+                var counter=0;
+                for (var i = 0; i <= (numHours*2); i+=2) {
+                   allVals["meadows-ew"][counter]+=(temp[i]+temp[i+1]);
+                   counter++;
                 }
 
             }
 
-            else{
-                
-                if(nMeadowsDorms.indexOf(dorm) > -1){
-
-                    for (var i = 0; i < temp.length; i++) {
-                           allVals["meadows-north"][i]+=temp[i];
-                    }
-
+            else if(dorm == "meadows-ew-4th-floor"){ 
+                var counter=0;
+                for (var i = 0; i <= (numHours*14); i+=14) {
+                   allVals["meadows-ew"][counter]+=(temp[i]+temp[i+1]);
+                   counter++;
                 }
 
-                else if (dorm == "everett-heights"){
-                    for (var i = 0; i < temp.length; i++) {
+            }
             
-                        allVals["everett"][i]+=temp[i];
-
-                    }
-                }
-                
-                else{ 
-                    allVals[dorm]=temp;
+            else if (dorm == "meadows-north-1st-floor"){
+                for (var i = 0; i <= (numHours*2); i+=2) {
+                   allVals["meadows-north"].push(temp[i]+temp[i+1]);
                 }
             }
-                   
+
+            else if (dorm == "emerson-dorm"){
+                for (var i = 0; i <= (numHours*2); i+=2) {
+                   allVals["emerson-dorm"].push(temp[i]+temp[i+1]);
+                }
+            }
+
+            else if (dorm == "larcom"){
+                for (var i = 0; i <= (numHours*2); i+=2) {
+                   allVals["larcom"].push(temp[i]+temp[i+1]);
+                }
+            }
+
+            else if (dorm == "kilham"){
+
+                for (var i = 0; i <= (numHours*10); i+=10) {
+                   allVals["kilham"].push(temp[i]+temp[i+1]+temp[i+2]+temp[i+4]+temp[i+6]+temp[i+8]);
+                }                    
+
+
+            }
+
+            else if (dorm == "gebbie-keefe"){
+                
+                for (var i = 0; i <= (numHours*2)+1; i++) {
+                    if (i%2==0){
+                        allVals["gebbie"].push(-1*temp[i]);
+                    }
+                    else {
+                        allVals["keefe"].push(-1*temp[i]);
+                    }
+                }
+
+            }
+
+        
+            
+            else if(nMeadowsDorms.indexOf(dorm) > -1){
+
+                for (var i = 0; i <= numHours; i++) {
+                       allVals["meadows-north"][i]+=temp[i];
+                }
+
+            }
+
+            else if (dorm == "everett-heights"){
+                for (var i = 0; i <= numHours; i++) {
+        
+                    allVals["everett"][i]+=temp[i];
+
+                }
+            }
+            
+            else{ 
+                for (var i = 0; i <= numHours; i++) {
+        
+                    allVals[dorm].push(temp[i]);
+
+                }
+            }       
         },
         error: function(data){
             console.log("Didn't work");
@@ -267,8 +276,6 @@ function getValRange(delim,start,end){
 }
 
 function toKWH(){
-   
-    
     for (var i = 0; i <_.size(allVals); i++) {
         var last=allVals[_.keys(allVals)[i]].length -1;
         for (var j = 0; j < last; j++) {
@@ -299,3 +306,13 @@ function echoData(){
     console.log(allVals);
 
 }
+
+</script>
+
+
+</body>
+
+</html>
+
+
+
