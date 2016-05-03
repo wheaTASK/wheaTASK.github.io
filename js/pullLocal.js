@@ -266,7 +266,7 @@ function toKWH(){
         allVals[_.keys(allVals)[i]].splice(last,1);
     }
 
-    console.log(allVals);
+    // console.log(allVals);
 }
 
 function avgKWH() {
