@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TASK Rankings</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./css/foundation.css">
+		<link rel="stylesheet" href="./css/styles.css">
+		<link rel="stylesheet" type="text/css" href="./css/wrapper.css">
+		<link rel="stylesheet" type="text/css" href="./css/rankings.css">
+		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="./js/wrapper.js"></script>
+		<script src="./js/rankings.js"></script>
+		<script src="./js/progressbar.min.js"></script>
+
+
+		<style>
+
+			li{
+			text-align: justify;
+    		text-justify: inter-word;
+			}
+
+			.resetButton {
+			margin-top: 15px;
+			width: 100%;
+			height: 75px;
+			line-height: 75px;
+			border-radius: 25px;
+			background-color: #0068af;
+			color: #fff;
+			text-align: center;
+			cursor: pointer;
+			}
+
+			#contestDescrip{
+			padding-top: 50px;
+		    }
+
+		    #buildingRanks{
+			display:inline;
+
+		    }
+
+		    #communityTracker{
+			display:none;
+			margin-top: 20px;
+		    }
+
+		</style>
+
+
+	</head>
+
+	<body>
+		<!-- banner -->
+		<div class="row" id="banner">
+			<div class="small-2 small-centered columns" id="bannerID"><img src="./images/banner.png" height="2em"></div>
+			<!-- <div class="small-12 small-centered columns">WHEATON ENERGY SAVER</div> -->
+		</div>
+
+		<div class="row">
+			<div class="small-9 small-centered columns">
+				<div id='cssmenu'>
+					<ul>
+						<li class='last'><a href='./index.html'><span>Heat Map</span></a></li>
+						<li class='last'><a href='./linegraph.html'><span>Consumption Graph</span></a></li>
+						<li class='last'><a href='#'><span>Rankings</span></a></li>
+						<li class='last'><a href='./tips.html'><span>Tips</span></a></li>
+						<li class='last'><a href='./calculator.html'><span>Calculator</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+			
+		<!-- content -->	
+		<div class="row" >
+			<div class="small-3 small-offset-2 columns" id="buildingRanks">
+			<!-- <div class="small-6 columns"> -->
+				<br>
+				<!-- <img src="./images/gold.jpg"> -->
+				<div class="dormName" id="Gold">Everett</div>
+				<div class="dormName" id="Silver">Stanton</div>
+				<div class="dormName" id="Bronze">Cragin</div>
+				<div class="dormName">Other Dorms</div>
+				<div class="dormName">Other Dorms</div>
+				<div class="dormName">Other Dorms</div>
+				<div class="dormName">Other Dorms</div>
+				<div class="dormName">Other Dorms</div>
+				<div class="dormName">Other Dorms</div>
+				<div class="dormName">Other Dorms</div>
+				<div class="dormName">Other Dorms</div>
+			</div>
+
+			<div class="small-3 small-offset-2 columns" id="communityTracker"></div>
+
+			<div class="small-9" id="contestDescrip">
+				<ul>
+					<li>The primary purpose of the incentives program is to get students across campus to collectively take part in the initiative to reduce energy consumption in campus residence halls.</li>
+					<li>The incentives program will be dual tiered offering a community reward and a residence hall reward.</li>
+					<li>If we as a community can drop energy consumption on campus by 5%, the savings will be transferred to the Programming Council for use during Spring Weekend.</li>
+					<li>The residents of the three buildings that reduce their consumption the most will be rewarded with $10 in Lyons Bucks.</li>
+				</ul>
+			</div>
+		</div>
+		<br>
+		<br>
+		<!-- <div class="row">
+			<div class="small-9 small-centered columns">
+				<ul>
+					<li>The primary purpose of the incentives program is to get students across campus to collectively take part in the initiative to reduce energy consumption in campus residence halls.</li>
+					<li>The incentives program will be dual tiered offering a community reward and a residence hall reward.</li>
+					<li>If we as a community can drop energy consumption on campus by 5%, the savings will be transferred to the Programming Council for use during Spring Weekend.</li>
+					<li>The residents of the three buildings that reduce their consumption the most will be rewarded with $10 in Lyons Bucks.</li>
+				</ul>
+			</div>
+		</div> -->
+		
+		<div class="row">
+			<div class="small-2 columns small-offset-5 columns">
+				<div class="resetButton" id="switch" onclick="next()">Community Tracker</div>
+			</div>
+		</div>
+
+		<!-- loads jquery and foundation -->
+		<script src="js/vendor/jquery.min.js"></script>
+		<script src="js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
+		<script>
+
+			function makeProgressBar(){
+
+		
+				var circle = new ProgressBar.Circle('#communityTracker', {
+					color: '#FCB03C',
+					strokeWidth: 3,
+					trailWidth: 1,
+					duration: 1500,
+					text: {
+						value: '0'
+					},
+					step: function(state, bar) {
+						bar.setText((bar.value() * 100).toFixed(0));
+					}
+				});
+
+				circle.animate(.7, function() {
+					circle.animate(.7);
+				})
+
+			}
+
+			var swap=0;
+
+			function next() {
+            	
+            	if(swap%2==0){
+					document.getElementById("communityTracker").style.display = "inline";
+					document.getElementById("buildingRanks").style.display = "none";
+					makeProgressBar()
+					document.getElementById("switch").innerHTML = "Building Rankings";
+				}
+				else{
+					document.getElementById("buildingRanks").style.display = "inline";
+					document.getElementById("communityTracker").innerHTML='';
+					document.getElementById("communityTracker").style.display = "none";
+					document.getElementById("switch").innerHTML = "Community Tracker";
+				}
+
+        		swap+=1;
+        	}
+
+		</script>
+	</body>
+</html>

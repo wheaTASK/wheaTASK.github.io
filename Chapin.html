@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Chapin</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="./js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    <script src="./js/dorms.js"></script>
+    
+    
+    
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+<script src="./js/pullData.js"></script>
+
+<script>
+     
+ $(document).ready(function() {
+    setTimeout(function() {
+var svgContainer = d3.select("body").append("svg")
+                                     .attr("width", 2000)
+                                     .attr("height", 3000);
+ 
+ //Draw the Rectangle
+ 
+                         
+var data = usageVals; //Can be changed to return output of the pull data function
+var max = d3.max(d3.values(data)); //find the max data point
+var scale= 100/max; //sets scale so that the max is the full bar
+var width=600/data.length; //width of each new rect is scaled to number of data points
+//console.log(width)
+var d=100; //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
+var svg = d3.select("svg");
+var bar = svg.selectAll("g")
+    .data(data)
+  .enter().append("g")
+    .attr("transform", function() { return "translate("+d+", "+ "100)"; }); 
+    //Draw the initial box, will add draggable functionality later through on mouse drage event
+    
+bar.append("rect")
+    
+    .attr("width", 200)
+    .attr("height", 100)
+    .attr("fill", "#6495ED")
+    .attr("stroke","black")
+    
+ //Dorm name must be added seperately, because d3   
+bar.append("text")
+    .attr("dy", 50)
+    .attr("dx", 100)
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .attr("font-weight", "bold")
+    .text("Chapin");
+  
+  //Draws the full bar
+    
+bar.append("rect")
+    .attr("x",200)
+    .attr("y",0)
+    .attr("width",603)
+    .attr("height", 100)
+    .attr("fill", "#E0FFFF")
+    .attr("stroke", "black")
+    
+    //Loop that adds sections
+    
+    for (i = 0; i < data.length; i++) { 
+   
+bar.append("rect")
+    .attr("x",(i)*width+202)
+    .attr("height", data[i]*scale-2)
+    .attr("y",(100-(data[i]*scale))/2+1)
+    .attr("width",width)
+    .attr("fill", "#E0FAAA")
+   // .attr("stroke", "black")
+    //.on mouse over display tooltip with more detailed information
+ }
+  
+    console.log(usageVals);  
+  });
+ }, 10);
+ 
+    
+</script>
+
+
+</body>
+</html>

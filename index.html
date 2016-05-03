@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TASK Graphs</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./css/foundation.css">
+		<link rel="stylesheet" href="./css/styles.css">
+		<link rel="stylesheet" type="text/css" href="./css/wrapper.css">
+		<link rel="stylesheet" type="text/css" href="./css/index.css">
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+		<link rel="stylesheet" href="./node_modules/foundation-datepicker/css/foundation-datepicker.css" />
+		<script src="./js/underscore.min.js"></script>
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="./js/wrapper.js"></script>
+		<script src="./js/index.js"></script>
+    	<script src="./js/dorms.js" type="text/javascript"></script>
+    	<script src="./js/pullLocal.js" type="text/javascript"></script>
+    	<script src="./js/leafletscript.js" type="text/javascript"></script>
+	</head>
+
+	<!-- submenu button space in between divs -->
+
+	<body>
+		<!-- banner -->
+		<div class="row" id="banner">
+			<div class="small-2 small-centered columns" id="bannerID"><img src="./images/banner.png" height="2em"></div>
+			<!-- <div class="small-9 small-centered columns">WHEATON ENERGY SAVER</div> -->
+		</div>
+
+		<div class="small-9 small-centered columns">
+			<div id='cssmenu'>
+				<ul>
+					<li class='last'><a href='#'><span>Heat Map</span></a></li>
+					<li class='last'><a href='./linegraph.html'><span>Consumption Graph</span></a></li>
+					<li class='last'><a href='./rankings.html'><span>Rankings</span></a></li>
+					<li class='last'><a href='./tips.html'><span>Tips</span></a></li>
+					<li class='last'><a href='./calculator.html'><span>Calculator</span></a></li>
+				</ul>
+			</div>
+		</div>
+			
+			
+		<!-- content -->
+		<br>
+		<div class="row">
+			<div class="container">
+				<!-- <div> -->
+					<div class="small-8 columns">
+						<center><div id="map"></div></center>
+						<!-- leaflet script -->
+					</div>
+
+					<div class="small-4 columns">
+						<div class="row">
+							<div class="datepicker" id="datePickerAlign">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Start Date&nbsp;
+												<a href="#" class="button tiny" id="dp4" data-date-format="yyyy-mm-dd">Change</a>
+											</th>
+											<th>End Date&nbsp;
+												<a href="#" class="button tiny" id="dp5" data-date-format="yyyy-mm-dd">Change</a>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td id="startDate"></td>
+											<td id="endDate"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="resetButton" onclick="resetMap()">RESET</div>
+						</div>
+					</div>
+
+				<!-- </div> -->
+			</div>
+		</div>
+
+		<!-- loads jquery and foundation -->
+		<script src="js/vendor/jquery.min.js"></script>
+		<script src="js/foundation.min.js"></script>
+		<script src="./node_modules/foundation-datepicker/js/foundation-datepicker.js" type="text/javascript"></script>
+    	<script src="./js/datepicker.js" type="text/javascript"></script>
+		<script>
+			$(document).foundation();
+		</script>
+	</body>
+</html>

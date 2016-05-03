@@ -1,0 +1,45 @@
+.container {
+	background-color: #34495E;
+	text-align: center;
+	margin: 1em 3em;
+	border-radius: .4em;
+	display: inline-block;
+}
+
+.dormName {
+	color: #000;
+	border-right: solid;
+	border-right-color: #000;
+	border-right-width: 1px;
+	/*margin-left: -25px;*/
+	text-align: left;
+	line-height: 2em;
+}
+
+.wrapperDiv {
+	border: solid;
+	border-width: 1px;
+	border-color: #000;
+	background-color: #d3d3d3;
+}
+
+#graph {
+	position: absolute;
+	margin-left: 200px;
+}
+
+#submenu {
+	width: 100%;
+	height: 20em;
+	min-height: 2em;
+	max-height: 10em;
+	margin-top: 1px;
+	border-width: 2px;
+	border-color: #fff;
+	background: #0068af;
+	display: inline;
+}
+
+#svgGraph {
+	margin-left: 7%;
+}

@@ -1,0 +1,48 @@
+body {
+	background-color: #fff;
+}
+
+/* temporary css */
+#tempImage {
+	width: 100%;
+}
+
+#tempCentered {
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+}
+
+.banner {
+	text-align: center;
+}
+
+.descTitle {
+	text-align: center;
+}
+
+#bannerID {
+	margin-bottom: 2px;
+}
+
+#description {
+	display: inline-block;
+}
+
+#horizontal {
+	width: 200px;
+	height: 20px;
+}
+
+#vertical {
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-duration: 2.0s;
+}
+
+#centerText {
+	text-align: center;
+}
+
+#banner {
+	text-align: center;
+}

@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- <link rel="stylesheet" href="./css/foundation.css"> -->
+<link rel="stylesheet" href="./css/wrapper.css">
+<link rel="stylesheet" href="./css/styles.css">
+<style type="text/css">
+
+  body {
+        margin: auto;
+        background-color: #769CA8;
+        margin: 0 0 24px; 
+        text-align: justify;
+        text-justify: inter-word;
+        font-size: 14px;
+
+  }
+
+    .percent75 {
+      width: 95%;
+    }
+
+      .box{
+             position: fixed;
+   
+          padding: 20px;
+          display: none;
+          margin-top: 20px;
+          border: 1px solid #000;
+      }
+      .red { 
+       border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      width: 500px;
+      border-radius: 15px;
+      position: absolute;
+      }
+
+      .green{
+      border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      width: 500px;
+      border-radius: 15px;
+      position: absolute;
+
+  }
+      .blue{ 
+      border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      width: 500px;
+      border-radius: 15px;
+   position: absolute;
+  }
+
+  .yellow
+  {
+      border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      width: 500px;
+      border-radius: 15px;
+      position: absolute;
+
+  }
+  .onlineresources
+  {
+      position: absolute;
+      border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      width: 500px;
+      border-radius: 15px;
+  }
+
+      #labelDiv {
+          text-align: left;
+      }
+
+      #video{
+      border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      border-radius: 15px;
+      width: 400px;
+
+      }
+
+      #tips_title
+      { 
+      border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      width: 500px;
+      border-radius: 15px;
+      margin: 0 0 24px; 
+
+
+  }
+
+  #tips_title_Video
+  {
+      border: 2px solid #a1a1a1;
+      padding: 20px 50px; 
+      background: #dddddd;
+      width: 600px;
+      border-radius: 15px;
+      text-align: center;
+  }
+
+  .headline
+  {
+  /*    background-color: #696D6E;
+  */    width: 100%;
+      height: 100%;
+      border: 2px solid #a1a1a1;
+      border-radius: 10px;
+      margin: 0 0 24px; 
+       text-align: justify;
+        text-justify: inter-word;
+  }
+
+
+</style>
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        if($(this).attr("value")=="computers"){
+            $(".box").not(".red").hide();
+            $(".red").show();
+        }
+        if($(this).attr("value")=="heating"){
+            $(".box").not(".green").hide();
+            $(".green").show();
+        }
+        if($(this).attr("value")=="appliances"){
+            $(".box").not(".blue").hide();
+            $(".blue").show();
+        }
+         if($(this).attr("value")=="Online_Resources"){
+            $(".box").not(".onlineresources").hide();
+            $(".yellow").show();
+        }
+
+    });
+});
+</script>
+</head>
+
+<body>
+  <center>
+    <div  class="percent75">
+      <div id="banner">
+        <div id="bannerID"><img src="./images/banner.png" height="35em"></div>
+      </div>
+
+      <center>
+        <div >
+          <div id='cssmenu'>
+            <ul>
+              <li class='last'><a href='./index.html'><span>Heat Map</span></a></li>
+              <li class='last'><a href='./linegraph.html'><span>Consumption Graph</span></a></li>
+              <li class='last'><a href='./rankings.html'><span>Rankings</span></a></li>
+              <li class='last'><a href='#'><span>Tips</span></a></li>
+              <li class='last'><a href='./calculator.html'><span>Calculator</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </center>
+
+<div class="headline">
+<br>
+        <h1 align="middle">WHEATON ENERGY SAVER</h1>
+        <h2 id="MainContainer" align="middle">Useful Energy Saving Tips, Recommendations and Suggestions</h2>
+        <h4>For everyone who lives in our residence halls, here are ways to save energy, and make sure the energy you use isn’t being wasted. Your energy saving actions can help reduce our campus environmental footprint and control utility costs.</h4>
+        <br>
+</div>
+
+
+        <script src="js/vendor/jquery.min.js"></script>
+        <script src="js/foundation.min.js"></script>
+        <script>
+            $(document).foundation();
+        </script>
+
+        <!-- Tables test --> 
+
+<table style="display: inline-block; border: 1px; float: left; ">
+        <tr>
+            <td>
+                
+                <div id="tips_title" class="paragraph">
+     
+             <h4>Involve The Wheaton Community <img src="http://www.acqnotes.com/Images/Stakeholder%20Icon.png" align="texttop" height="35" width="35"></h4></h4>
+              <ul>
+        
+               <li> Get the entire school involved. Energy savings add up when the entire school joins together in conservation efforts.  Schools with effective conservation programs have reported reductions of as much as 25% in utility bills.  </li>
+            <li> Publicize energy costs and savings. When people know how much it costs to power their school, they can see why it’s worth some extra effort to avoid waste.</li>
+             <li> Encourage others to reduce energy use, improve recycling and live sustainably.</li>
+            <li>Encourage your Resident Adviser and students to make signs and stickers to remind people to turn off the lights when they leave a room.</li>
+             </ul>
+</div>
+
+
+<div>
+
+    <div id="tips_title" align="right"> 
+<p> <center>Energy Saving Tips</center></p>
+<!-- <object type="text/html" data="https://www.youtube.com/watch?v=cU-57-WJ05Y" height="300" width="450" frameborder="0" style="border:0;">
+  <embed src="https://www.youtube.com/watch?v=cU-57-WJ05Y" height="300" width="450" frameborder="0" style="border:0;">
+</object> -->
+
+<!-- <embed width="600" height="400"
+src="https://www.youtube.com/watch?v=cU-57-WJ05Y"> -->
+<!-- 
+<object width="600" height="400"
+data="https://www.youtube.com/watch?v=_fhkk9q5-ws">
+</object>
+
+ <iframe width="420" height="315"
+src="https://www.youtube.com/watch?v=_fhkk9q5-ws">
+</iframe>  -->
+
+<iframe align="center" width="500" height="315" src="https://www.youtube.com/embed/cU-57-WJ05Y" frameborder="0" allowfullscreen></iframe>    
+
+</div>
+            </td>
+            
+        </tr>
+
+
+ </table>
+        
+        <table style="display: inline-block; border: 1px;">
+
+        <tr>
+            <td>
+        <div id="tips_title">
+        <label><input type="radio" name="colorCheckbox" value="computers"> Computers & Appliances</label>
+        <label><input type="radio" name="colorCheckbox" value="heating">  Heating & Cooling</label>
+        <label><input type="radio" name="colorCheckbox" value="appliances"> Lights</label>
+         <!-- <em><label><input type="radio" name="colorCheckbox" value="Online_Resources">Online Resources</label></em> -->
+          <label><input type="radio" name="colorCheckbox" value="Online_Resources">CO2 Emission</label>
+
+    
+</div>
+
+
+ <div class="red box">
+ <table>
+    <tr>
+    <td>
+     <h4>Computers & Appliances <img src="http://icons.iconarchive.com/icons/mahm0udwally/all-flat/256/Computer-icon.png" height="35" width="35"> </h4>
+                    <ul class="paragraph">
+
+                        <li> If your school computers have power-management features, make sure controls are set so they will go into the “sleep” mode when not in active use.  (Screen savers don’t save energy—only the sleep mode does.)</li>
+                        <li>Maintain appliances and replace old appliances. </li>
+                         <li> Unplug chargers when they’re not charging, they draw energy whenever they’re plugged in.  Our lives are full of little power supplies to charge cell phones, PDA’s, digital cameras, cordless tools and other personal gadgets.  Keep them unplugged until you need them.  </li>
+                        <li>Clean refrigerator coils regularly. </li>
+                    </ul>
+
+                    <div>
+
+                      <h5> Online Resources</h5> 
+                      <ul list-style="none"> 
+
+                         <li>Please check out <a href="https://www.energystar.gov/ia/business/higher_ed/ENERGYSTAR_Student_Activity_Guide.pdf?5a8b-a096">The Student Activity Guide</a> for a full listing of saving energy recommendations and information in colleges and universities.</li>
+                         <li><a href= "http://www.uwlax.edu/fpm/sustainability/tips/residence_hall_tips.html">Facilities Planning & Management. </a></li>
+                         <li><a href= "https://www.ase.org/resources/energy-saving-tips-schools">Energy Saving Tips for Schools. Alliance to save Energy.</a></li>
+
+                      </ul>
+
+                     </div>
+
+</td>
+
+
+
+
+
+<td id="ImgRight">
+
+<img src="https://freerangestock.com/sample/48265/internet-of-things-concept--globalized-interconnected-world.jpg" alt="Mountain View" style="width:304px;height:228px;" hspace="20">
+
+</td>
+
+</tr>
+
+</table>
+</div>
+
+
+    <div class="green box" class="paragraph">
+
+    <table>
+    <tr> 
+    <td>
+     <h4 id="tips" class="paragraph"> Heaters<img src="https://lh6.googleusercontent.com/-pClSahcMUPU/VMAJTQd0c3I/AAAAAAAAAEc/Jiy7BWjlBBw/w800-h800/heating-and-cooling-icon.png" align="texttop" height="35" width="35"> </h4>
+                    <ul class="paragraph">
+                        <li>Don’t block the airflow around vents.  Keep bookcases and other bulky items away from the heating and cooling units so they don’t block and/or absorb the warm (or cool) air that should be coming into the room. </li>
+                         <li> Turn down heat in the hallways. And keep room doors closed.  Otherwise, the heat runs down the hall and outside—where it is wasted to the outdoors.</li>
+                          <li> Stop leaks!!  Look for simple draft beating strategies. </li>
+                          <li>Close curtains and blinds to keep heat in overnight in winter and use them to reduce heat gains and glare during summer months.</li>
+                    </ul>
+
+
+<div>
+
+                      <h5> Online Resources</h5> 
+                      <ul list-style="none"> 
+
+                         <li>Please check out <a href="https://www.energystar.gov/ia/business/higher_ed/ENERGYSTAR_Student_Activity_Guide.pdf?5a8b-a096">The Student Activity Guide</a> for a full listing of saving energy recommendations and information in colleges and universities.</li>
+                         <li><a href= "http://www.uwlax.edu/fpm/sustainability/tips/residence_hall_tips.html">Facilities Planning & Management. </a></li>
+                         <li><a href= "https://www.ase.org/resources/energy-saving-tips-schools">Energy Saving Tips for Schools. Alliance to save Energy.</a></li>
+
+                      </ul>
+
+                     </div>
+
+</td>
+
+<td id="ImgRight">
+
+<img src="http://paylessforoil.com/wp-content/uploads/2015/12/Easy-Ways-to-Save-On-Heating-Your-Home-This-Winter.jpg" alt="Mountain View" style="width:304px;height:228px;" hspace="20">
+
+</td>
+  
+    </tr>
+</table>
+  </div>
+
+     <div class="blue box">
+
+    <table> 
+    <tr> 
+    <td>
+    <h4 id="tips">Lights <img src="http://icons.iconarchive.com/icons/iconleak/or/256/light-bulb-icon.png" align="texttop" height="35" width="35"></h4>
+
+                 <link rel="shortcut icon" href="[favicon.ico](http://photosinbox.com/wp-content/uploads/2013/03/light-bulb-icon.jpg)" type="image/x-icon" />
+                    <ul> 
+                    <li>Turn off lights when leaving a room for more than 20 minutes. </li>
+                    <li> Replace incandescent light bulbs with compact fluorescent bulbs.</li>
+                    <li> When given the option, buy equipment with an Energy Star label such as efficient compact fluorescent light bulbs (CFLs) and light-emitting diode (LED) bulbs. Everything from TV’s to computer monitors to light bulbs and more can be found with the Energy Star label.</li>
+                    </ul>
+
+                    <div>
+
+                      <h5> Online Resources</h5> 
+                      <ul list-style="none"> 
+
+                         <li>Please check out <a href="https://www.energystar.gov/ia/business/higher_ed/ENERGYSTAR_Student_Activity_Guide.pdf?5a8b-a096">The Student Activity Guide</a> for a full listing of saving energy recommendations and information in colleges and universities.</li>
+                         <li><a href= "http://www.uwlax.edu/fpm/sustainability/tips/residence_hall_tips.html">Facilities Planning & Management. </a></li>
+                         <li><a href= "https://www.ase.org/resources/energy-saving-tips-schools">Energy Saving Tips for Schools. Alliance to save Energy.</a></li>
+
+                      </ul>
+
+                     </div>
+                   
+            <!--         <tr>
+                    <td>
+                     <h4 id="tips">Online Resources <img src="http://icons.iconarchive.com/icons/iconleak/or/256/light-bulb-icon.png" align="texttop" height="35" width="35"></h4>
+
+                 <link rel="shortcut icon" href="[favicon.ico](http://photosinbox.com/wp-content/uploads/2013/03/light-bulb-icon.jpg)" type="image/x-icon" />
+                  <ul style="list-style: none;">
+         <li>Please check out <a href="https://www.energystar.gov/ia/business/higher_ed/ENERGYSTAR_Student_Activity_Guide.pdf?5a8b-a096">The Student Activity Guide</a> for a full listing of saving energy recommendations and information in colleges and universities.</li>
+            <li><a href= "http://www.uwlax.edu/fpm/sustainability/tips/residence_hall_tips.html">Facilities Planning & Management. </a></li>
+              <li><a href= "https://www.ase.org/resources/energy-saving-tips-schools">Energy Saving Tips for Schools. Alliance to save Energy.</a></li>
+    
+        </ul>
+        </td>
+        </tr> -->
+</td>
+
+<td id="ImgRight">
+
+<img src="https://freerangestock.com/sample/39273/hand-creating-a-lightbulb-with-green-tree--ecology-and-life-con.jpg" alt="Mountain View" style="width:304px;height:228px;" hspace="20">
+
+</td>
+</tr>
+</table>
+</div>
+
+
+<div class="yellow box">
+
+    <table> 
+    <tr> 
+    <td>
+    <h4 id="tips">CO2 Emission <img src="https://airportonomy.files.wordpress.com/2014/10/co2.jpg " align="texttop" height="35" width="35"></h4>
+
+                 <link rel="shortcut icon" href="[favicon.ico](http://photosinbox.com/wp-content/uploads/2013/03/light-bulb-icon.jpg)" type="image/x-icon" />
+                  <ul >
+                    <li> Collaborate with your friends and Wheaton college to implement energy-efficiency and waste-reduction measures in your dorm and houses.</li>
+                    <li>Be careful not to overheat or overcool rooms. In the winter, set your thermostat at 68 degrees in daytime, and 55 degrees at night.</li>
+                    <li> In the summer, keep it at 78. Lowering your thermostat just two degrees during winter saves 6 percent of heating-related CO2 emissions. That's a reduction of 420 pounds of CO2 per year for a typical home.</li>
+                    <li>Reduce the amount of waste you produce by buying minimally packaged goods, choosing reusable products over disposable ones, and recycling. For every pound of waste you eliminate or recycle, you save energy and reduce emissions of CO2 by at least 1 pound. Cutting down your garbage by half of one large trash bag per week saves at least 1100 pounds of CO2 per year. </li>
+    
+        </ul>
+
+        <div>
+
+                      <h5> Online Resources</h5> 
+                      <ul list-style="none"> 
+
+                         <li>Please check out <a href="https://www.energystar.gov/ia/business/higher_ed/ENERGYSTAR_Student_Activity_Guide.pdf?5a8b-a096">The Student Activity Guide</a> for a full listing of saving energy recommendations and information in colleges and universities.</li>
+                         <li><a href= "http://www.uwlax.edu/fpm/sustainability/tips/residence_hall_tips.html">Facilities Planning & Management. </a></li>
+                         <li><a href= "https://www.ase.org/resources/energy-saving-tips-schools">Energy Saving Tips for Schools. Alliance to save Energy.</a></li>
+
+                      </ul>
+
+                     </div>
+                
+</td>
+
+<td id="ImgRight">
+
+<img src="https://freerangestock.com/sample/52112/sign-co2-shows-carbon-footprint-and-emission.jpg" alt="Mountain View" style="width:304px;height:228px;" hspace="20">
+
+</td>
+</tr>
+</table>
+</div>
+</div>
+</center>
+</body>
+</html>

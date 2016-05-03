@@ -1,0 +1,25 @@
+.dormName {
+	text-align: center;
+}
+
+#Bronze {
+	font-weight: bolder;
+	color: #CD7F32;
+	font-size: 32px;
+}
+
+#Gold {
+	font-weight: bolder;
+	color: #FFD700;
+	font-size: 52px;
+}
+
+#Silver {
+	font-weight: bolder;
+	color: #C0C0C0;
+	font-size: 42px;
+}
+
+#title {
+	
+}
