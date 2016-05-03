@@ -1,5 +1,9 @@
 // var map;
 
+String.prototype.lowFirstLetter = function() {
+    return this.charAt(0).toLowerCase() + this.slice(1);
+}
+
 $(document).ready(function() {
 	//Editing power values
 	//dormData["features"][0].properties.power=1000;
@@ -45,12 +49,16 @@ $(document).ready(function() {
 	}
 	*/
 	function checkDorm(props) {
-		if (props.name == "Chapin") {
-			// toKWH(allVals[xmlNames[2]]);
-			// allVals[xmlNames[2]] = averageAllVals(allVals[xmlNames[2]]);
-			props.power = avgKWh[_.keys(avgKWh)[2]][0].toFixed(2);
-			props.cost = (props.power*.14).toFixed(2);
-		}
+		
+
+		var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-ew", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett"];
+
+		var key= props.name.lowFirstLetter();
+		var index= allDorms.indexOf(key);
+
+		props.power = avgKWh[key][0].toFixed(2);
+		props.cost = (props.power*.14).toFixed(2);
+
 	}
 
 
