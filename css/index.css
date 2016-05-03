@@ -90,7 +90,7 @@ br {
 }
 
 .resetButton {
-	margin-top: 20%;
+	margin-top: 100%;
 	width: 90%;
 	height: 100px;
 	line-height: 100px;
@@ -120,14 +120,6 @@ br {
 	height: 550px;
 	/*------------*/
 	margin-top: 10px;
-}
-
-#useByOptions {
-	margin-top: 50%;
-	/*margin-left: 60%;*/
-	color: #fff;
-	text-align: left;
-	font-size: 28px;
 }
 
 /* Input radios */
