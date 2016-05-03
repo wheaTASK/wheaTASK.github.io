@@ -33,24 +33,11 @@ $(document).ready(function() {
 
 	info.addTo(map);
 
-	/*
-	this is what i got to in having it check all the dorms
-
-	for (var i = 0; i < _.size(avgKWh); i++) {
-		console.log(avgKWh[_.keys(avgKWh)]);
-		if (props.name == avgKWh[i]) {
-			props.power = avgKWh[_.keys(avgKWh)[i]][0].toFixed(2);
-			props.cost = (props.power*.14).toFixed(2);
-		}
-	}
-	*/
 	function checkDorm(props) {
-		if (props.name == "Chapin") {
-			// toKWH(allVals[xmlNames[2]]);
-			// allVals[xmlNames[2]] = averageAllVals(allVals[xmlNames[2]]);
-			props.power = avgKWh[_.keys(avgKWh)[2]][0].toFixed(2);
-			props.cost = (props.power*.14).toFixed(2);
-		}
+		var i = _.indexOf(_.keys(avgKWh), props.name);
+		console.log(props.name + " " + i);
+		props.power = avgKWh[_.keys(avgKWh)[i]][0].toFixed(2);
+		props.cost = (props.power*.14).toFixed(2);
 	}
 
 
