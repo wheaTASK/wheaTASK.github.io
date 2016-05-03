@@ -114,11 +114,14 @@
   #intro
   {
     color: #dd5;
+    float: auto;
   }
 
   #middle
   {
-    text-align: center;
+    text-align: left;
+    margin: 0 !important; 
+    /*width: 1000px;*/
     /*color:#dd5;*/
   }
 
@@ -191,8 +194,9 @@
 
 <div id="Main_container"> 
 
-<h1 id="middle"> Wheaton Energy Saver Calculator </h1>
-<h4 id ="middle" align="left"> Now every member of Wheaton community is able to calculate how much electric energy can be saved! In addition to this feature, we have added basic information of wattages rates for the most common electric devices students use on a daily basis.</h4>
+<h1 id="middleee" align="center"> Wheaton Energy Saver Calculator </h1>
+<h4 id ="middle" align="left"> Now every member of Wheaton community is able to calculate how much electric energy can be saved! </h4>
+<h4 id="middle">In addition to this feature, we have added basic information of wattages rates for the most common electric devices students use on a daily basis.</h4>
 </div>
 
 
@@ -210,13 +214,13 @@
 <h3 id="right">Energy Consumption Calculator</h3>
 
  <p id="intro">Hourly Consumption </p>
-Hours used per day:<input type="number" min ="0" id="Hours"> / hour
+Hours / day:<input type="number" min ="0" id="Hours"> / hour
 
 <p id="intro"> Wattage </p>
-Power Use: <input type="number" min ="0" id="Watts"> Watts
+Power Use:    <input type="number" min ="0" id="Watts"> Watts
 
 <p id="intro"> Price per Killowatt</p>
-Price (kWh):<input type="number" min="0.01" step="0.01" id="Price" value="0.14" disabled=""> / dollars
+Price (kWh): <input type="number" min="0.01" step="0.01" id="Price" value="0.14" disabled=""> / dollars
 <p> </p>
 </form>
 
