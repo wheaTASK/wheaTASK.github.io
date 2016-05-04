@@ -22,7 +22,7 @@ $(document).ready(function(){
 	// endDay = today.getDate();
 	endYear = 2016;
 	endMonth = 5;
-	endDay = 1;
+	endDay = 3;
 	startYear = endYear;
 	startMonth = endMonth - 1;
 	startDay = endDay;
@@ -32,6 +32,9 @@ $(document).ready(function(){
 	endDay = checkFormat(endDay);
 	startMonth = checkFormat(startMonth);
 	startDay = checkFormat(startDay);
+
+
+	endDateObj = new Date(endYear, endMonth, endYear);
 
 	// turn dates into strings for use with date picker
 	var stringStartDate = startYear + '-' + startMonth + '-' + startDay;
@@ -63,16 +66,9 @@ $(document).ready(function(){
 				changeStartDate(startDate);
 				startDateObj = new Date(startYear, (startMonth-1), startDay);
 
-				if (startMonth > endMonth || (startMonth == endMonth && startDay > endDay)) {
-					fixEndDate();
-					$('#endDate').text($('#dp4').data('date'));
-					endDateObj = new Date(endYear, (endMonth-1), endDay);
-
-					console.log(endDateObj);
-				}
-				
-				
-				// console.log(endYear + '-' + endMonth + '-' + endDay);
+				// reset averages to only use data back to certain date
+				// getValRange("hour",startDateObj,endDateObj);
+				avgKWH();
 			}
 		}
 		$('#dp4').fdatepicker('hide');
@@ -97,7 +93,7 @@ $(document).ready(function(){
 
 				console.log(2016 + '-' + endMonth + '-' + endDay);
 
-				console.log(endDateObj);
+				// console.log(endDateObj);
 				// changeEndDate(endDate);
 			}
 		}
@@ -188,7 +184,7 @@ function checkDate(newDate) {
 		// console.log("invalid day");
 		return false;
 	}
-	if (newMonth == 5 && newDay > 1)
+	if (newMonth == 5 && newDay > 3)
 		return false;
 	return true;
 }

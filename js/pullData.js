@@ -1,6 +1,6 @@
 var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark" : [],"mcintire" : [],"young" : [],"meadows-east" : [], "meadows-west" : [], "meadows-north" : [],"metcalf" : [],"kilham" : [],"larcom" : [], "stanton": [], "cragin" : [],"everett" : [], "gebbie": [], "keefe": []}';
 
-var xmlNames= ["beard", "emerson-dorm", "chapin", "meadows-ew-1st-floor", "meadows-north-1st-floor", "stanton-cragin-everett", "clark-mcintire-young", "meadows-ew-2nd-floor", "meadows-ew-3rd-floor", "meadows-ew-4th-floor", "meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor", "metcalf", "kilham", "larcom", "everett-heights", "gebbie-keefe"];
+var xmlNames= ["beard", "emerson-dorm", "chapin", "meadows-ew-1st-floor", "meadows-north-1st-floor", "stanton-cragin-everett", "clark-mcintire-young", "metcalf", "kilham", "larcom", "everett-heights", "gebbie-keefe", "meadows-ew-2nd-floor", "meadows-ew-3rd-floor", "meadows-ew-4th-floor", "meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor"];
 
 var ewMeadowsDorms=["meadows-ew-2nd-floor", "meadows-ew-3rd-floor"];
 var nMeadowsDorms=["meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadows-north-4th-floor"];
@@ -27,8 +27,15 @@ $( document ).ready(function() {
             
         }
 
+        setTimeout(echoData,1000);
+        setTimeout(toKWH,2000);
+        var startDate = new Date(2016, 03, 03);
+        var endDate = new Date(2016, 04, 03);
+        setTimeout(function() {
+            getValRange("hour",startDate,endDate)
+        },2000);
         //Important: all data processing must wait 1 second for data to be read in. If more than 1 function needed make a function that calls the all necessary functions and call it here in place to toKWH
-        setTimeout(toKWH,1000);
+        
         setTimeout(avgKWH,2000);
 
 });
@@ -191,7 +198,7 @@ function storeVals(path,dorm){
 function getValRange(delim,start,end){
 
     //For start and end use date.getTime()    
-
+    
 
     var firstVal = 1462306500; //Time of most recent data value
     var lastVal = firstVal- (3600*numHours); //Currently have 2999 rows of data which is 998 hours of data. 3600s in an hr
@@ -200,24 +207,21 @@ function getValRange(delim,start,end){
     var posStart, posEnd;
     
     //Find how many hours after the first data value we have the user start date is.  That is the first postion in array to read from
-    posStart=(start-lastVal)/3600;
+    posStart=parseInt((start.getTime()/1000-lastVal)/3600);
     //Find how many hours before the last data value we have the user end date is.  1000-posEnd is the last position in array to read
-    posEnd= (firstVal-end)/3600;
+    posEnd= parseInt((firstVal-end.getTime()/1000)/3600);
 
     if (delim=='hour'){
-
         for (var i = 0; i < _.size(userVals); i++) {
-            
             var name= _.keys(userVals)[i];
 
-            for (var j = posStart; j < numHours-posEnd; j++) {
-
-                    userVals[name].push(allVals[j]);
+            for (var j = posStart; j <= numHours-posEnd; j++) {
+                    userVals[name].push(allVals[name][j]);
 
             }
 
-        }
-
+        }       
+        // console.log(userVals);
     }
 
     else if (delim=='day'){
@@ -230,7 +234,7 @@ function getValRange(delim,start,end){
             for (var j = posStart; j < numHours-posEnd; j++) {
                 //24 hrs in a day so we want every 24th value
                 if(counter%24==0){
-                    userVals[name].push(allVals[j]);
+                    userVals[name].push(allVals[name][j]);
                 }
 
                 counter++;
@@ -251,7 +255,7 @@ function getValRange(delim,start,end){
             for (var j = posStart; j < numHours-posEnd; j++) {
                 //168 hours in a week so we want every 168 value
                 if(counter%168==0){
-                    userVals[name].push(allVals[j]);
+                    userVals[name].push(allVals[name][j]);
                 }
 
                 counter++;
@@ -276,17 +280,52 @@ function toKWH(){
     }
 
     console.log(allVals);
+    avgKWH();
 }
 
 function avgKWH() {
-    for (var i = 0; i < _.size(allVals); i++) {
-        var last = allVals[_.keys(allVals)[i]].length -1;
+    // var startMonth = startDate.getMonth()+1;
+    // var startDay = startDate.getDate();
+    // var endMonth = endDate.getMonth()+1;
+    // var endDay = endDate.getDate();
+    // var hoursBack = 0;
+
+    // // get hours between two picked dates
+    // var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+    // var hourDiff = Math.ceil(timeDiff / (1000 * 3600));
+    // console.log(hourDiff);
+    
+    // // get hours from last data entry
+    // var lastDate = new Date(2016, 04, 02);
+    // var dayDiff = Math.abs(lastDate.getTime() - startDate.getTime());
+    // hoursBack = Math.ceil(dayDiff / (1000 * 3600));
+
+    // console.log(userVals);
+
+
+    for (var i = 0; i < _.size(userVals); i++) {
+        var last = userVals[_.keys(userVals)[i]].length -1;
         var sum = 0;
         for (var j = 0; j < last; j++) {
-            sum += allVals[_.keys(allVals)[i]][j];
+            sum += userVals[_.keys(userVals)[i]][j];
         }
         avgKWh[_.keys(avgKWh)[i]][0] = sum/last;
         // console.log(i + ": " + avgKWh[_.keys(avgKWh)[i]][0]);
+    }
+
+    resetEachDorm();
+}
+
+function resetEachDorm() {
+    for (var i = 0; i < Object.keys(dormData["features"]).length; i++) {
+        // console.log(dormData["features"][i].properties.name);
+        var dormName = dormData["features"][i].properties.name;
+        
+
+            var j = _.indexOf(_.keys(avgKWh), dormData["features"][i].properties.name);
+            // console.log(avgKWh[_.keys(avgKWh)[j]]);
+            dormData["features"][i].properties.power = avgKWh[_.keys(avgKWh)[j]][0].toFixed(2);
+            dormData["features"][i].properties.cost = (dormData["features"][i].properties.power*.14).toFixed(2);
     }
 }
 
