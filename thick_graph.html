@@ -5,7 +5,14 @@
     <title>Thickness graph</title>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="./js/jquery-2.2.3.min.js"></script>
-    
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/gridstack.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+    <script src="./js/gridstack.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
     
     
     
@@ -13,15 +20,11 @@
     <meta charset="utf-8">
     
        <style>
-body {
-  font: 11px sans-serif;
-}
 
-
-.dot {
-  stroke: #000;
-}
-
+       .grid-stack {
+            background: #E0ffff;
+        }
+        
 .tooltip {
   position: absolute;
   width: auto;
@@ -38,22 +41,157 @@ font-family: fantasy;
 
 <body>
 
+<div class="grid-stack" data-gs-height="17" data-gs-min-height=30px>
+<br>
+    <!-- Add one of these divs for each dorm.  Going to have to experiment with data-gs-x,data-gs-y, data-gs-width, and data-gs-height values to make it look nice-->
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="0"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="1"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="2"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="3"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="4"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="5"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="6"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="7"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="8"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="9"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="10"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="11"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="12"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="13"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="14"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="15"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="16"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    
+    
 
+    
+    
+ 
+</div>
 
 
 <script>
  //<script src="./js/pullData.js">
  
- function setTwoNumberDecimal(number) {
-    value = parseFloat(number).toFixed(2);
-    return value;
-}
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  $(document).ready(function() {
     setTimeout(function() {
-var svgContainer = d3.select("body").append("svg")
-                                    .attr("width", 2000)
-                                    .attr("height", 3000);
+        
+           /*
+     //This is key.  In order to be movable svgs must go into this div, which is created by the gridstack js so we have
+    //to find it like this.  For linegrpah you will want to use select instead of select all. in outer loop and
+    //do var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle"); d3.select(x[n]);  
+    var svgContainer = d3.selectAll(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("svg")
+                         .attr("width", 2000)//Going to have to play with this val
+                         .attr("height", 3000);//Going to have to play with this val
+   
+   */
+ var options = {
+        cellHeight: 40,
+        verticalMargin: 11,
+        
+        
+        
+    };
+   
+   $('.grid-stack').gridstack(options);
+    var grid = $('.grid-stack').data('gridstack');
+   
+
  
  var usageVals=[164.112885, 152.26396194444445, 141.0288386111111, 151.1135375, 145.9363277777778, 131.43352083333335, 128.32178833333333, 164.89603555555556, 133.7592775, 151.7078286111111, 153.14999972222222, 153.3294075, 133.08455444444445, 120.21921944444445, 123.11179111111112, 117.03213972222223, 101.44354611111112, 98.49484194444445, 83.21319861111111, 94.87264361111112, 100.00984555555556, 93.06119527777778, 113.765515, 119.55979111111111, 182.36032805555556, 158.55491944444444, 135.53586694444445, 145.9345311111111, 132.45052611111112, 171.7912288888889, 158.70076277777778, 150.8530086111111, 154.3744127777778, 132.43423805555557, 98.55426666666666, 198.0678063888889, 165.05701222222223, 198.5773186111111, 204.70539527777777, 207.1973947222222, 199.6614625, 232.54199833333334, 208.49111638888888, 198.82453, 229.842405, 190.13676138888889, 200.5541625, 205.12647333333334, 285.82715833333333, 241.29657916666667, 205.1406863888889, 190.6224161111111, 112.12307416666667];
  //Draw the Rectangle
@@ -69,8 +207,8 @@ var svgContainer = d3.select("body").append("svg")
                allVals["meadows_East"],allVals["meadows_North"],allVals["Meadows_West"],allVals["Metcalf"],
                allVals["McIntire"],allVals["Stanton"],allVals["Young"]];
                */
- var height=30;
- var length=200;
+ var height=40;
+ var length=190;
  
  var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
@@ -79,21 +217,25 @@ var svgContainer = d3.select("body").append("svg")
  
  //for loop
 for (n=0; n<data2.length; n++){
+  
+ var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle");
+ //console.log(x[n]);
+ var svgContainer = d3.select(x[n]).append("svg")
+                                    .attr("width", 800)
+                                    .attr("height", 75)
+                                    .attr("class", "containers");
     
 transform=transform+height;
 var data = usageVals; //dormData[n]
 var max = d3.max(d3.values(data)); //find the max data point NOTE needs to be changed to be an array with all data
 var scale= height/max; //sets scale so that the max is the full bar
 var width=600/data.length; //width of each new rect is scaled to number of data points
-//console.log(width)
+var y = document.getElementsByClassName("containers");
 var d=100; //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
-var bar = d3.select("svg")
-//var bar = graph.selectAll("svg")
-   // .data(data2)
-  //.enter()
+var bar = d3.select(y[n])
   .append("g")
-   // .append("g")
-    .attr("transform", function() { return "translate("+d+", "+ transform +")"; }); 
+  
+    //.attr("transform", function() { return "translate("+d+", "+ transform +")"; }); 
     //Draw the initial box, will add draggable functionality later through on mouse drage event
     
 bar.append("rect")
@@ -119,7 +261,7 @@ bar.append("rect")
     .attr("y",0)
     .attr("width",603)
     .attr("height", height)
-    .attr("fill", "#E0FFFF")
+    .attr("fill", "#E0ffff")
     .attr("stroke", "black")
     
     //Loop that adds sections
@@ -154,9 +296,9 @@ bar.append("rect")
    // .attr("stroke", "black")
     //.on mouse over display tooltip with more detailed information
                                         }; //end loop
-  
-    console.log(usageVals);
-    console.log(transform);
+    console.log(y[n]);
+    grid.resizable('.grid-stack-item', false);
+    
 }; //end of for loop
 
   }, 10); //end of set timeout, which has weird syntax so that ten is part of this

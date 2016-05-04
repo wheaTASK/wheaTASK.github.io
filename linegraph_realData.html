@@ -7,10 +7,143 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="./js/underscore.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/gridstack.css"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+    <script src="./js/gridstack.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <style type="text/css">
+        
+        .tooltip {
+  position: absolute;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+font-size:15px;
+font-weight: bold;
+font-family: fantasy;
+  background-color: rgba(255,235,153, 0.8);
+  
+}
+
+    </style>
 </head>
 
 <body>
-   
+   <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="0"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="1"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="2"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="3"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="4"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="5"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="6"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="7"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="8"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="9"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="10"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="11"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="12"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="13"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="14"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="15"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="16"
+        data-gs-width="12" data-gs-height="1">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    
+    
+
+    
+    
+ 
+</div>
+
 <script>
 
 var valStructure= '{"beard" : [],"emerson-dorm" : [],"chapin" : [],"clark" : [],"mcintire" : [],"young" : [],"meadows-ew" : [], "meadows-north" : [],"metcalf" : [],"kilham" : [],"larcom" : [], "stanton": [], "cragin" : [],"everett" : []}';
@@ -287,10 +420,42 @@ String.prototype.capFirstLetter = function() {
 function makeGraph() {
 
     toKWH();
+    
+    var options = {
+        cellHeight: 40,
+        verticalMargin: 11,
+        resizable: {autoHide:true, handles:'se'}
+        
+        
+    };
    
-    var svgContainer = d3.select("body").append("svg")
-                         .attr("width", 2000)
-                         .attr("height", 3000);
+   $('.grid-stack').gridstack(options);
+    var grid = $('.grid-stack').data('gridstack');
+   
+   
+   
+   
+   /*
+     //This is key.  In order to be movable svgs must go into this div, which is created by the gridstack js so we have
+    //to find it like this.  For linegrpah you will want to use select instead of select all. in outer loop and
+    //do var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle"); d3.select(x[n]);  
+    var svgContainer = d3.selectAll(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("svg")
+                         .attr("width", 2000)//Going to have to play with this val
+                         .attr("height", 3000);//Going to have to play with this val
+   
+   
+   
+   */
+   
+   
+   
+   //var svgContainer = d3.select("body").append("svg")
+     //                    .attr("width", 2000)
+       //                  .attr("height", 3000);
+                         
+   // var svgContainer = d3.select(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("svg")
+                   //      .attr("width", 2000)
+                     //    .attr("height", 3000);
 
 
     var transform=50;
@@ -302,27 +467,37 @@ function makeGraph() {
 
     var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-ew", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett"];
 
-    var height=30;
+    var height=40;
     var length=200;
 
-    var tooltip = d3.select("body").append("div")
+    //var tooltip = d3.select(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("div")
+      var tooltip=d3.select("body").append("div")
                     .attr("class", "tooltip")
                     .style("opacity", 0);
 
 
     
     for (n=0; n<allDorms.length; n++){
+        
+         var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle");
+        //console.log(x[n]);
+        var svgContainer = d3.select(x[n]).append("svg")
+                                    .attr("width", 800)
+                                    .attr("height", 75)
+                                    .attr("class", "containers");
+    
 
-        transform=transform+height;
+        
         var data = allVals[allDorms[n]]; //dormData[n]
         var max = d3.max(d3.values(data)); //find the max data point NOTE needs to be changed to be an array with all data
         var scale= height/max; //sets scale so that the max is the full bar
         var width=600/data.length; //width of each new rect is scaled to number of data points
-        //console.log(width)
-        var d=100; //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
-        var bar = d3.select("svg")
+        
+        var y = document.getElementsByClassName("containers");
+        
+        var bar = d3.select(y[n])
                     .append("g")
-                    .attr("transform", function() { return "translate("+d+", "+ transform +")"; }); 
+                    
         
 
         bar.append("rect")
