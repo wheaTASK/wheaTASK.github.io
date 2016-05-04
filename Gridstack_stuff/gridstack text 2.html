@@ -33,6 +33,8 @@
 
 <body>
 <div class="grid-stack">
+
+    <!-- Add one of these divs for each dorm.  Going to have to experiment with data-gs-x,data-gs-y, data-gs-width, and data-gs-height values to make it look nice-->
     <div class="grid-stack-item"
         data-gs-x="0" data-gs-y="0"
         data-gs-width="4" data-gs-height="4">
@@ -64,12 +66,13 @@ $(function () {
     $('.grid-stack').gridstack(options);
     var grid = $('.grid-stack').data('gridstack');
 
+    //This is key.  In order to be movable svgs must go into this div, which is created by the gridstack js so we have to find it like this.  For linegrpah you will want to use select instead of select all. in outer loop and do var x= document.getElementsByClassName("grid-stack-item-content ui-draggable-handle"); d3.select(x[n]);  
+    var svgContainer = d3.selectAll(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("svg")
+                         .attr("width", 100)//Going to have to play with this val
+                         .attr("height", 100);//Going to have to play with this val
 
-     var svgContainer = d3.selectAll(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("svg")
-                         .attr("width", 100)
-                         .attr("height", 100);
 
-
+    //This is just for the example.  Won't be used in linegraph
     svgContainer.append("rect")
                              .attr("x", 0)
                              .attr("y", 0)
@@ -77,13 +80,10 @@ $(function () {
                             .attr("height", 50)
                             .attr("fill", "blue");
 
+    //Disable resizing
     grid.resizable('.grid-stack-item', false);
 
 
-    //grid.addWidget($('<div class="grid-stack-item-content"><svg width=\"100\" height=\"100\"><rect x=\"0\" y=\"0\" width=\"50\" height=\"50\" fill=\"blue\"></rect></svg></div>') , 0 , 0 , 4, 4 , false );
-    
-     //$("#bar").html("<svg width=\"100\" height=\"100\"><rect x=\"0\" y=\"0\" width=\"50\" height=\"50\" fill=\"blue\">");
-     //document.getElementById("bar").innerHTML="<svg width=\"100\" height=\"100\"><rect x=\"0\" y=\"0\" width=\"50\" height=\"50\" fill=\"blue\">";
 
 });
 </script>
