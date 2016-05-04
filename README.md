@@ -1,14 +1,21 @@
 # wheaTASK.github.io
 Wheaton College Energy Savers website for senior sem group project
 
-# TODO
-* Uniform pages
-* Line graph algorithm to create line widths working with sort button and reset to default button (alphabetical or upper/lower or...)
-* Use data in graphs/rankings
-* Color Scheme
-* Pull data from server
-    * For now save to xml and use from there, but will need to pull from file on cs server when made
-* Drag/Drop divs in line graph (jquery ui sortable?)
-* Condense tips page
-  * Have divs with titles and picture that on click close opened ones and expand (slide down?) to show tips on topic
-* Exact building outlines on heat map
+## To-Do
+
+
+ * Linegraph
+ 	* Normalize data with bed count
+ 	* Scale all widths to largest value
+ 	* Add date picker
+ 	* Add delimeter (hour,day,week) picker
+ 	* Implement gridstack
+ * Heat map
+ 	* Hook up date picker
+ 	* Add delimeter (hour,day,week) picker
+ 	   * Change color scale when delimeter changed
+ 	* Set delay so that mouseover isn't required to get right color values
+ * Rankings
+    * Eliminate floor competetion aspect
+    * Fix formatting
+    * Figure out some way to calculate and track a 5% community decrease
