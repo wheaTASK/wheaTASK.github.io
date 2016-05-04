@@ -26,9 +26,7 @@
         }
 
         .grid-stack-item-content {
-            color: #ffffff;
-            text-align: center;
-            background-color: #000000;
+            background-color: #f00;
         }
     </style>
 </head>
@@ -37,7 +35,7 @@
 <div class="grid-stack">
     <div class="grid-stack-item"
         data-gs-x="0" data-gs-y="0"
-        data-gs-width="4" data-gs-height="2">
+        data-gs-width="4" data-gs-height="4">
             <div class="grid-stack-item-content"></div>
     </div>
     <div class="grid-stack-item"
@@ -45,9 +43,10 @@
         data-gs-width="4" data-gs-height="4">
             <div class="grid-stack-item-content"></div>
     </div>
-    
-    <div id="bar" class="grid-stack-item"></div>
 
+    
+    
+ 
 </div>
 </div>
 
@@ -63,15 +62,29 @@ $(function () {
 
     
     $('.grid-stack').gridstack(options);
-    
-    var rectangle = d3.select("#bar").append("rect")
-                             .attr("x", 100)
-                             .attr("y", 10)
+    var grid = $('.grid-stack').data('gridstack');
+
+
+     var svgContainer = d3.selectAll(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("svg")
+                         .attr("width", 100)
+                         .attr("height", 100);
+
+
+    svgContainer.append("rect")
+                             .attr("x", 0)
+                             .attr("y", 0)
                             .attr("width", 50)
-                            .attr("height", 100)
-                            .attr("background-color", "#000000")
-                            .attr("class", "grid-stack-item-content") ;
-                            
+                            .attr("height", 50)
+                            .attr("fill", "blue");
+
+    grid.resizable('.grid-stack-item', false);
+
+
+    //grid.addWidget($('<div class="grid-stack-item-content"><svg width=\"100\" height=\"100\"><rect x=\"0\" y=\"0\" width=\"50\" height=\"50\" fill=\"blue\"></rect></svg></div>') , 0 , 0 , 4, 4 , false );
+    
+     //$("#bar").html("<svg width=\"100\" height=\"100\"><rect x=\"0\" y=\"0\" width=\"50\" height=\"50\" fill=\"blue\">");
+     //document.getElementById("bar").innerHTML="<svg width=\"100\" height=\"100\"><rect x=\"0\" y=\"0\" width=\"50\" height=\"50\" fill=\"blue\">";
+
 });
 </script>
 
