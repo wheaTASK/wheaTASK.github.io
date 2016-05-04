@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Float grid demo</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="gridstack.css"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
+    <script src="gridstack.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <style type="text/css">
+        .grid-stack {
+            background: lightgoldenrodyellow;
+        }
+
+        .grid-stack-item-content {
+            color: #ffffff;
+            text-align: center;
+            background-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+<div class="grid-stack">
+    <div class="grid-stack-item"
+        data-gs-x="0" data-gs-y="0"
+        data-gs-width="4" data-gs-height="2">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    <div class="grid-stack-item"
+        data-gs-x="4" data-gs-y="0"
+        data-gs-width="4" data-gs-height="4">
+            <div class="grid-stack-item-content"></div>
+    </div>
+    
+    <div id="bar" class="grid-stack-item"></div>
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+$(function () {
+    var options = {
+        cellHeight: 40,
+        verticalMargin: 10
+    };
+    
+    
+
+    
+    $('.grid-stack').gridstack(options);
+    
+    var rectangle = d3.select("#bar").append("rect")
+                             .attr("x", 100)
+                             .attr("y", 10)
+                            .attr("width", 50)
+                            .attr("height", 100)
+                            .attr("background-color", "#000000")
+                            .attr("class", "grid-stack-item-content") ;
+                            
+});
+</script>
+
+
+</body>
+</html>
