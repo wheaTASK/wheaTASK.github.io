@@ -1,6 +1,7 @@
 // contains js for index page
 
-var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-east", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-west", "gebbie", "keefe"];
+var allDorms=["beard","chapin", "clark", "cragin","emerson-dorm","everett","gebbie","keefe","kilham","larcom","meadows-east"
+            ,"meadows-north","meadows-west","metcalf","mcintire","stanton","young"];
 
 function normalize_bed() {
     var occupancy = [110, 45, 96, 68, 28, 191, 50, 50, 58, 63, 92, 94, 92, 94, 65, 88, 94];
