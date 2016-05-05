@@ -1,5 +1,7 @@
 var map;
 var geojson;
+var legend;
+var labelDelim = "hour";
 // var redrawMap;
 
 $(document).ready(function() {
@@ -37,6 +39,10 @@ function redrawMap() {
 	geojson.addData(dormData);
 }
 
+function resetScales() {
+	legend.onAdd(map);
+}
+
 function continueLeaflet() {
 	
 	// control that shows state info on hover
@@ -49,9 +55,16 @@ function continueLeaflet() {
 	};
 
 	info.update = function (props) {
+		var perWhat;
+		if (labelDelim == "hour")
+			perWhat = " per hour";
+		else if (labelDelim == "day")
+			perWhat = " per day";
+		else if (labelDelim == "week")
+			perWhat = " per week";
 		props ? checkDorm(props) : 'Hover over a dorm';
 		this._div.innerHTML = '<h6>Wheaton Residential Power Use</h6>' +  (props ?
-		'<b>' + props.value + '</b><br />' + props.power + ' kW/h' + '<br />$' + props.cost + ' per hour'
+		'<b>' + props.value + '</b><br />' + props.power + ' kW/h' + '<br />$' + props.cost + perWhat
 		: 'Hover over a dorm');
 	};
 
@@ -59,32 +72,78 @@ function continueLeaflet() {
 
 	function checkDorm(props) {
 		var i = _.indexOf(_.keys(avgKWh), props.name);
-		console.log(props.name + " " + i);
+		// console.log(props.name + " " + i);
 		// props.power = avgKWh[_.keys(avgKWh)[i]][0].toFixed(2);
 		// props.cost = (props.power*.14).toFixed(2);
 	}
 
 
 	function getColor(d, forWhat) {
-		if (forWhat == "label") {
-			return d > 1000 ? '#FF0000' :
-				   d > 500  ? '#FF4322' :
-				   d > 200  ? '#FFD744' :
-				   d > 100  ? '#FFAC66' :
-				   d > 50   ? '#FFD089' :
-				   d > 20   ? '#FFEBAB' :
-				   d > 10   ? '#FFFACD' :
-							  '#FDFFF0';
+		if (labelDelim == "hour") {
+			if (forWhat == "label") {
+				return d > 1000 ? '#FF0000' :
+					   d > 500  ? '#FF4322' :
+					   d > 200  ? '#FFD744' :
+					   d > 100  ? '#FFAC66' :
+					   d > 50   ? '#FFD089' :
+					   d > 20   ? '#FFEBAB' :
+					   d > 10   ? '#FFFACD' :
+								  '#FDFFF0';
+			}
+			else {
+				return d > 10 ? '#FF0000' :
+					   d > 5  ? '#FF4322' :
+					   d > 2  ? '#FFD744' :
+					   d > 1  ? '#FFAC66' :
+					   d > .5   ? '#FFD089' :
+					   d > .2   ? '#FFEBAB' :
+					   d > .1   ? '#FFFACD' :
+								  '#FDFFF0';
+			}
+		}
+		else if (labelDelim == "day") {
+			if (forWhat == "label") {
+				return d > 1000 ? '#FF0000' :
+					   d > 500  ? '#FF4322' :
+					   d > 200  ? '#FFD744' :
+					   d > 100  ? '#FFAC66' :
+					   d > 50   ? '#FFD089' :
+					   d > 20   ? '#FFEBAB' :
+					   d > 10   ? '#FFFACD' :
+								  '#FDFFF0';
+			}
+			else {
+				return d > 500 ? '#FF0000' :
+					   d > 300  ? '#FF4322' :
+					   d > 200  ? '#FFD744' :
+					   d > 100  ? '#FFAC66' :
+					   d > 50   ? '#FFD089' :
+					   d > 20   ? '#FFEBAB' :
+					   d > 10   ? '#FFFACD' :
+								  '#FDFFF0';
+			}
 		}
 		else {
-			return d > 10 ? '#FF0000' :
-				   d > 5  ? '#FF4322' :
-				   d > 2  ? '#FFD744' :
-				   d > 1  ? '#FFAC66' :
-				   d > .5   ? '#FFD089' :
-				   d > .2   ? '#FFEBAB' :
-				   d > .1   ? '#FFFACD' :
-							  '#FDFFF0';
+			if (forWhat == "label") {
+				return d > 1000 ? '#FF0000' :
+					   d > 500  ? '#FF4322' :
+					   d > 200  ? '#FFD744' :
+					   d > 100  ? '#FFAC66' :
+					   d > 50   ? '#FFD089' :
+					   d > 20   ? '#FFEBAB' :
+					   d > 10   ? '#FFFACD' :
+								  '#FDFFF0';
+			}
+			else {
+				return d > 10 ? '#FF0000' :
+					   d > 5  ? '#FF4322' :
+					   d > 2  ? '#FFD744' :
+					   d > 1  ? '#FFAC66' :
+					   d > .5   ? '#FFD089' :
+					   d > .2   ? '#FFEBAB' :
+					   d > .1   ? '#FFFACD' :
+								  '#FDFFF0';
+			}
 		}
 	}
 
@@ -140,12 +199,30 @@ function continueLeaflet() {
 	  onEachFeature: onEachFeature
 	}).addTo(map);
 
-	var legend = L.control({position: 'bottomright'});
+	legend = L.control({position: 'bottomright'});
 
 	legend.onAdd = function (map) {
+		var valsHour = [0, .1, .2, .5, 1, 2, 5, 10];
+		var valsDay = [10, 20, 50, 100, 200, 300, 500];
+		var valsWeek = [];
+		var valsToUse = [];
+
+		console.log(labelDelim);
+
+		switch (labelDelim) {
+			case "hour": valsToUse = valsHour;
+					break;
+			case "day": valsToUse = valsDay;
+					break;
+			case "week": valsToUse = valsWeek;
+					break;
+			default: valsToUse = valsHour;
+					break;
+		}
+		console.log(valsToUse);
 
 	  var div = L.DomUtil.create('div', 'info legend'),
-		vals = [0, .1, .2, .5, 1, 2, 5, 10],
+		vals = valsToUse,
 		grades = [0, 10, 20, 50, 100, 200, 500, 1000],
 		labels = [],
 		from, to;
@@ -153,14 +230,15 @@ function continueLeaflet() {
 	  for (var i = 0; i < grades.length; i++) {
 		from = grades[i];
 		to = grades[i + 1];
-		var labelFrom = grades[i];
-		var labelTo = grades[i + 1];
+		var labelFrom = vals[i];
+		var labelTo = vals[i + 1];
 
 		labels.push(
 		  '<i style="background:' + getColor(from + 1, "label") + '"></i> ' +
 		  labelFrom + (labelTo ? '&ndash;' + labelTo : '+'));
 	  }
 
+	  div.innerHTML = "";
 	  div.innerHTML = labels.join('<br>');
 	  return div;
 	};

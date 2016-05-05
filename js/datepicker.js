@@ -17,9 +17,6 @@ $(document).ready(function(){
   	var today = new Date();
 
   	// get the end date (today) and start date (default to 1 month before)
-  	// endYear = today.getFullYear();
-	// endMonth = today.getMonth()+1;
-	// endDay = today.getDate();
 	endYear = 2016;
 	endMonth = 5;
 	endDay = 3;
@@ -126,13 +123,9 @@ function changeStartDate(startDate) {
 		var tempStartDay = startDate.getDate();
 		startDay = '0' + (tempStartDay + 1);
 	}
-
-	// console.log(startYear + '-' + startMonth + '-' + startDay);
-	// checkFormat(startMonth);
 }
 
 function changeEndDate(endDate) {
-	// console.log("changeEndDate");
 	endYear = endDate.getFullYear();
 	endMonth = checkFormat(endDate.getMonth()+1);
 	endDay = checkFormat(endDate.getDate());
@@ -149,7 +142,6 @@ function changeEndDate(endDate) {
 		var tempEndDay = endDate.getDate();
 		endDay = (tempEndDay + 1);
 	}
-	// checkFormat(startMonth);
 }
 
 function checkDate(newDate) {
@@ -165,22 +157,17 @@ function checkDate(newDate) {
 		newDay += 1;
 
 	// for some reason first of month gets month number of previous month
-	// console.log(newDay);
 	if (newDay == 1) {
-		// console.log("chose first");
 		newMonth += 1;
 	}
 
 	if (newYear !== 2016) {
-		// console.log("invalid year");
 		return false;
 	}
 	if (newMonth < 3 || newMonth > 5) {
-		// console.log("invalid month");
 		return false;
 	}
 	if (newMonth == 3 && newDay < farthestBackDay) {
-		// console.log("invalid day");
 		return false;
 	}
 	if (newMonth == 5 && newDay > 3)
@@ -193,13 +180,26 @@ function fixEndDate() {
 	endMonth = startMonth;
 }
 
-// function redrawMap() {
-// 	console.log(map);
-// 	console.log("L");
-// 	console.log(L);
-// 	if (map._map) {
-// 		map._reset({hard: true});
-// 		map._update();
-// 	}
-// 	return map;
-// }
+function byHours() {
+	getValRange("hour", startDateObj, endDateObj);
+	labelDelim = "hour";
+	avgKWH();
+	redrawMap();
+	resetScales();
+}
+
+function byDays() {
+	getValRange("day", startDateObj, endDateObj);
+	labelDelim = "day";
+	avgKWH();
+	redrawMap();
+	resetScales();
+}
+
+function byWeeks() {
+	getValRange("week", startDateObj, endDateObj);
+	labelDelim = "week";
+	avgKWH();
+	redrawMap();
+	resetScales();
+}

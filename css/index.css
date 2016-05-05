@@ -8,8 +8,9 @@ br {
 
 .container{
 	background-color: #34495E;
-	text-align: center;
-	margin: 1em 3em;
+	width: 100%;
+	margin-bottom: 1em;
+	margin-left: -1.9em;
 	border-radius: .4em;
 	display: flex;
 	padding-bottom: 1em;
@@ -99,10 +100,10 @@ br {
 }
 
 .resetButton {
-	margin-top: 100%;
-	width: 90%;
-	height: 100px;
-	line-height: 100px;
+	margin-left: 1.5em;
+	width: 70%;
+	height: 70px;
+	line-height: 70px;
 	border-radius: 25px;
 	background-color: #0068af;
 	color: #fff;
@@ -113,6 +114,7 @@ br {
 
 #datePickerAlign {
 	text-align: left;
+	margin-left: 1.6em;
 }
 
 #description {

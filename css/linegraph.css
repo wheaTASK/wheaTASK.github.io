@@ -23,9 +23,19 @@
 	background-color: #d3d3d3;
 }
 
+#bannerID {
+	text-align: center;
+}
+
+
 #graph {
 	position: absolute;
 	margin-left: 200px;
+}
+
+#marginGraph {
+	margin-top: 20px;
+	margin-left: -2em;
 }
 
 #submenu {

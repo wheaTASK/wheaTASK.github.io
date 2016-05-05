@@ -1,6 +1,7 @@
 // contains js for index page
 $(document).ready(function() {
-	setTimeout(makeGraph, 5000);
+  // setTimeout(getValRange("hour", startDateObj, endDateObj), 3000);
+	setTimeout(makeGraph, 3000);
 });
 
 String.prototype.capFirstLetter = function() {
@@ -19,7 +20,7 @@ function makeGraph() {
    $('.grid-stack').gridstack(options);
     var grid = $('.grid-stack').data('gridstack');
    
-    var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-east", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-west"];
+    var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-east", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-west", "gebbie", "keefe"];
  
   
  //Draw the Rectangle
@@ -44,7 +45,8 @@ function makeGraph() {
  
  //for loop
 for (n=0; n<allDorms.length; n++){
-    var data = allVals[allDorms[n]]; //dormData[n]
+    var data = userVals[allDorms[n]]; //dormData[n]
+console.log(data);
   
  var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle");
  // console.log(x);
@@ -58,7 +60,7 @@ transform=transform+height;
 // var data = usageVals; //dormData[n]
 var max = d3.max(d3.values(data)); //find the max data point NOTE needs to be changed to be an array with all data
 var scale= height/max; //sets scale so that the max is the full bar
-var width=600/data.length; //width of each new rect is scaled to number of data points
+var width=500/data.length; //width of each new rect is scaled to number of data points
 var y = document.getElementsByClassName("containers");
 var d=100; //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
 var bar = d3.select(y[n])
@@ -88,7 +90,7 @@ bar.append("text")
 bar.append("rect")
     .attr("x",length)
     .attr("y",0)
-    .attr("width",603)
+    .attr("width",503)
     .attr("height", height)
     .attr("fill", "#E0ffff")
     .attr("stroke", "black")
@@ -125,8 +127,7 @@ bar.append("rect")
    // .attr("stroke", "black")
     //.on mouse over display tooltip with more detailed information
                                         }; //end loop
-    console.log(y[n]);
+    // console.log(y[n]);
     grid.resizable('.grid-stack-item', false);
-    
-}; //end of for loop
+  }; //end of for loop  
 };

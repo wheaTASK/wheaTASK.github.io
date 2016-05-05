@@ -8,7 +8,7 @@ var nMeadowsDorms=["meadows-north-2nd-floor", "meadows-north-3rd-floor", "meadow
 var allVals=JSON.parse(valStructure);
 var userVals=JSON.parse(valStructure);
 
-var numHours=1509;
+var numHours=1468;
 
 var avgKWh=JSON.parse(valStructure);
 
@@ -28,7 +28,6 @@ $( document ).ready(function() {
         }
 
         // setTimeout(echoData,1000);
-        setTimeout(toKWH,2000);
         var startDate = new Date(2016, 03, 03);
         var endDate = new Date(2016, 04, 03);
         setTimeout(function() {
@@ -220,6 +219,7 @@ function getValRange(delim,start,end){
             }
 
         }
+        toKWH();
     }
 
     else if (delim=='day'){
@@ -233,6 +233,7 @@ function getValRange(delim,start,end){
                 //24 hrs in a day so we want every 24th value
                 if(counter%24==0){
                     userVals[name].push(allVals[name][j]);
+                    // console.log(allVals[name][j]);
                 }
 
                 counter++;
@@ -240,7 +241,7 @@ function getValRange(delim,start,end){
             }
 
         }
-
+        toKWH();
     }
 
     else if (delim=='week'){
@@ -261,35 +262,33 @@ function getValRange(delim,start,end){
             }
 
         }
-
+        toKWH();
     }
 
 }
 
 function toKWH(){
-    for (var i = 0; i <_.size(allVals); i++) {
-        var last=allVals[_.keys(allVals)[i]].length -1;
+    for (var i = 0; i <_.size(userVals); i++) {
+        var last=userVals[_.keys(userVals)[i]].length -1;
         for (var j = 0; j < last; j++) {
-            allVals[_.keys(allVals)[i]][j]=((allVals[_.keys(allVals)[i]][j]-allVals[_.keys(allVals)[i]][j+1])/3600000)
+            userVals[_.keys(userVals)[i]][j]=((userVals[_.keys(userVals)[i]][j]-userVals[_.keys(userVals)[i]][j+1])/3600000)
             
         }
         //Remove last value as it is not a kwh usage val
-        allVals[_.keys(allVals)[i]].splice(last,1);
+        userVals[_.keys(userVals)[i]].splice(last,1);
     }
-
-    // console.log(allVals);
-    // avgKWH();
 }
 
 function avgKWH() {
     
     for (var i = 0; i < _.size(userVals); i++) {
         var last = userVals[_.keys(userVals)[i]].length -1;
+        // console.log("last: " + last);
         var sum = 0;
         for (var j = 0; j < last; j++) {
             sum += userVals[_.keys(userVals)[i]][j];
         }
-        avgKWh[_.keys(avgKWh)[i]][0] = sum/last;
+        avgKWh[_.keys(avgKWh)[i]][0] = sum/(last+1);
     }
 
     resetEachDorm();

@@ -35,7 +35,10 @@
 			}
 
 			#contestDescrip{
-			padding-top: 50px;
+			/*padding-top: 50px;*/
+			margin-left: -200px;
+			/*margin-top: -50px;*/
+			text-align: center;
 		    }
 
 		    #buildingRanks{
@@ -45,8 +48,79 @@
 
 		    #communityTracker{
 			display:inline;
-			margin-top: 20px;
+			margin-left: 400px;
+			margin-top: 50px;
 		    }
+
+		    .Incentives
+		    {
+		    	background-color: #34495E;
+		    	color: #D1C73F;
+		    	border-radius: 10px;
+		    	width: 850px;
+		    	height: 500px;
+		    	font-size: 16px;
+		    	margin-left: 10px;
+		    	text-align: left;
+		    	 padding: 10px;
+  margin: 0px;
+		    }
+
+		    .list{
+		    	margin: auto;
+
+		    }
+
+
+#svg circle {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+  stroke: #666;
+  stroke-width: 1em;
+}
+#svg #bar {
+  stroke: #FF9F1E;
+}
+#cont {
+  display: block;
+  height: 200px;
+  width: 200px;
+  margin: 2em auto;
+  box-shadow: 0 0 1em black;
+  border-radius: 100%;
+  position: relative;
+}
+#cont:after {
+  position: absolute;
+  display: block;
+  height: 160px;
+  width: 160px;
+  left: 50%;
+  top: 50%;
+  box-shadow: inset 0 0 1em black;
+  content: attr(data-pct)"%";
+  margin-top: -80px;
+  margin-left: -80px;
+  border-radius: 100%;
+  line-height: 160px;
+  font-size: 2em;
+  text-shadow: 0 0 0.5em black;
+}
+
+input {
+  color: #000;
+}
+
+
+/* Make things perty */
+html {  height: 100%;}
+body { font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; color: #fff; height: 100%; padding-top: 2em; text-align: center;}
+h1, h2{ margin: 0; text-transform: uppercase;text-shadow: 0 0 0.5em black;}
+h2 { font-weight: 300}
+input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; box-shadow: none; outline: none !important; margin: 1em  auto; text-align: center;}
+
+
+
 
 		</style>
 
@@ -73,111 +147,76 @@
 				</div>
 			</div>
 		</div>
-			
-		<!-- content -->	
-		<div class="row" >
-			<div class="small-3 small-offset-2 columns" id="buildingRanks">
-			<!-- <div class="small-6 columns"> -->
-				<br>
-				<!-- <img src="./images/gold.jpg"> -->
-				<div class="dormName" id="Gold">Everett</div>
-				<div class="dormName" id="Silver">Stanton</div>
-				<div class="dormName" id="Bronze">Cragin</div>
-				<div class="dormName">Other Dorms</div>
-				<div class="dormName">Other Dorms</div>
-				<div class="dormName">Other Dorms</div>
-				<div class="dormName">Other Dorms</div>
-				<div class="dormName">Other Dorms</div>
-				<div class="dormName">Other Dorms</div>
-				<div class="dormName">Other Dorms</div>
-				<div class="dormName">Other Dorms</div>
-			</div>
+	
 
+		<div class="image">
 
-			<div class="small-3 small-offset-2 columns" id="communityTracker"></div>
-
-			<div class="small-9" id="contestDescrip">
-				<ul>
-					<li>The primary purpose of the incentives program is to get students across campus to collectively take part in the initiative to reduce energy consumption in campus residence halls.</li>
-					<li>The incentives program will be dual tiered offering a community reward and a residence hall reward.</li>
-					<li>If we as a community can drop energy consumption on campus by 5%, the savings will be transferred to the Programming Council for use during Spring Weekend.</li>
-					<li>The residents of the three buildings that reduce their consumption the most will be rewarded with $10 in Lyons Bucks.</li>
-				</ul>
-			</div>
+		<br>
+		<center><img src="http://ayaassociates.com/wp-content/uploads/2013/08/page_is_under_construction.jpg" alt="Mountain View" width="680" height="500"></center>
 		</div>
-		<br>
-		<br>
-		<!-- <div class="row">
-			<div class="small-9 small-centered columns">
-				<ul>
-					<li>The primary purpose of the incentives program is to get students across campus to collectively take part in the initiative to reduce energy consumption in campus residence halls.</li>
-					<li>The incentives program will be dual tiered offering a community reward and a residence hall reward.</li>
+
+	
+			<center>
+			<div class="Incentives">
+			<br>
+			<center><h3>Incentives Program</h3></center>
+				<ul style="list-style-type:none" class="List">
+
+				<li>The primary purpose of the incentives program is to get students across campus to collectively take part in the initiative to reduce energy consumption in campus residence halls. </li>
+				<li>The incentives program will be dual tiered offering a community reward and a residence hall reward. </li>
+				
+		
 					<li>If we as a community can drop energy consumption on campus by 5%, the savings will be transferred to the Programming Council for use during Spring Weekend.</li>
 					<li>The residents of the three buildings that reduce their consumption the most will be rewarded with $10 in Lyons Bucks.</li>
+					<center>
+					<img src="http://media02.hongkiat.com/progress-bar-designs/49-Round-Progress-Meter.jpg" width="300" height="200" alt="">
+<img src="http://bem-wordpress-content.s3.amazonaws.com/puls.politiko.dk/wp-content/uploads/2014/10/progress-image-picture-clipart-4.jpg" width="220" height="250" alt=""></center>
 				</ul>
+
+
 			</div>
-		</div> -->
+
+	</center>
+	<br>
+
+<center>
+			<div class="Images">
 		
-		<!-- <div class="row">
-			<div class="small-2 columns small-offset-5 columns">
-				<div class="resetButton" id="switch" onclick="next()">Community Tracker</div>
+			<div class="img_container">
+
+<!-- <img src="http://media02.hongkiat.com/progress-bar-designs/49-Round-Progress-Meter.jpg" width="250" height="250" alt=""> -->
+
+</div>
+
 			</div>
-		</div> -->
 
-		<!-- loads jquery and foundation -->
-		<script src="js/vendor/jquery.min.js"></script>
-		<script src="js/foundation.min.js"></script>
-		<script>
-			$(document).foundation();
-		</script>
-		<script>
+	</center>
+	
 
-		$(document).ready(function() {
-			makeProgressBar();
-		});
 
-			function makeProgressBar(){
+<script type="text/javascript">
+	$('#percent').on('change', function(){
+  var val = parseInt($(this).val());
+  var $circle = $('#svg #bar');
+  
+  if (isNaN(val)) {
+   val = 100; 
+  }
+  else{
+    var r = $circle.attr('r');
+    var c = Math.PI*(r*2);
+   
+    if (val < 0) { val = 0;}
+    if (val > 100) { val = 100;}
+    
+    var pct = ((100-val)/100)*c;
+    
+    $circle.css({ strokeDashoffset: pct});
+    
+    $('#cont').attr('data-pct',val);
+  }
+});
 
-		
-				var circle = new ProgressBar.Circle('#communityTracker', {
-					color: '#FCB03C',
-					strokeWidth: 3,
-					trailWidth: 1,
-					duration: 1500,
-					text: {
-						value: '0'
-					},
-					step: function(state, bar) {
-						bar.setText((bar.value() * 100).toFixed(0));
-					}
-				});
-
-				circle.animate(.7, function() {
-					circle.animate(.7);
-				})
-
-			}
-
-			var swap=0;
-
-			function next() {
-            	
-            	if(swap%2==0){
-					document.getElementById("communityTracker").style.display = "inline";
-					document.getElementById("buildingRanks").style.display = "none";
-					makeProgressBar()
-					document.getElementById("switch").innerHTML = "Building Rankings";
-				}
-				else{
-					document.getElementById("buildingRanks").style.display = "inline";
-					document.getElementById("communityTracker").innerHTML='';
-					document.getElementById("communityTracker").style.display = "none";
-					document.getElementById("switch").innerHTML = "Community Tracker";
-				}
-
-        		swap+=1;
-        	}
-
-		</script>
+</script>
 	</body>
 </html>

@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 		<link rel="stylesheet" href="./node_modules/foundation-datepicker/css/foundation-datepicker.css" />
 		<script src="./js/underscore.min.js"></script>
-		<script src="./js/leaflet-src.js"></script>
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="./js/wrapper.js"></script>
 		<script src="./js/index.js"></script>
@@ -30,10 +30,10 @@
 			    border: none;
 			    cursor: pointer;
 			    border-radius: 10px;
-
 			}
 
 			.dropdown {
+				margin-left: 7em;
 			    position: relative;
 			    display: inline-block;
 			}
@@ -127,14 +127,14 @@
 							<div class="dropdown" style="margin-top:200px;">
 							  <button class="dropbtn">Time Intervals</button>
 							  <div class="dropdown-content">
-							    <a href="#">Hours</a>
-							    <a href="#">Days</a>
-							    <a href="#">Weeks</a>
+							    <a href="#" onclick="byHours()">Hours</a>
+							    <a href="#" onclick="byDays()">Days</a>
+							    <a href="#" onclick="byWeeks()">Weeks</a>
 							  </div>
 							</div>
                            
 
-							<div class="resetButton" style="margin-top:150px; margin-left:10px;" onclick="resetMap()">RESET</div>
+							<div class="resetButton" style="margin-top:150px;" onclick="resetMap()">RESET</div>
 
 
                         </div>
