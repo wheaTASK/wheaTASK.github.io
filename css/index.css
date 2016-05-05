@@ -15,6 +15,15 @@ br {
 	padding-bottom: 1em;
 }
 
+.container2{
+	background-color: #34495E;
+	text-align: center;
+	margin: 1em 3em;
+	border-radius: .4em;
+	display: flex;
+	padding-bottom: 1em;
+}
+
 .descTitle {
 	text-align: center;
 }

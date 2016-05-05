@@ -1,4 +1,6 @@
-// var map;
+var map;
+var geojson;
+// var redrawMap;
 
 $(document).ready(function() {
 	//Editing power values
@@ -25,9 +27,15 @@ $(document).ready(function() {
 	// 	}
 	// }
 
-	setTimeout(continueLeaflet, setTimeout(resetEachDorm, 2000));
+	setTimeout(resetEachDorm, 2000);
+	setTimeout(continueLeaflet, 3000);
 
 });
+
+function redrawMap() {
+	geojson.clearLayers();
+	geojson.addData(dormData);
+}
 
 function continueLeaflet() {
 	
@@ -108,7 +116,7 @@ function continueLeaflet() {
 	  info.update(layer.feature.properties);
 	}
 
-	var geojson;
+	// var geojson;
 
 	function resetHighlight(e) {
 	  geojson.resetStyle(e.target);
@@ -145,8 +153,8 @@ function continueLeaflet() {
 	  for (var i = 0; i < grades.length; i++) {
 		from = grades[i];
 		to = grades[i + 1];
-		var labelFrom = vals[i];
-		var labelTo = vals[i + 1];
+		var labelFrom = grades[i];
+		var labelTo = grades[i + 1];
 
 		labels.push(
 		  '<i style="background:' + getColor(from + 1, "label") + '"></i> ' +

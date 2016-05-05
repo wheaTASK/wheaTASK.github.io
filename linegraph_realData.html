@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 
 <html>
-    <meta charset="utf-8"> 
 <head>
-    <title>Test</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="./js/underscore.min.js"></script>
+    <title>Thickness graph</title>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="./js/jquery-2.2.3.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/gridstack.css"/>
-
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"></script>
     <script src="./js/gridstack.js"></script>
+    <script src="./js/dorms.js"></script>
+    <script src="./js/pullData.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <style type="text/css">
+    
+    
+    
+    
+    <meta charset="utf-8">
+    
+       <style>
+
+       .grid-stack {
+            background: #E0ffff;
+        }
         
-        .tooltip {
+.tooltip {
   position: absolute;
   width: auto;
   height: auto;
@@ -29,12 +38,15 @@ font-family: fantasy;
   background-color: rgba(255,235,153, 0.8);
   
 }
-
-    </style>
+       </style>
 </head>
 
 <body>
-   <div class="grid-stack-item"
+
+<div class="grid-stack" data-gs-height="17" data-gs-min-height=30px>
+<br>
+    <!-- Add one of these divs for each dorm.  Going to have to experiment with data-gs-x,data-gs-y, data-gs-width, and data-gs-height values to make it look nice-->
+    <div class="grid-stack-item"
         data-gs-x="0" data-gs-y="0"
         data-gs-width="12" data-gs-height="1">
             <div class="grid-stack-item-content"></div>
@@ -144,37 +156,25 @@ font-family: fantasy;
  
 </div>
 
+
 <script>
+ //<script src="./js/pullData.js">
+ 
 
-$( document ).ready(function() {
-        setTimeout(makeGraph,4000);
-
-});
-
-
-String.prototype.capFirstLetter = function() {
+ 
+ 
+ String.prototype.capFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
-
-function makeGraph() {
-
-    toKWH();
-    
-    var options = {
-        cellHeight: 40,
-        verticalMargin: 11,
-        resizable: {autoHide:true, handles:'se'}
-        
-        
-    };
-   
-   $('.grid-stack').gridstack(options);
-    var grid = $('.grid-stack').data('gridstack');
-   
-   
-   
-   
-   /*
+ 
+ 
+ 
+ 
+ 
+ 
+ $(document).ready(function() {
+           
+           /*
      //This is key.  In order to be movable svgs must go into this div, which is created by the gridstack js so we have
     //to find it like this.  For linegrpah you will want to use select instead of select all. in outer loop and
     //do var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle"); d3.select(x[n]);  
@@ -182,129 +182,140 @@ function makeGraph() {
                          .attr("width", 2000)//Going to have to play with this val
                          .attr("height", 3000);//Going to have to play with this val
    
-   
-   
    */
-   
-   
-   
-   //var svgContainer = d3.select("body").append("svg")
-     //                    .attr("width", 2000)
-       //                  .attr("height", 3000);
-                         
-   // var svgContainer = d3.select(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("svg")
-                   //      .attr("width", 2000)
-                     //    .attr("height", 3000);
 
+ //end of set timeout, which has weird syntax so that ten is part of this
+    setTimeout(makeGraph, 2000);
+ }); //end of main function
 
-    var transform=50;
-
-
-    var colors=["#ff5500", "#B27FB2", "#C8A780", "#FFC0CB", "#106271", "#ff66cc", "#99cc00", "#fff68f", "#7ecdd2", "#ffa500",
-    "#800000", "#008000", "#ff7f50", "#ff4444", "#a0db8e", "#cc6633", "#999966", "#9999ff"];
-
-
-    var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-west", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-east"];
-
-    var height=40;
-    var length=200;
-
-    //var tooltip = d3.select(document.getElementsByClassName("grid-stack-item-content ui-draggable-handle")).append("div")
-      var tooltip=d3.select("body").append("div")
-                    .attr("class", "tooltip")
-                    .style("opacity", 0);
-
-
-    
-    for (n=0; n<allDorms.length; n++){
+function makeGraph() {
+ var options = {
+        cellHeight: 40,
+        verticalMargin: 11,
         
-         var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle");
-        //console.log(x[n]);
-        var svgContainer = d3.select(x[n]).append("svg")
+        
+        
+    };
+   
+   $('.grid-stack').gridstack(options);
+    var grid = $('.grid-stack').data('gridstack');
+   
+    var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-east", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-west"];
+ 
+  
+ //Draw the Rectangle
+ //var usageVals=[150,130,110];
+ var transform=50;
+ 
+ var colorA=["#ff5500", "#B27FB2", "#C8A780", "#FFC0CB", "#106271", "#ff66cc", "#99cc00", "#fff68f", "#7ecdd2", "#ffa500",
+             "#800000", "#008000", "#ff7f50", "#ff4444", "#a0db8e", "#cc6633", "#999966", "#9999ff"];
+ /*
+ var dormData=[allVals["Beard"],allVals["chapin"], allVals["clark"], allVals["craigin"],allVals["emerson"],
+               allVals["everett"],allVals["gebbie"],allVals["keefe"],allVals["kilham"],allVals["larcom"],
+               allVals["meadows_East"],allVals["meadows_North"],allVals["Meadows_West"],allVals["Metcalf"],
+               allVals["McIntire"],allVals["Stanton"],allVals["Young"]];
+               */
+ var height=40;
+ var length=190;
+ 
+ var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+    
+ 
+ //for loop
+for (n=0; n<allDorms.length; n++){
+    var data = allVals[allDorms[n]]; //dormData[n]
+  
+ var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle");
+ console.log(x);
+ //console.log(x[n]);
+ var svgContainer = d3.select(x[n]).append("svg")
                                     .attr("width", 800)
                                     .attr("height", 75)
                                     .attr("class", "containers");
     
+transform=transform+height;
+// var data = usageVals; //dormData[n]
+var max = d3.max(d3.values(data)); //find the max data point NOTE needs to be changed to be an array with all data
+var scale= height/max; //sets scale so that the max is the full bar
+var width=600/data.length; //width of each new rect is scaled to number of data points
+var y = document.getElementsByClassName("containers");
+var d=100; //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
+var bar = d3.select(y[n])
+  .append("g")
+  
+    //.attr("transform", function() { return "translate("+d+", "+ transform +")"; }); 
+    //Draw the initial box, will add draggable functionality later through on mouse drage event
+    
+bar.append("rect")
+    
+    .attr("width", length)
+    .attr("height", height)
+    .attr("fill", "#6495ED")
+    .attr("stroke","black")
+    
+ //Dorm name must be added seperately, because d3   
+bar.append("text")
+    .attr("dy", height/2)
+    .attr("dx", length/2)
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .attr("font-weight", "bold")
+    .text(allDorms[n].capFirstLetter());
+  
+  //Draws the full bar
+    
+bar.append("rect")
+    .attr("x",length)
+    .attr("y",0)
+    .attr("width",603)
+    .attr("height", height)
+    .attr("fill", "#E0ffff")
+    .attr("stroke", "black")
+    
+    //Loop that adds sections
+    
+    for (j = 0; j < data.length; j++) { 
+   var value=data[j];
+    bar.append("rect")
+    .attr("x",j*width+length+.5)
+    .attr("height", data[j]*scale-2)
+    .attr("y",(height-(data[j]*scale))/2+1)
+    .attr("width",width+2)
+    .attr("fill", colorA[n])
+    .attr("id", data[j])
+    
+    .on("mouseover", function() {
+          tooltip.transition()
+               .duration(200)
+               
+               .style("opacity", 1);
+          tooltip.html("Average power consumed at this moment: " + (this.id*1).toFixed(2)+ " kW/h" + "<br/>" +
+                       "Cost of power at this time " + (this.id*.14).toFixed(2) +" dollars" + "<br/>" +
+                       "C0" + "<sub> 2 </sub>" + " generated by this power " + (this.id*.6379).toFixed(2) + "pounds")
+                
+               .style("left", (d3.event.pageX + 5) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+          tooltip.transition()
+               .duration(200)
+               .style("opacity", 0);
+      });
+   // .attr("stroke", "black")
+    //.on mouse over display tooltip with more detailed information
+                                        }; //end loop
+    console.log(y[n]);
+    grid.resizable('.grid-stack-item', false);
+    
+}; //end of for loop
+};
 
-        
-        var data = allVals[allDorms[n]]; //dormData[n]
-        var max = d3.max(d3.values(data)); //find the max data point NOTE needs to be changed to be an array with all data
-        var scale= height/max; //sets scale so that the max is the full bar
-        var width=600/data.length; //width of each new rect is scaled to number of data points
-        
-        var y = document.getElementsByClassName("containers");
-        
-        var bar = d3.select(y[n])
-                    .append("g")
-                    
-        
-
-        bar.append("rect")
-           .attr("width", length)
-           .attr("height", height)
-           .attr("fill", "#6495ED")
-           .attr("stroke","black")
-
-        //Dorm name must be added seperately, because d3   
-        bar.append("text")
-           .attr("dy", height/2)
-           .attr("dx", length/2)
-           .attr("fill", "black")
-           .attr("text-anchor", "middle")
-           .attr("font-weight", "bold")
-           .text(allDorms[n].capFirstLetter());
-
-        //Draws the full bar
-
-        bar.append("rect")
-           .attr("x",length)
-           .attr("y",0)
-           .attr("width",603)
-           .attr("height", height)
-           .attr("fill", "#E0FFFF")
-           .attr("stroke", "black")
-
-        for (j = 0; j < data.length; j++) { 
-            var value=data[j];
-            bar.append("rect")
-               .attr("x",j*width+length+.5)
-               .attr("height", data[j]*scale-2)
-               .attr("y",(height-(data[j]*scale))/2+1)
-               .attr("width",width+2)
-               .attr("fill", colors[n])
-               .attr("id", data[j])
-               .on("mouseover", function() {
-                    tooltip.transition()
-                           .duration(200)
-                           .style("opacity", 1);
-                    tooltip.html("Average power consumed at this moment: " + (this.id*1).toFixed(2)+ " kW/h" + "<br/>" +
-                    "Cost of power at this time " + (this.id*.14).toFixed(2) +" dollars" + "<br/>" +
-                    "C0" + "<sub> 2 </sub>" + " generated by this power " + (this.id*.6379).toFixed(2) + "pounds")
-
-                           .style("left", (d3.event.pageX + 5) + "px")
-                           .style("top", (d3.event.pageY - 28) + "px");
-                })
-               .on("mouseout", function(d) {
-                   tooltip.transition()
-                          .duration(200)
-                          .style("opacity", 0);
-                });
-
-            // console.log(data[j]);
-        }  
-    } 
-}
-
-function echoData(){
-
-    console.log(allVals);
-
-}
-
-
+ 
+    
 </script>
 
 
 </body>
-
 </html>

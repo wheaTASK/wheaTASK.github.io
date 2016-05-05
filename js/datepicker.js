@@ -33,8 +33,8 @@ $(document).ready(function(){
 	startMonth = checkFormat(startMonth);
 	startDay = checkFormat(startDay);
 
-
-	endDateObj = new Date(endYear, endMonth, endYear);
+	startDateObj = new Date(startYear, (startMonth-1), startDay);
+	endDateObj = new Date(endYear, (endMonth-1), endDay);
 
 	// turn dates into strings for use with date picker
 	var stringStartDate = startYear + '-' + startMonth + '-' + startDay;
@@ -66,9 +66,9 @@ $(document).ready(function(){
 				changeStartDate(startDate);
 				startDateObj = new Date(startYear, (startMonth-1), startDay);
 
-				// reset averages to only use data back to certain date
-				// getValRange("hour",startDateObj,endDateObj);
+				getValRange("hour",startDateObj,endDateObj);
 				avgKWH();
+				redrawMap();
 			}
 		}
 		$('#dp4').fdatepicker('hide');
@@ -91,10 +91,9 @@ $(document).ready(function(){
 
 				endDateObj = new Date(endYear, (endMonth-1), endDay);
 
-				console.log(2016 + '-' + endMonth + '-' + endDay);
-
-				// console.log(endDateObj);
-				// changeEndDate(endDate);
+				getValRange("hour",startDateObj,endDateObj);
+				avgKWH();
+				redrawMap();
 			}
 		}
 		$('#dp5').fdatepicker('hide');
@@ -193,3 +192,14 @@ function fixEndDate() {
 	endDay = startDay;
 	endMonth = startMonth;
 }
+
+// function redrawMap() {
+// 	console.log(map);
+// 	console.log("L");
+// 	console.log(L);
+// 	if (map._map) {
+// 		map._reset({hard: true});
+// 		map._update();
+// 	}
+// 	return map;
+// }

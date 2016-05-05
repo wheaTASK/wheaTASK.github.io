@@ -12,13 +12,59 @@
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 		<link rel="stylesheet" href="./node_modules/foundation-datepicker/css/foundation-datepicker.css" />
 		<script src="./js/underscore.min.js"></script>
-		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="./js/leaflet-src.js"></script>
 		<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="./js/wrapper.js"></script>
 		<script src="./js/index.js"></script>
     	<script src="./js/dorms.js" type="text/javascript"></script>
-    	<script src="./js/pullLocal.js" type="text/javascript"></script>
+    	<script src="./js/pullData.js" type="text/javascript"></script>
     	<script src="./js/leafletscript.js" type="text/javascript"></script>
+
+    	<style type="text/css">
+		   
+			.dropbtn {
+			    background-color: #0068af;
+			    color: white;
+			    padding: 16px;
+			    font-size: 16px;
+			    border: none;
+			    cursor: pointer;
+			    border-radius: 10px;
+
+			}
+
+			.dropdown {
+			    position: relative;
+			    display: inline-block;
+			}
+
+			.dropdown-content {
+			    display: none;
+			    position: absolute;
+			    background-color: #f9f9f9;
+			    min-width: 160px;
+			    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			}
+
+			.dropdown-content a {
+			    color: black;
+			    padding: 12px 16px;
+			    text-decoration: none;
+			    display: block;
+			}
+
+			.dropdown-content a:hover { background-color: #6BA9D1;}
+
+			.dropdown:hover .dropdown-content {
+			    display: block;
+			}
+
+			.dropdown:hover .dropbtn {
+			     background-color: #0068aa;
+			}
+
+
+		</style>
 	</head>
 
 	<!-- submenu button space in between divs -->
@@ -78,8 +124,20 @@
 						</div>
 
 						<div class="row">
-							<div class="resetButton" onclick="resetMap()">RESET</div>
-						</div>
+							<div class="dropdown" style="margin-top:200px;">
+							  <button class="dropbtn">Time Intervals</button>
+							  <div class="dropdown-content">
+							    <a href="#">Hours</a>
+							    <a href="#">Days</a>
+							    <a href="#">Weeks</a>
+							  </div>
+							</div>
+                           
+
+							<div class="resetButton" style="margin-top:150px; margin-left:10px;" onclick="resetMap()">RESET</div>
+
+
+                        </div>
 					</div>
 
 				<!-- </div> -->

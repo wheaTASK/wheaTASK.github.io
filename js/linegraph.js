@@ -1,60 +1,132 @@
 // contains js for index page
 $(document).ready(function() {
-	// submenu
-	$("#submenu").hide();
-	$(".submenuOpen").click(function() {
-		$("#submenu").slideDown();
-		$(".submenuOpen").hide();
-	});
-	$(".submenuClose").click(function() {
-		$("#submenu").slideUp("slow", function() {
-			$(".submenuOpen").show();
-		});
-	});
+	setTimeout(makeGraph, 5000);
 });
 
-// checkboxes and radio buttons
-$(function checkboxes() {
-	if ($("#heatmap").is(':checked')) {
-		$("#map").addClass("activegraph");
-		$("#map").removeClass("inactivegraph");
-		$("#lineGraph").addClass("inactivegraph");
-		$("#lineGraph").removeClass("activegraph");
-	}
-	else {
-		$("#lineGraph").addClass("activegraph");
-		$("#lineGraph").removeClass("inactivegraph");
-		$("#map").addClass("inactivegraph");
-		$("#map").removeClass("activegraph");
-	}
-});
+String.prototype.capFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
-// select all button
-$(function selectall() {
-	if ($("#selectAll").is(':checked')) {
-		$('input[type=checkbox]').each(function() {
-			this.checked = true;
-		});
-	}
-	else if ($("#selectAll").not(':checked')) {
-		$('input[type=checkbox]').each(function() {
-			this.checked = false;
-		});
-	}
-});
-
-// sort button
-$(function sort() {
-	$("#ordered").addClass("tempActiveImage");
-	$("#ordered").removeClass("tempInActiveImage");
-	$("#unordered").addClass("tempInActiveImage");
-	$("#unordered").removeClass("tempActiveImage");
-});
-
-// reset button
-$(function reset() {
-	$("#unordered").addClass("tempActiveImage");
-	$("#unordered").removeClass("tempInActiveImage");
-	$("#ordered").addClass("tempInActiveImage");
-	$("#ordered").removeClass("tempActiveImage");
-});
+function makeGraph() {
+ var options = {
+        cellHeight: 40,
+        verticalMargin: 11,
+        
+        
+        
+    };
+   
+   $('.grid-stack').gridstack(options);
+    var grid = $('.grid-stack').data('gridstack');
+   
+    var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-east", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-west"];
+ 
+  
+ //Draw the Rectangle
+ //var usageVals=[150,130,110];
+ var transform=50;
+ 
+ var colorA=["#ff5500", "#B27FB2", "#C8A780", "#FFC0CB", "#106271", "#ff66cc", "#99cc00", "#fff68f", "#7ecdd2", "#ffa500",
+             "#800000", "#008000", "#ff7f50", "#ff4444", "#a0db8e", "#cc6633", "#999966", "#9999ff"];
+ /*
+ var dormData=[allVals["Beard"],allVals["chapin"], allVals["clark"], allVals["craigin"],allVals["emerson"],
+               allVals["everett"],allVals["gebbie"],allVals["keefe"],allVals["kilham"],allVals["larcom"],
+               allVals["meadows_East"],allVals["meadows_North"],allVals["Meadows_West"],allVals["Metcalf"],
+               allVals["McIntire"],allVals["Stanton"],allVals["Young"]];
+               */
+ var height=40;
+ var length=190;
+ 
+ var tooltip = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+    
+ 
+ //for loop
+for (n=0; n<allDorms.length; n++){
+    var data = allVals[allDorms[n]]; //dormData[n]
+  
+ var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle");
+ // console.log(x);
+ //console.log(x[n]);
+ var svgContainer = d3.select(x[n]).append("svg")
+                                    .attr("width", 800)
+                                    .attr("height", 75)
+                                    .attr("class", "containers");
+    
+transform=transform+height;
+// var data = usageVals; //dormData[n]
+var max = d3.max(d3.values(data)); //find the max data point NOTE needs to be changed to be an array with all data
+var scale= height/max; //sets scale so that the max is the full bar
+var width=600/data.length; //width of each new rect is scaled to number of data points
+var y = document.getElementsByClassName("containers");
+var d=100; //testing ability to alter the transform based on a variable, useful for when we are looking at multiple dorms
+var bar = d3.select(y[n])
+  .append("g")
+  
+    //.attr("transform", function() { return "translate("+d+", "+ transform +")"; }); 
+    //Draw the initial box, will add draggable functionality later through on mouse drage event
+    
+bar.append("rect")
+    
+    .attr("width", length)
+    .attr("height", height)
+    .attr("fill", "#6495ED")
+    .attr("stroke","black")
+    
+ //Dorm name must be added seperately, because d3   
+bar.append("text")
+    .attr("dy", height/2)
+    .attr("dx", length/2)
+    .attr("fill", "black")
+    .attr("text-anchor", "middle")
+    .attr("font-weight", "bold")
+    .text(allDorms[n].capFirstLetter());
+  
+  //Draws the full bar
+    
+bar.append("rect")
+    .attr("x",length)
+    .attr("y",0)
+    .attr("width",603)
+    .attr("height", height)
+    .attr("fill", "#E0ffff")
+    .attr("stroke", "black")
+    
+    //Loop that adds sections
+    
+    for (j = 0; j < data.length; j++) { 
+   var value=data[j];
+    bar.append("rect")
+    .attr("x",j*width+length+.5)
+    .attr("height", data[j]*scale-2)
+    .attr("y",(height-(data[j]*scale))/2+1)
+    .attr("width",width+2)
+    .attr("fill", colorA[n])
+    .attr("id", data[j])
+    
+    .on("mouseover", function() {
+          tooltip.transition()
+               .duration(200)
+               
+               .style("opacity", 1);
+          tooltip.html("Average power consumed at this moment: " + (this.id*1).toFixed(2)+ " kW/h" + "<br/>" +
+                       "Cost of power at this time " + (this.id*.14).toFixed(2) +" dollars" + "<br/>" +
+                       "C0" + "<sub> 2 </sub>" + " generated by this power " + (this.id*.6379).toFixed(2) + "pounds")
+                
+               .style("left", (d3.event.pageX + 5) + "px")
+               .style("top", (d3.event.pageY - 28) + "px");
+      })
+      .on("mouseout", function(d) {
+          tooltip.transition()
+               .duration(200)
+               .style("opacity", 0);
+      });
+   // .attr("stroke", "black")
+    //.on mouse over display tooltip with more detailed information
+                                        }; //end loop
+    console.log(y[n]);
+    grid.resizable('.grid-stack-item', false);
+    
+}; //end of for loop
+};
