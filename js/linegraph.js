@@ -1,12 +1,33 @@
 // contains js for index page
+
+var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-east", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-west", "gebbie", "keefe"];
+
+function normalize_bed() {
+    var occupancy = [110, 45, 96, 68, 28, 191, 50, 50, 58, 63, 92, 94, 92, 94, 65, 88, 94];
+    for (n=0; n<allDorms.length;n++)
+    {
+        for (i=0; i<allVals[allDorms[n]].length; i++)
+        {
+            allVals[allDorms[n]][i]=allVals[allDorms[n]][i]/occupancy[n];
+        }
+        
+    }
+    
+    
+};
+
 $(document).ready(function() {
   // setTimeout(getValRange("hour", startDateObj, endDateObj), 3000);
+  setTimeout(normalize_bed, 2000);
 	setTimeout(makeGraph, 3000);
 });
 
 String.prototype.capFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
+
+ 
+
 
 function makeGraph() {
  var options = {
@@ -19,8 +40,21 @@ function makeGraph() {
    
    $('.grid-stack').gridstack(options);
     var grid = $('.grid-stack').data('gridstack');
+	
+	var maxes=[];
    
-    var allDorms= ["beard", "emerson-dorm", "chapin", "clark", "mcintire", "young", "meadows-east", "meadows-north", "metcalf", "kilham", "larcom", "stanton", "cragin", "everett", "meadows-west", "gebbie", "keefe"];
+   for (i=0; i<allDorms.length;i++)
+   {
+    var data = allVals[allDorms[i]];
+    var max = d3.max(d3.values(data));
+    maxes[i]=max;
+    d3.select("body").append("text").text(max+" ");
+   }
+   
+  
+     var supermax= Math.max.apply(null, maxes);
+   
+    
  
   
  //Draw the Rectangle
@@ -58,7 +92,7 @@ console.log(data);
     
 transform=transform+height;
 // var data = usageVals; //dormData[n]
-var max = d3.max(d3.values(data)); //find the max data point NOTE needs to be changed to be an array with all data
+var max = supermax; //find the max data point NOTE needs to be changed to be an array with all data
 var scale= height/max; //sets scale so that the max is the full bar
 var width=500/data.length; //width of each new rect is scaled to number of data points
 var y = document.getElementsByClassName("containers");
