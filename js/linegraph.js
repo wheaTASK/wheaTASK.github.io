@@ -135,7 +135,7 @@ bar.append("rect")
    var value=data[j];
     bar.append("rect")
     .attr("x",j*width+length+.5)
-    .attr("height", data[j]*scale-2)
+    .attr("height", data[j]*scale)
     .attr("y",(height-(data[j]*scale))/2+1)
     .attr("width",width+2)
     .attr("fill", colorA[n])
