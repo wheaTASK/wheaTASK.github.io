@@ -48,7 +48,7 @@ function makeGraph() {
     var data = allVals[allDorms[i]];
     var max = d3.max(d3.values(data));
     maxes[i]=max;
-    d3.select("body").append("text").text(max+" ");
+    
    }
    
   
