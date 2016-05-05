@@ -1,15 +1,16 @@
 // contains js for index page
+var linePage = true;
+var indexPage = false;
 
-var allDorms=["beard","chapin", "clark", "cragin","emerson-dorm","everett","gebbie","keefe","kilham","larcom","meadows-east"
-            ,"meadows-north","meadows-west","metcalf","mcintire","stanton","young"];
+var allDorms=["beard","chapin", "clark", "cragin","emerson-dorm","everett","gebbie","keefe","kilham","larcom","meadows-east", "meadows-north","meadows-west","metcalf","mcintire","stanton","young"];
 
 function normalize_bed() {
     var occupancy = [110, 45, 96, 68, 28, 191, 50, 50, 58, 63, 92, 94, 92, 94, 65, 88, 94];
     for (n=0; n<allDorms.length;n++)
     {
-        for (i=0; i<allVals[allDorms[n]].length; i++)
+        for (i=0; i<userVals[allDorms[n]].length; i++)
         {
-            allVals[allDorms[n]][i]=allVals[allDorms[n]][i]/occupancy[n];
+            userVals[allDorms[n]][i]=userVals[allDorms[n]][i]/occupancy[n];
         }
         
     }
@@ -27,10 +28,13 @@ String.prototype.capFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
- 
+function deleteSVGs() {
+  $(".containers").remove();
+}
 
 
 function makeGraph() {
+  $("#loadingGif").remove();
  var options = {
         cellHeight: 40,
         verticalMargin: 11,
@@ -46,7 +50,7 @@ function makeGraph() {
    
    for (i=0; i<allDorms.length;i++)
    {
-    var data = allVals[allDorms[i]];
+    var data = userVals[allDorms[i]];
     var max = d3.max(d3.values(data));
     maxes[i]=max;
     
@@ -81,7 +85,7 @@ function makeGraph() {
  //for loop
 for (n=0; n<allDorms.length; n++){
     var data = userVals[allDorms[n]]; //dormData[n]
-console.log(data);
+// console.log(data);
   
  var x=document.getElementsByClassName("grid-stack-item-content ui-draggable-handle");
  // console.log(x);

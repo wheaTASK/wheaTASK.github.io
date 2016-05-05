@@ -65,7 +65,14 @@ $(document).ready(function(){
 
 				getValRange("hour",startDateObj,endDateObj);
 				avgKWH();
-				redrawMap();
+
+				if (indexPage)
+					redrawMap();
+				else if (linePage) {
+					normalize_bed();
+					deleteSVGs();
+					makeGraph();
+				}
 			}
 		}
 		$('#dp4').fdatepicker('hide');
@@ -90,7 +97,14 @@ $(document).ready(function(){
 
 				getValRange("hour",startDateObj,endDateObj);
 				avgKWH();
-				redrawMap();
+
+				if (indexPage)
+					redrawMap();
+				else if (linePage) {
+					normalize_bed();
+					deleteSVGs();
+					makeGraph();
+				}
 			}
 		}
 		$('#dp5').fdatepicker('hide');
@@ -178,6 +192,33 @@ function checkDate(newDate) {
 function fixEndDate() {
 	endDay = startDay;
 	endMonth = startMonth;
+}
+
+function byHoursL() {
+	getValRange("hour", startDateObj, endDateObj);
+	labelDelim = "hour";
+	avgKWH();
+	normalize_bed();
+	deleteSVGs();
+	makeGraph();
+}
+
+function byDaysL() {
+	getValRange("day", startDateObj, endDateObj);
+	labelDelim = "day";
+	avgKWH();
+	normalize_bed();
+	deleteSVGs();
+	makeGraph();
+}
+
+function byWeeksL() {
+	getValRange("week", startDateObj, endDateObj);
+	labelDelim = "week";
+	avgKWH();
+	normalize_bed();
+	deleteSVGs();
+	makeGraph();
 }
 
 function byHours() {

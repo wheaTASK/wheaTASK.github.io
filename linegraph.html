@@ -10,6 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="./css/linegraph.css">
 	    <script src="./js/underscore.min.js"></script>
 	    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./node_modules/foundation-datepicker/css/foundation-datepicker.css" />
 	    <link rel="stylesheet" href="./css/gridstack.css"/>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
@@ -39,6 +40,49 @@
 			  color: #000;
 			  
 			}
+		   
+			.dropbtn {
+			    background-color: #0068af;
+			    color: white;
+			    padding: 16px;
+			    font-size: 16px;
+			    border: none;
+			    cursor: pointer;
+			    border-radius: 10px;
+			}
+
+			.dropdown {
+				margin-left: 7em;
+			    position: relative;
+			    display: inline-block;
+			}
+
+			.dropdown-content {
+			    display: none;
+			    position: absolute;
+			    background-color: #f9f9f9;
+			    min-width: 160px;
+			    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			}
+
+			.dropdown-content a {
+			    color: black;
+			    padding: 12px 16px;
+			    text-decoration: none;
+			    display: block;
+			}
+
+			.dropdown-content a:hover { background-color: #6BA9D1;}
+
+			.dropdown:hover .dropdown-content {
+			    display: block;
+			}
+
+			.dropdown:hover .dropbtn {
+			     background-color: #0068aa;
+			}
+
+
 		</style>
 	</head>
 
@@ -62,6 +106,8 @@
 				</ul>
 			</div>
 		</div>
+
+		<center><img src="./images/loading.gif" id="loadingGif"></center>
 
 		
 			
@@ -174,12 +220,53 @@
 					</div>
 			</center>
 				</div>
+
+				
+				<div class="small-2 columns">
+					<div class="row">
+						<div class="datepicker" id="datePickerAlign">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Start Date&nbsp;
+											<a href="#" class="button tiny" id="dp4" data-date-format="yyyy-mm-dd">Change</a>
+										</th>
+										<th>End Date&nbsp;
+											<a href="#" class="button tiny" id="dp5" data-date-format="yyyy-mm-dd">Change</a>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td id="startDate"></td>
+										<td id="endDate"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="dropdown" style="margin-top:200px;">
+						  <button class="dropbtn">Time Intervals</button>
+						  <div class="dropdown-content">
+						    <a href="#" onclick="byHoursL()">Hours</a>
+						    <a href="#" onclick="byDaysL()">Days</a>
+						    <a href="#" onclick="byWeeksL()">Weeks</a>
+						  </div>
+						</div>
+                    </div>
+				</div>
+
+
 			<script src="./js/linegraph.js"</script>
-		
+
 
 		<!-- loads jquery and foundation -->
 		<script src="js/vendor/jquery.min.js"></script>
 		<script src="js/foundation.min.js"></script>
+		<script src="./node_modules/foundation-datepicker/js/foundation-datepicker.js" type="text/javascript"></script>
+    	<script src="./js/datepicker.js" type="text/javascript"></script>
 		<script>
 			$(document).foundation();
 		</script>

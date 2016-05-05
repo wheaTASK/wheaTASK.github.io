@@ -40,7 +40,9 @@ function redrawMap() {
 }
 
 function resetScales() {
+	$("#legendDiv").remove();
 	legend.onAdd(map);
+	legend.addTo(map);
 }
 
 function continueLeaflet() {
@@ -135,13 +137,13 @@ function continueLeaflet() {
 								  '#FDFFF0';
 			}
 			else {
-				return d > 10 ? '#FF0000' :
-					   d > 5  ? '#FF4322' :
-					   d > 2  ? '#FFD744' :
-					   d > 1  ? '#FFAC66' :
-					   d > .5   ? '#FFD089' :
-					   d > .2   ? '#FFEBAB' :
-					   d > .1   ? '#FFFACD' :
+				return d > 2900 ? '#FF0000' :
+					   d > 2000  ? '#FF4322' :
+					   d > 1500  ? '#FFD744' :
+					   d > 1000  ? '#FFAC66' :
+					   d > 500   ? '#FFD089' :
+					   d > 300   ? '#FFEBAB' :
+					   d > 100   ? '#FFFACD' :
 								  '#FDFFF0';
 			}
 		}
@@ -203,8 +205,8 @@ function continueLeaflet() {
 
 	legend.onAdd = function (map) {
 		var valsHour = [0, .1, .2, .5, 1, 2, 5, 10];
-		var valsDay = [10, 20, 50, 100, 200, 300, 500];
-		var valsWeek = [];
+		var valsDay = [0, 10, 20, 50, 100, 200, 300, 500];
+		var valsWeek = [0, 100, 300, 500, 1000, 1500, 2000, 2900];
 		var valsToUse = [];
 
 		console.log(labelDelim);
@@ -221,11 +223,29 @@ function continueLeaflet() {
 		}
 		console.log(valsToUse);
 
-	  var div = L.DomUtil.create('div', 'info legend'),
+		var div = L.DomUtil.create('div', 'info legend'),
 		vals = valsToUse,
 		grades = [0, 10, 20, 50, 100, 200, 500, 1000],
 		labels = [],
 		from, to;
+
+	 //  var divHour = L.DomUtil.create('div', 'info legend'),
+		// vals = valsToUse,
+		// grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+		// labels = [],
+		// from, to;
+
+	 //  var divDay = L.DomUtil.create('div', 'info legend'),
+		// vals = valsToUse,
+		// grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+		// labels = [],
+		// from, to;
+
+	 //  var divWeek = L.DomUtil.create('div', 'info legend'),
+		// vals = valsToUse,
+		// grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+		// labels = [],
+		// from, to;
 
 	  for (var i = 0; i < grades.length; i++) {
 		from = grades[i];
@@ -238,7 +258,7 @@ function continueLeaflet() {
 		  labelFrom + (labelTo ? '&ndash;' + labelTo : '+'));
 	  }
 
-	  div.innerHTML = "";
+	  div.id = "legendDiv";
 	  div.innerHTML = labels.join('<br>');
 	  return div;
 	};
